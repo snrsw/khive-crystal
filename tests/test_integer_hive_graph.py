@@ -9,11 +9,6 @@ def test_fails_integer_hive_graph_invalid_uij():
             n=3, alpha=[2, 1, 0], beta=[2, 1, 0], gamma=[0, 0, 0], uij=[[1, 0], [0]]
         )
 
-    assert (
-        str(e.value)
-        == "Invalid values! Given values dose not satisfy the definition of a interger hive graph."
-    )
-
 
 def test_passes_integer_hive_graph_invalid_uij():
 
