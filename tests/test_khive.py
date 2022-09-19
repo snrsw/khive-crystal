@@ -1,5 +1,5 @@
 import pytest
-from khive_crystal.k_hive import KHive
+from khive_crystal.khive import KHive
 
 
 def test_fails_k_hive():
