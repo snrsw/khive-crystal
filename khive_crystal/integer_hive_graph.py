@@ -34,7 +34,7 @@ class IntegerHiveGraph:
     beta: List[int]
     gamma: List[int]
     Uij: List[List[int]]
-    full_Uij: List[List[int]] = field(init=False)
+    full_Uij: List[List[int]] = field(init=False, repr=False)
 
     def __post_init__(self):
         object.__setattr__(self, "alpha", align_length(n=self.n, edge=self.alpha))
