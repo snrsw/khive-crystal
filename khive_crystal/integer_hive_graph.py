@@ -86,9 +86,9 @@ class IntegerHiveGraph:
             raise ValueError("Invalid value! i should be in [n].")
 
         i_as_index: int = i - 1
-        uji: List[List[int]] = self.get_uji()
+        Uji: List[List[int]] = self.get_Uji()
         return (
-            self.beta[i_as_index] - sum(uji[i_as_index - 1]) if 1 < i else self.beta[0]
+            self.beta[i_as_index] - sum(Uji[i_as_index - 1]) if 1 < i else self.beta[0]
         )
 
     def add_Uii(self) -> List[List[int]]:
@@ -111,13 +111,13 @@ class IntegerHiveGraph:
             [self.compute_Uii(i=self.n - 1)]
         ]
 
-    def get_uji(self) -> List[List[int]]:
-        """get uji by aligning Uij.
+    def get_Uji(self) -> List[List[int]]:
+        """get Uji by aligning Uij.
         Let Uij = [[U_{12}, U_{13}, U_{14}], [U_{23}, U_{24}], [U_{34}]].
-        Then uji = [[U_{12}], [U_{13}, U_{23}], [U_{14}, U_{24}], [U_{34}]].
+        Then Uji = [[U_{12}], [U_{13}, U_{23}], [U_{14}, U_{24}], [U_{34}]].
 
         Returns:
-            List[List[int]]: uji
+            List[List[int]]: Uji
 
         Examples:
             >>> n: int = 3
@@ -126,7 +126,7 @@ class IntegerHiveGraph:
             >>> gamma: List[int] = [0, 0, 0]
             >>> Uij: List[List[int]] = [[0, 0], [0]]
             >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
-            >>> H.get_uji()
+            >>> H.get_Uji()
             [[0], [0, 0]]
 
             >>> n: int = 3
@@ -135,7 +135,7 @@ class IntegerHiveGraph:
             >>> gamma: List[int] = [0, 0, 0]
             >>> Uij: List[List[int]] = [[2, 0], [1]]
             >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
-            >>> H.get_uji()
+            >>> H.get_Uji()
             [[2], [0, 1]]
 
             >>> n: int = 3
@@ -144,7 +144,7 @@ class IntegerHiveGraph:
             >>> gamma: List[int] = [0, 0, 0]
             >>> Uij: List[List[int]] = [[1, 1], [1]]
             >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
-            >>> H.get_uji()
+            >>> H.get_Uji()
             [[1], [1, 1]]
         """
 
@@ -171,13 +171,13 @@ class IntegerHiveGraph:
         elif k == self.n:
             is_hold = self.beta[k_as_index] == (
                 self.gamma[k_as_index]
-                + sum(self.get_uji()[k_as_index - 1])  # \sum_{l=1}^{k-1} U_{lk}
+                + sum(self.get_Uji()[k_as_index - 1])  # \sum_{l=1}^{k-1} U_{lk}
                 + self.alpha[k_as_index]
             )
         else:
             is_hold = self.beta[k_as_index] == (
                 self.gamma[k_as_index]
-                + sum(self.get_uji()[k_as_index - 1])  # \sum_{l=1}^{k-1} U_{lk}
+                + sum(self.get_Uji()[k_as_index - 1])  # \sum_{l=1}^{k-1} U_{lk}
                 + self.alpha[k_as_index]
                 - sum(self.Uij[k_as_index])
             )  # \sum_{l=k+1}^{n} U_{kl}
