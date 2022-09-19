@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from logging import DEBUG, StreamHandler, getLogger
 from typing import List
 
@@ -34,6 +34,7 @@ class IntegerHiveGraph:
     beta: List[int]
     gamma: List[int]
     Uij: List[List[int]]
+    full_Uij: List[List[int]] = field(init=False)
 
     def __post_init__(self):
         object.__setattr__(self, "alpha", align_length(n=self.n, edge=self.alpha))
