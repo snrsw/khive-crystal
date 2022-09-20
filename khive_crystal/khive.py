@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import List
 
 from khive_crystal.integer_hive_graph import IntegerHiveGraph
 
