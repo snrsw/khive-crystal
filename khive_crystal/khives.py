@@ -379,28 +379,28 @@ class FundamentalKHives(KHives):
         def _f(H: KHive) -> Union[KHive, None]:
             if self.phi(i=i)(H=H) == 0:
                 return None
-            else:
-                i_as_index: int = i - 1
 
-                beta: List[int] = H.beta.copy()
-                gamma: List[int] = [0] * self.n
-                Uij: List[List[int]] = deepcopy(H.Uij)
+            i_as_index: int = i - 1
 
-                beta[i_as_index] += -1
-                beta[i_as_index + 1] += 1
+            beta: List[int] = H.beta.copy()
+            gamma: List[int] = [0] * self.n
+            Uij: List[List[int]] = deepcopy(H.Uij)
 
-                act_point_as_index: int
-                try:
-                    Uxi: List[int] = H.get_Uji()[i_as_index - 1]
-                    act_point_as_index = [Uji > 0 for Uji in Uxi].index(True)
-                except ValueError:
-                    act_point_as_index = i_as_index
+            beta[i_as_index] += -1
+            beta[i_as_index + 1] += 1
 
-                i_as_index_in_Uij: int = i_as_index - act_point_as_index - 1
-                ip1_as_index_in_Uij: int = i_as_index - act_point_as_index
-                if 0 <= (i_as_index_in_Uij):
-                    Uij[act_point_as_index][i_as_index_in_Uij] += -1  # U_{ki}
-                Uij[act_point_as_index][ip1_as_index_in_Uij] += 1  # U_{k,i+1}
+            act_point_as_index: int
+            try:
+                Uxi: List[int] = H.get_Uji()[i_as_index - 1]
+                act_point_as_index = [Uji > 0 for Uji in Uxi].index(True)
+            except ValueError:
+                act_point_as_index = i_as_index
+
+            i_as_index_in_Uij: int = i_as_index - act_point_as_index - 1
+            ip1_as_index_in_Uij: int = i_as_index - act_point_as_index
+            if 0 <= (i_as_index_in_Uij):
+                Uij[act_point_as_index][i_as_index_in_Uij] += -1  # U_{ki}
+            Uij[act_point_as_index][ip1_as_index_in_Uij] += 1  # U_{k,i+1}
 
             return KHive(n=self.n, alpha=self.alpha, beta=beta, gamma=gamma, Uij=Uij)
 
@@ -455,28 +455,28 @@ class FundamentalKHives(KHives):
         def _e(H: KHive) -> Union[KHive, None]:
             if self.epsilon(i=i)(H=H) == 0:
                 return None
-            else:
-                i_as_index: int = i - 1
 
-                beta: List[int] = H.beta.copy()
-                gamma: List[int] = [0] * self.n
-                Uij: List[List[int]] = deepcopy(H.Uij)
+            i_as_index: int = i - 1
 
-                beta[i_as_index] += 1
-                beta[i_as_index + 1] += -1
+            beta: List[int] = H.beta.copy()
+            gamma: List[int] = [0] * self.n
+            Uij: List[List[int]] = deepcopy(H.Uij)
 
-                act_point_as_index: int
-                try:
-                    Uxip1: List[int] = H.get_Uji()[i_as_index]
-                    act_point_as_index = [Uji > 0 for Uji in Uxip1].index(True)
-                except ValueError:
-                    act_point_as_index = i_as_index
+            beta[i_as_index] += 1
+            beta[i_as_index + 1] += -1
 
-                i_as_index_in_Uij: int = i_as_index - act_point_as_index - 1
-                ip1_as_index_in_Uij: int = i_as_index - act_point_as_index
-                if 0 <= (i_as_index_in_Uij):
-                    Uij[act_point_as_index][i_as_index_in_Uij] += +1  # U_{ki}
-                Uij[act_point_as_index][ip1_as_index_in_Uij] += -1  # U_{k,i+1}
+            act_point_as_index: int
+            try:
+                Uxip1: List[int] = H.get_Uji()[i_as_index]
+                act_point_as_index = [Uji > 0 for Uji in Uxip1].index(True)
+            except ValueError:
+                act_point_as_index = i_as_index
+
+            i_as_index_in_Uij: int = i_as_index - act_point_as_index - 1
+            ip1_as_index_in_Uij: int = i_as_index - act_point_as_index
+            if 0 <= (i_as_index_in_Uij):
+                Uij[act_point_as_index][i_as_index_in_Uij] += +1  # U_{ki}
+            Uij[act_point_as_index][ip1_as_index_in_Uij] += -1  # U_{k,i+1}
 
             return KHive(n=self.n, alpha=self.alpha, beta=beta, gamma=gamma, Uij=Uij)
 
