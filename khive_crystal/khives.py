@@ -28,8 +28,6 @@ class KHives:
             KHive: H_{alpha} = (alpha, alpha, 0, (0))
 
         Examples:
-            >>> n: int = 3
-            >>> alpha: List[int] = [3, 2, 0]
             >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
             >>> H_alpha.highest_weight_vector()
             KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
@@ -48,15 +46,11 @@ class KHives:
             Callable: If i is given, return <h_i, wt(H)>, otherwise return wt(H).
 
         Examples:
-            >>> n: int = 3
-            >>> alpha: List[int] = [3, 2, 0]
             >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
             >>> H = H_alpha.highest_weight_vector()
             >>> H_alpha.weight(H=H)()
             [3, 2, 0]
 
-            >>> n: int = 3
-            >>> alpha: List[int] = [3, 2, 0]
             >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
             >>> H = H_alpha.highest_weight_vector()
             >>> H_alpha.weight(H=H)(i=1)
@@ -78,23 +72,253 @@ class KHives:
 
         return _weight
 
-    def f(self, i: int):
-        pass
+    def f(self, i: int) -> Callable:
+        """Get f_i(H)
 
-    def phi(self, i: int):
-        pass
+        Args:
+            i (int): i in I,
 
-    def _phi(self, i: int, j: int):
-        pass
+        Returns:
+            Callable: f_i
+
+        Examples:
+            >>> H_alpha = KHives(n=3, alpha=[2, 2, 0])
+            >>> H = H_alpha.highest_weight_vector()
+            >>> H_alpha.f(i=1)(H=H)
+
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H = H_alpha.highest_weight_vector()
+            >>> H_alpha.f(i=1)(H=H)
+            KHive(n=3, alpha=[3, 2, 0], beta=[2, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+        """
+
+        def f_i(H: KHive) -> Union[KHive, None]:
+            if self.phi(i=i)(H=H) == 0:
+                return None
+
+            beta: List[int] = deepcopy(H.beta)
+            Uij: List[List[int]] = deepcopy(H.Uij)
+
+            i_as_index: int = i - 1
+
+            beta[i_as_index] += -1
+            beta[i_as_index + 1] += 1
+
+            act_point_dual: int = [
+                self._phi(i=i, k=k)(H=H) > 0 for k in range(i, -1, -1)
+            ].index(False) - 1
+            act_point: int = i - act_point_dual
+            act_point_as_index: int = act_point - 1
+
+            i_as_index_in_Uij: int = i_as_index - act_point_as_index - 1
+            ip1_as_index_in_Uij: int = i_as_index - act_point_as_index
+            if 0 <= (i_as_index_in_Uij):
+                Uij[act_point_as_index][i_as_index_in_Uij] += -1  # U_{ki}
+            Uij[act_point_as_index][ip1_as_index_in_Uij] += 1  # U_{k,i+1}
+
+            return KHive(n=H.n, alpha=H.alpha, beta=beta, gamma=H.gamma, Uij=Uij)
+
+        return f_i
+
+    def phi(self, i: int) -> Callable:
+        """Compute varphi_i(H)
+
+        Args:
+            i (int): i in I.
+
+        Returns:
+            Callable: varphi_i
+
+        Examples:
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H = H_alpha.highest_weight_vector()
+            >>> H_alpha.phi(i=1)(H=H)
+            1
+        """
+
+        def _phi(H: KHive) -> int:
+            return self._phi(i=i, k=i)(H=H)
+
+        return _phi
+
+    def _phi(self, i: int, k: int) -> Callable:
+        """Compute varphi_i^k(H)
+
+        Args:
+            i (int): i in I.
+            k (int): k in [i].
+
+        Returns:
+            Callable: varphi_i^j
+
+        Examples:
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H = H_alpha.highest_weight_vector()
+            >>> H_alpha._phi(i=1, k=1)(H=H)
+            1
+
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H = H_alpha.highest_weight_vector()
+            >>> H_alpha._phi(i=2, k=1)(H=H)
+            0
+
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H = H_alpha.highest_weight_vector()
+            >>> H_alpha._phi(i=2, k=2)(H=H)
+            2
+        """
+
+        def phi_i_k(H: KHive) -> int:
+            i_as_index: int = i - 1
+            k_as_index: int = k - 1
+
+            if k == 0:
+                return 0
+
+            hat_phi_i_k = (
+                self._phi(i=i, k=k - 1)(H)
+                + H.full_Uij[k_as_index][i_as_index - k_as_index]  # U_{ki}
+                - H.full_Uij[k_as_index + 1][i_as_index - k_as_index]  # U_{k+1,i+1}
+            )
+
+            return max(hat_phi_i_k, 0)
+
+        return phi_i_k
 
     def e(self, i: int):
-        pass
+        """Get e_i(H)
 
-    def epsilon(self, i: int):
-        pass
+        Args:
+            i (int): i in I,
 
-    def _epsilon(self, i: int, j: int):
-        pass
+        Returns:
+            Callable: e_i
+
+        Examples:
+            >>> H_alpha = KHives(n=3, alpha=[2, 2, 0])
+            >>> H = H_alpha.highest_weight_vector()
+            >>> H_alpha.e(i=1)(H=H)
+
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+            >>> H_alpha.e(i=1)(H=H)
+            KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        """
+
+        def e_i(H: KHive) -> Union[KHive, None]:
+            if self.epsilon(i=i)(H=H) == 0:
+                return None
+
+            beta: List[int] = deepcopy(H.beta)
+            Uij: List[List[int]] = deepcopy(H.Uij)
+
+            i_as_index: int = i - 1
+
+            beta[i_as_index] += 1
+            beta[i_as_index + 1] += -1
+
+            act_point_dual: int = [
+                self._epsilon(i=i, k=k)(H=H) > 0 for k in range(i + 1, -1, -1)
+            ].index(False) - 1
+            act_point: int = i + 1 - (i - act_point_dual)
+            act_point_as_index: int = act_point - 1
+
+            i_as_index_in_Uij: int = i_as_index - act_point_as_index - 1
+            ip1_as_index_in_Uij: int = i_as_index - act_point_as_index
+            if 0 <= (i_as_index_in_Uij):
+                Uij[act_point_as_index][i_as_index_in_Uij] += +1  # U_{ki}
+            Uij[act_point_as_index][ip1_as_index_in_Uij] += -1  # U_{k,i+1}
+
+            return KHive(n=H.n, alpha=H.alpha, beta=beta, gamma=H.gamma, Uij=Uij)
+
+        return e_i
+
+    def epsilon(self, i: int) -> Callable:
+        """Compute vare[silon_i(H)
+
+        Args:
+            i (int): i in I.
+
+        Returns:
+            Callable: varepsilon_i
+
+        Examples:
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H = H_alpha.highest_weight_vector()
+            >>> H_alpha.epsilon(i=1)(H=H)
+            0
+
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+            >>> H_alpha.epsilon(i=1)(H=H)
+            1
+        """
+
+        def _epsilon(H: KHive) -> int:
+            return self._epsilon(i=i, k=i + 1)(H=H)
+
+        return _epsilon
+
+    def _epsilon(self, i: int, k: int) -> Callable:
+        """Compute varepsilon_i^k(H)
+
+        Args:
+            i (int): i in I.
+            k (int): k in [i+1].
+
+        Returns:
+            Callable: varepsilon_i^j
+
+        Examples:
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H = H_alpha.highest_weight_vector()
+            >>> H_alpha._epsilon(i=1, k=1)(H=H)
+            0
+
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H = H_alpha.highest_weight_vector()
+            >>> H_alpha._epsilon(i=2, k=1)(H=H)
+            0
+
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+            >>> H_alpha._epsilon(i=1, k=1)(H=H)
+            0
+
+            >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
+            >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+            >>> H_alpha._epsilon(i=1, k=2)(H=H)
+            1
+        """
+
+        def epsilon_i_k(H: KHive) -> int:
+            i_as_index: int = i - 1
+
+            if k == 0:
+                return 0
+
+            hat_epsilon_i_k: int
+            if k == i + 1:
+                hat_epsilon_i_k = (
+                    self._epsilon(i=i, k=k - 1)(H)
+                    + H.full_Uij[i_as_index + 2 - k][
+                        i_as_index - (i_as_index + 1 - k)
+                    ]  # U_{i+2-k,i+1}
+                )
+            else:
+                hat_epsilon_i_k = (
+                    self._epsilon(i=i, k=k - 1)(H)
+                    + H.full_Uij[i_as_index + 2 - k][
+                        i_as_index - (i_as_index + 1 - k)
+                    ]  # U_{i+2-k,i+1}
+                    - H.full_Uij[i_as_index + 1 - k][
+                        i_as_index - (i_as_index + 1 - k)
+                    ]  # U_{i+1-k,i}
+                )
+
+            return max(hat_epsilon_i_k, 0)
+
+        return epsilon_i_k
 
 
 @dataclass(frozen=True)
@@ -227,6 +451,7 @@ class FundamentalKHives(KHives):
             >>> H_alpha.e(i=2)(H=H)
             KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
         """
+
         def _e(H: KHive) -> Union[KHive, None]:
             if self.epsilon(i=i)(H=H) == 0:
                 return None
