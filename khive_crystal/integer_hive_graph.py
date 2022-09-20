@@ -99,16 +99,25 @@ class IntegerHiveGraph:
 
         Examples:
             >>> n: int = 3
-            >>> alpha: List[int] = [1, 1, 1]
-            >>> beta: List[int] = [1, 1, 1]
+            >>> alpha: List[int] = [1, 1, 0]
+            >>> beta: List[int] = [1, 1, 0]
             >>> gamma: List[int] = [0, 0, 0]
             >>> Uij: List[List[int]] = [[0, 0], [0]]
             >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
             >>> H.add_Uii()
-            [[1, 0, 0], [1, 0], [1]]
+            [[1, 0, 0], [1, 0], [0]]
+
+            >>> n: int = 3
+            >>> alpha: List[int] = [3, 2, 0]
+            >>> beta: List[int] = [3, 2, 0]
+            >>> gamma: List[int] = [0, 0, 0]
+            >>> Uij: List[List[int]] = [[0, 0], [0]]
+            >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H.add_Uii()
+            [[3, 0, 0], [2, 0], [0]]
         """
         return [[self.compute_Uii(i=i + 1)] + ui for i, ui in enumerate(self.Uij)] + [
-            [self.compute_Uii(i=self.n - 1)]
+            [self.compute_Uii(i=self.n)]
         ]
 
     def get_Uji(self) -> List[List[int]]:
