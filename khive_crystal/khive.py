@@ -16,12 +16,13 @@ class KHive(IntegerHiveGraph):
             bool: sum(alpha) == sum(beta)
 
         Examples:
-            >>> n: int = 3
-            >>> alpha: List[int] = [1, 1, 0]
-            >>> beta: List[int] = [1, 1, 0]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[0, 0], [0]]
-            >>> H: KHive = KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[1, 1, 0],
+            ...    beta=[1, 1, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
             >>> H.is_eq_edge_sum()
             True
         """
@@ -34,12 +35,13 @@ class KHive(IntegerHiveGraph):
             bool: If alpha is partition, return True.
 
         Examples:
-            >>> n: int = 3
-            >>> alpha: List[int] = [1, 1, 0]
-            >>> beta: List[int] = [1, 1, 0]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[0, 0], [0]]
-            >>> H: KHive = KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[1, 1, 0],
+            ...    beta=[1, 1, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
             >>> H.is_partition()
             True
         """
@@ -53,12 +55,13 @@ class KHive(IntegerHiveGraph):
             bool: If gamma = (0^n), return True.
 
         Examples:
-            >>> n: int = 3
-            >>> alpha: List[int] = [1, 1, 0]
-            >>> beta: List[int] = [1, 1, 0]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[0, 0], [0]]
-            >>> H: KHive = KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[1, 1, 0],
+            ...    beta=[1, 1, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
             >>> H.is_zero_partition()
             True
         """
@@ -72,12 +75,13 @@ class KHive(IntegerHiveGraph):
             bool: If U_{ij} >= 0, return True.
 
         Examples:
-            >>> n: int = 3
-            >>> alpha: List[int] = [1, 1, 0]
-            >>> beta: List[int] = [1, 1, 0]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[0, 0], [0]]
-            >>> H: KHive = KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[1, 1, 0],
+            ...    beta=[1, 1, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
             >>> H.is_Uij_geq_zero()
             True
         """
@@ -98,12 +102,13 @@ class KHive(IntegerHiveGraph):
             ValueError: If (i, j) dose not satisfy 1 <= i < j <= n, raise error.
 
         Examples:
-            >>> n: int = 3
-            >>> alpha: List[int] = [4, 2, 0]
-            >>> beta: List[int] = [2, 1, 3]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[1, 1], [2]]
-            >>> H: KHive = KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[4, 2, 0],
+            ...    beta=[2, 1, 3],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 1], [2]]
+            ... )
             >>> H.Lij(i=1, j=2)
             2
         """
@@ -155,6 +160,4 @@ class KHive(IntegerHiveGraph):
             ]
         )
         if not is_k_hive:
-            raise ValueError(
-                "Given values dose not satisfy the definition of K-hive"
-            )
+            raise ValueError("Given values dose not satisfy the definition of K-hive")
