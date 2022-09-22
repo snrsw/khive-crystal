@@ -62,7 +62,7 @@ class KHives:
             1
         """
         if not (i in [_ + 1 for _ in range(self.n - 1)]):
-            raise ValueError("Invalid value! i must be in I.")
+            raise ValueError("i must be in I.")
 
         i_as_index: int = i - 1
         return weight[i_as_index] - weight[i_as_index + 1]

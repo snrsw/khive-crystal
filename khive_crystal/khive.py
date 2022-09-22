@@ -109,10 +109,10 @@ class KHive(IntegerHiveGraph):
         """
 
         if not ((1 <= i <= self.n - 1) or (1 <= j <= self.n)):
-            raise ValueError("Invalid values! i and j must be in [n].")
+            raise ValueError("i and j must be in [n].")
 
         if i >= j:
-            raise ValueError("Invalid values! i and j must be i < j.")
+            raise ValueError("i and j must be i < j.")
 
         i_as_index: int = i - 1
         j_as_index: int = j - 1
@@ -156,5 +156,5 @@ class KHive(IntegerHiveGraph):
         )
         if not is_k_hive:
             raise ValueError(
-                "Invalid values! Given values dose not satisfy the definition of K-hive"
+                "Given values dose not satisfy the definition of K-hive"
             )

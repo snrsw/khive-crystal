@@ -86,7 +86,7 @@ class IntegerHiveGraph:
         """
 
         if i < 1:
-            raise ValueError("Invalid value! i should be in [n].")
+            raise ValueError("i should be in [n].")
 
         i_as_index: int = i - 1
         Uji: List[List[int]] = self.get_Uji()
@@ -216,7 +216,6 @@ class IntegerHiveGraph:
         if not is_condition_hold:
             raise ValueError(
                 f"""
-                Invalid values!
                 Given values dose not satisfy the definition of a interger hive graph.
                 {self},
                 conditions = {conditions}
