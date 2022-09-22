@@ -36,7 +36,7 @@ class IntegerHiveGraph:
     Uij: List[List[int]]
     full_Uij: List[List[int]] = field(init=False, repr=False)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         object.__setattr__(self, "alpha", align_length(n=self.n, edge=self.alpha))
         object.__setattr__(self, "beta", align_length(n=self.n, edge=self.beta))
         object.__setattr__(self, "gamma", align_length(n=self.n, edge=self.gamma))
@@ -54,30 +54,33 @@ class IntegerHiveGraph:
             int: U_{ii}
 
         Examples:
-            >>> n: int = 3
-            >>> alpha: List[int] = [1, 1, 0]
-            >>> beta: List[int] = [1, 1, 0]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[0, 0], [0]]
-            >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[1, 1, 0],
+            ...    beta=[1, 1, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
             >>> H.compute_Uii(i=1)
             1
 
-            >>> n: int = 3
-            >>> alpha: List[int] = [3, 3, 0]
-            >>> beta: List[int] = [2, 3, 1]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[1, 0], [1]]
-            >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[3, 3, 0],
+            ...    beta=[2, 3, 1],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 0], [1]]
+            ... )
             >>> H.compute_Uii(i=2)
             2
 
-            >>> n: int = 3
-            >>> alpha: List[int] = [3, 1, 0]
-            >>> beta: List[int] = [1, 1, 2]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[1, 1], [1]]
-            >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[3, 1, 0],
+            ...    beta=[1, 1, 2],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 1], [1]]
+            ... )
             >>> H.compute_Uii(i=3)
             0
         """
@@ -98,21 +101,23 @@ class IntegerHiveGraph:
             List[List[int]]: [U_{ii}, U_{i,i+1}, ...]
 
         Examples:
-            >>> n: int = 3
-            >>> alpha: List[int] = [1, 1, 0]
-            >>> beta: List[int] = [1, 1, 0]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[0, 0], [0]]
-            >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[1, 1, 0],
+            ...    beta=[1, 1, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
             >>> H.add_Uii()
             [[1, 0, 0], [1, 0], [0]]
 
-            >>> n: int = 3
-            >>> alpha: List[int] = [3, 2, 0]
-            >>> beta: List[int] = [3, 2, 0]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[0, 0], [0]]
-            >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[3, 2, 0],
+            ...    beta=[3, 2, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
             >>> H.add_Uii()
             [[3, 0, 0], [2, 0], [0]]
         """
@@ -129,30 +134,33 @@ class IntegerHiveGraph:
             List[List[int]]: Uji
 
         Examples:
-            >>> n: int = 3
-            >>> alpha: List[int] = [2, 1, 0]
-            >>> beta: List[int] = [2, 1, 0]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[0, 0], [0]]
-            >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[2, 1, 0],
+            ...    beta=[2, 1, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
             >>> H.get_Uji()
             [[0], [0, 0]]
 
-            >>> n: int = 3
-            >>> alpha: List[int] = [2, 1, 0]
-            >>> beta: List[int] = [0, 2, 1]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[2, 0], [1]]
-            >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[2, 1, 0],
+            ...    beta=[0, 2, 1],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[2, 0], [1]]
+            ... )
             >>> H.get_Uji()
             [[2], [0, 1]]
 
-            >>> n: int = 3
-            >>> alpha: List[int] = [3, 1, 0]
-            >>> beta: List[int] = [1, 1, 2]
-            >>> gamma: List[int] = [0, 0, 0]
-            >>> Uij: List[List[int]] = [[1, 1], [1]]
-            >>> H: IntegerHiveGraph = IntegerHiveGraph(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+            >>> H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[3, 1, 0],
+            ...    beta=[1, 1, 2],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 1], [1]]
+            ... )
             >>> H.get_Uji()
             [[1], [1, 1]]
         """
@@ -208,7 +216,8 @@ class IntegerHiveGraph:
         if not is_condition_hold:
             raise ValueError(
                 f"""
-                Invalid values! Given values dose not satisfy the definition of a interger hive graph.
+                Invalid values!
+                Given values dose not satisfy the definition of a interger hive graph.
                 {self},
                 conditions = {conditions}
                 """

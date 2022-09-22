@@ -1,6 +1,6 @@
 from copy import deepcopy
 from dataclasses import dataclass
-from typing import Callable, List, Optional, Union
+from typing import Callable, List, Union
 
 from khive_crystal.khive import KHive
 
@@ -28,43 +28,46 @@ class KHives:
         Uij: List[List[int]] = [[0] * (self.n - i) for i in range(1, self.n)]
         return KHive(n=self.n, alpha=self.alpha, beta=self.alpha, gamma=zeros, Uij=Uij)
 
-    def weight(self, H: KHive) -> Callable:
-        """Get wt(H) or compute <h_i, wt(H)>
+    def weight(self, H: KHive) -> List[int]:
+        """Get wt(H)
 
         Args:
             H (KHive): H in mathbb{H}(alpha)
 
         Returns:
-            Callable: If i is given, return <h_i, wt(H)>, otherwise return wt(H).
+            List[int]: wt(H).
 
         Examples:
             >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
             >>> H = H_alpha.highest_weight_vector()
-            >>> H_alpha.weight(H=H)()
+            >>> H_alpha.weight(H=H)
             [3, 2, 0]
+        """
+        return H.beta
 
+    def inner_product(self, i: int, weight: List[int]) -> int:
+        """Compute <h_i, wt(H)>
+
+        Args:
+            i (int): h_i
+            weight (List[int]): weight.
+
+        Returns:
+            int: <h_i, wt(H)>
+
+        Examples:
             >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
             >>> H = H_alpha.highest_weight_vector()
-            >>> H_alpha.weight(H=H)(i=1)
+            >>> H_alpha.inner_product(i=1, weight=H_alpha.weight(H=H))
             1
         """
+        if not (i in [_ + 1 for _ in range(self.n - 1)]):
+            raise ValueError("Invalid value! i must be in I.")
 
-        def _weight(i: Optional[int] = None) -> Union[List[int], int]:
-            weight: List[int] = H.beta
-            result: Union[List[int], int]
-            if i is None:
-                result = weight
-            else:
-                if not (i in [_ + 1 for _ in range(self.n - 1)]):
-                    raise ValueError("Invalid value! i must be in I.")
+        i_as_index: int = i - 1
+        return weight[i_as_index] - weight[i_as_index + 1]
 
-                i_as_index: int = i - 1
-                result = weight[i_as_index] - weight[i_as_index + 1]
-            return result
-
-        return _weight
-
-    def f(self, i: int) -> Callable:
+    def f(self, i: int) -> Callable[[KHive], Union[KHive, None]]:
         """Get f_i(H)
 
         Args:
@@ -85,7 +88,7 @@ class KHives:
         """
 
         def f_i(H: KHive) -> Union[KHive, None]:
-            if self.phi(i=i)(H=H) == 0:
+            if self.phi(i=i)(H) == 0:
                 return None
 
             beta: List[int] = deepcopy(H.beta)
@@ -97,7 +100,7 @@ class KHives:
             beta[i_as_index + 1] += 1
 
             act_point_dual: int = [
-                self._phi(i=i, k=k)(H=H) > 0 for k in range(i, -1, -1)
+                self._phi(i=i, k=k)(H) > 0 for k in range(i, -1, -1)
             ].index(False) - 1
             act_point: int = i - act_point_dual
             act_point_as_index: int = act_point - 1
@@ -112,7 +115,7 @@ class KHives:
 
         return f_i
 
-    def phi(self, i: int) -> Callable:
+    def phi(self, i: int) -> Callable[[KHive], int]:
         """Compute varphi_i(H)
 
         Args:
@@ -129,11 +132,11 @@ class KHives:
         """
 
         def _phi(H: KHive) -> int:
-            return self._phi(i=i, k=i)(H=H)
+            return self._phi(i=i, k=i)(H)
 
         return _phi
 
-    def _phi(self, i: int, k: int) -> Callable:
+    def _phi(self, i: int, k: int) -> Callable[[KHive], int]:
         """Compute varphi_i^k(H)
 
         Args:
@@ -177,7 +180,7 @@ class KHives:
 
         return phi_i_k
 
-    def e(self, i: int):
+    def e(self, i: int) -> Callable[[KHive], Union[KHive, None]]:
         """Get e_i(H)
 
         Args:
@@ -192,13 +195,19 @@ class KHives:
             >>> H_alpha.e(i=1)(H=H)
 
             >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
-            >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+            >>> H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[3, 2, 0],
+            ...    beta=[2, 3, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 0], [0]]
+            ... )
             >>> H_alpha.e(i=1)(H=H)
             KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
         """
 
         def e_i(H: KHive) -> Union[KHive, None]:
-            if self.epsilon(i=i)(H=H) == 0:
+            if self.epsilon(i=i)(H) == 0:
                 return None
 
             beta: List[int] = deepcopy(H.beta)
@@ -210,7 +219,7 @@ class KHives:
             beta[i_as_index + 1] += -1
 
             act_point_dual: int = [
-                self._epsilon(i=i, k=k)(H=H) > 0 for k in range(i + 1, -1, -1)
+                self._epsilon(i=i, k=k)(H) > 0 for k in range(i + 1, -1, -1)
             ].index(False) - 1
             act_point: int = i + 1 - (i - act_point_dual)
             act_point_as_index: int = act_point - 1
@@ -225,7 +234,7 @@ class KHives:
 
         return e_i
 
-    def epsilon(self, i: int) -> Callable:
+    def epsilon(self, i: int) -> Callable[[KHive], int]:
         """Compute vare[silon_i(H)
 
         Args:
@@ -241,17 +250,23 @@ class KHives:
             0
 
             >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
-            >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+            >>> H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[3, 2, 0],
+            ...    beta=[2, 3, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 0], [0]]
+            ... )
             >>> H_alpha.epsilon(i=1)(H=H)
             1
         """
 
         def _epsilon(H: KHive) -> int:
-            return self._epsilon(i=i, k=i + 1)(H=H)
+            return self._epsilon(i=i, k=i + 1)(H)
 
         return _epsilon
 
-    def _epsilon(self, i: int, k: int) -> Callable:
+    def _epsilon(self, i: int, k: int) -> Callable[[KHive], int]:
         """Compute varepsilon_i^k(H)
 
         Args:
@@ -273,12 +288,24 @@ class KHives:
             0
 
             >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
-            >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+            >>> H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[3, 2, 0],
+            ...    beta=[2, 3, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 0], [0]]
+            ... )
             >>> H_alpha._epsilon(i=1, k=1)(H=H)
             0
 
             >>> H_alpha = KHives(n=3, alpha=[3, 2, 0])
-            >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+            >>> H: KHive = KHive(
+            ...     n=3,
+            ...     alpha=[3, 2, 0],
+            ...     beta=[2, 3, 0],
+            ...     gamma=[0, 0, 0],
+            ...     Uij=[[1, 0], [0]]
+            ... )
             >>> H_alpha._epsilon(i=1, k=2)(H=H)
             1
         """

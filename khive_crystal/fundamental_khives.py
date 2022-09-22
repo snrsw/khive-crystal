@@ -15,7 +15,7 @@ class FundamentalKHives(KHives):
         if not all(x in [0, 1] for x in self.alpha):
             raise ValueError("Invaid value! alpha is not a fundamental weight.")
 
-    def phi(self, i: int) -> Callable:
+    def phi(self, i: int) -> Callable[[KHive], int]:
         """Compute varphi_i(H)
 
         Args:
@@ -37,11 +37,11 @@ class FundamentalKHives(KHives):
         """
 
         def _phi(H: KHive) -> int:
-            return max(self.weight(H=H)(i=i), 0)
+            return max(self.inner_product(i=i, weight=self.weight(H=H)), 0)
 
         return _phi
 
-    def f(self, i: int) -> Callable:
+    def f(self, i: int) -> Callable[[KHive], Union[KHive, None]]:
         """Get f_i(H)
 
         Args:
@@ -62,7 +62,7 @@ class FundamentalKHives(KHives):
         """
 
         def _f(H: KHive) -> Union[KHive, None]:
-            if self.phi(i=i)(H=H) == 0:
+            if self.phi(i=i)(H) == 0:
                 return None
 
             i_as_index: int = i - 1
@@ -91,7 +91,7 @@ class FundamentalKHives(KHives):
 
         return _f
 
-    def epsilon(self, i: int) -> Callable:
+    def epsilon(self, i: int) -> Callable[[KHive], int]:
         """Compute varepsilon_i(H)
 
         Args:
@@ -113,11 +113,11 @@ class FundamentalKHives(KHives):
         """
 
         def _epsilon(H: KHive) -> int:
-            return max(-self.weight(H=H)(i=i), 0)
+            return max(-self.inner_product(i=i, weight=self.weight(H=H)), 0)
 
         return _epsilon
 
-    def e(self, i: int):
+    def e(self, i: int) -> Callable[[KHive], Union[KHive, None]]:
         """Get e_i(H)
 
         Args:
@@ -132,13 +132,19 @@ class FundamentalKHives(KHives):
             >>> H_alpha.e(i=1)(H=H)
 
             >>> H_alpha = FundamentalKHives(n=3, alpha=[1, 1, 0])
-            >>> H = KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
+            >>> H = KHive(
+            ...     n=3,
+            ...     alpha=[1, 1, 0],
+            ...     beta=[1, 0, 1],
+            ...     gamma=[0, 0, 0],
+            ...     Uij=[[0, 0], [1]]
+            ... )
             >>> H_alpha.e(i=2)(H=H)
             KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
         """
 
         def _e(H: KHive) -> Union[KHive, None]:
-            if self.epsilon(i=i)(H=H) == 0:
+            if self.epsilon(i=i)(H) == 0:
                 return None
 
             i_as_index: int = i - 1
