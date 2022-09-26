@@ -161,3 +161,11 @@ class KHive(IntegerHiveGraph):
         )
         if not is_k_hive:
             raise ValueError("Given values dose not satisfy the definition of K-hive")
+
+    def is_fundamental_khive(self) -> bool:
+        """Check self is a fundamental khive.
+
+        Returns:
+            bool: If alpha is a fundamental khive, return True
+        """
+        return all(alpha_i in [0, 1] for alpha_i in self.alpha)

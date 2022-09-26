@@ -1,13 +1,5 @@
 from dataclasses import dataclass, field
-from logging import DEBUG, StreamHandler, getLogger
 from typing import List
-
-logger = getLogger(__name__)
-handler = StreamHandler()
-handler.setLevel(DEBUG)
-logger.setLevel(DEBUG)
-logger.addHandler(handler)
-logger.propagate = False
 
 
 def align_length(n: int, edge: List[int]) -> List[int]:
