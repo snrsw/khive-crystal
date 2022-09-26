@@ -164,7 +164,7 @@ class Split:
         return [beta1, beta2]
 
     def run(self) -> Union[List[KHive], KHive]:
-        if all(alpha_i in [0, 1] for alpha_i in self.H.alpha):
+        if self.H.is_fundamental_khive():
             return self.H
         splitted_alpha: List[List[int]] = self.split_alpha()
         splitted_Uij: List[List[List[int]]] = self.get_splitted_Uij()

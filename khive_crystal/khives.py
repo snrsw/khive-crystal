@@ -13,6 +13,22 @@ class KHives:
     def __post_init__(self) -> None:
         pass
 
+    def isin(self, H: KHive) -> bool:
+        """Check a given KHive is in a instance.
+
+        Args:
+            H (KHive): KHive
+
+        Returns:
+            bool: If KHive in KHives, return True, otherwise return False.
+
+        Examples:
+            >>> H: KHive = KHive(n=3, alpha=[2, 1, 0], beta=[2, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            >>> KHives(n=3, alpha=[2, 1, 0]).isin(H)
+            True
+        """
+        return (H.alpha == self.alpha) and (H.n == self.n)
+
     def highest_weight_vector(self) -> KHive:
         """Get the highest weight vector H_{alpha} in mathbb{H}(alpha).
 
