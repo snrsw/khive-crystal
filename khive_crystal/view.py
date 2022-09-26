@@ -2,28 +2,53 @@ import math
 from typing import List, Union
 
 import plotly.graph_objects as go
-
 from khive_crystal.khive import KHive
-from khive_crystal.khives import KHives
 
 
-def view(H: KHive) -> go.Figure:
+def view(H: Union[KHive, List[KHive]]) -> go.Figure:
+    """Plot self.H to self.fig. If self.H is a KHive, plot it as origin = (0, 0).
+    If self.H is a list of KHive, plot it as tensor products of KHive.
+    This is a wrapper of the entry point of the class View.
+
+    Args:
+        H (Union[KHive, List[KHive]]):
+
+    Returns:
+        go.Figure:
+    """
     return View(H=H).run()
 
 
 class View:
+    """This class has methods to view KHive or a list of KHive."""
+
     def __init__(self, H: Union[KHive, List[KHive]]) -> None:
+        """init
+
+        Args:
+            H (Union[KHive, List[KHive]]): KHive or a list of KHive to plot.
+        """
         self.H: Union[KHive, List[KHive]] = H
         self.fig: go.Figure = self.setup_figure()
         self.center = self.get_center()
 
     def get_center(self) -> float:
+        """Get center axis of x.
+
+        Returns:
+            float: center
+        """
         if isinstance(self.H, list):
             return self.H[0].n / 2
         elif isinstance(self.H, KHive):
             return self.H.n / 2
 
     def setup_figure(self) -> go.Figure:
+        """Setup go.Figure
+
+        Returns:
+            go.Figure: _description_
+        """
         fig: go.Figure = go.Figure()
         fig.update_layout(
             template="plotly_white",
@@ -40,6 +65,15 @@ class View:
         return fig
 
     def move_origin(self, axis: List[float], origin: int) -> List[float]:
+        """Move origin of a graph.
+
+        Args:
+            axis (List[float]): Xaxis
+            origin (int): Origin
+
+        Returns:
+            List[float]: Xaxis moved by origin.
+        """
         return [_ + origin for _ in axis]
 
     def draw_lines_parallel_to_right_edge(self, H: KHive, origin: int) -> None:
@@ -100,6 +134,12 @@ class View:
         )
 
     def plot_otimes(self, origin: int) -> None:
+        """Plot otimes at (elf.center * 2 + 0.5 + origin, self.center / 2).
+        This function is used when H is a list of Khives.
+
+        Args:
+            origin (int): Origin
+        """
         self.fig.add_annotation(
             x=self.center * 2 + 0.5 + origin,
             y=self.center / 2,
@@ -109,12 +149,24 @@ class View:
         )
 
     def plot(self, H: KHive, origin: int) -> None:
+        """Plot a KHive to self.fig.
+
+        Args:
+            H (KHive): KHive
+            origin (int): origin
+        """
         self.draw_below_edge(H=H, origin=origin)
         self.draw_lines_parallel_to_left_edge(H=H, origin=origin)
         self.draw_lines_parallel_to_right_edge(H=H, origin=origin)
         self.draw_Uij(H=H, origin=origin)
 
     def run(self) -> go.Figure:
+        """Plot self.H to self.fig. If self.H is a KHive, plot it as origin = (0, 0).
+        If self.H is a list of KHive, plot it as tensor products of KHive.
+
+        Returns:
+            go.Figure: self.fig
+        """
         if isinstance(self.H, list) and len(self.H) == 1:
             self.plot(H=self.H[0], origin=0)
             return self.fig
