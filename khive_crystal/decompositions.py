@@ -1,16 +1,8 @@
 from copy import deepcopy
-from logging import DEBUG, StreamHandler, getLogger
 from typing import Callable, List, Union
 
 from khive_crystal.khive import KHive
 from khive_crystal.utils import flatten_list
-
-logger = getLogger(__name__)
-handler = StreamHandler()
-handler.setLevel(DEBUG)
-logger.setLevel(DEBUG)
-logger.addHandler(handler)
-logger.propagate = False
 
 
 def split(H: KHive) -> Union[KHive, List[KHive]]:
