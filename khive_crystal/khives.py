@@ -26,7 +26,7 @@ class KHives:
             >>> H: KHive = KHive(n=3, alpha=[2, 1, 0], beta=[2, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
             >>> KHives(n=3, alpha=[2, 1, 0]).isin(H)
             True
-        """
+        """  # noqa: B950
         return (H.alpha == self.alpha) and (H.n == self.n)
 
     def highest_weight_vector(self) -> KHive:

@@ -32,7 +32,7 @@ def split(H: KHive) -> Union[KHive, List[KHive]]:
         ... )
         >>> split(H=H)
         [KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
-    """
+    """  # noqa: B950
     return Split(H=H).run()
 
 
@@ -211,7 +211,7 @@ def decompose(H: KHive) -> List[KHive]:
         ... )
         >>> decompose(H=H)
         [KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])]
-    """
+    """  # noqa: B950
 
     splitted_hive: Union[KHive, List[KHive]] = split(H=H)
     if isinstance(splitted_hive, KHive):
