@@ -29,6 +29,11 @@ def split(H: KHive) -> Union[KHive, List[KHive]]:
 
 
 class Split:
+    """This class has methods to split KHive to a pair of KHive and FundamentalKHive.
+    The entry point of this methods is "run". The above function split is a wrapper of run,
+    then use split instead of using this class direct.
+    """
+
     def __init__(self, H: KHive) -> None:
         self.H: KHive = H
 
@@ -156,6 +161,11 @@ class Split:
         return [beta1, beta2]
 
     def run(self) -> Union[List[KHive], KHive]:
+        """Split KHive to a pair of KHive and FundamentalKHive.
+
+        Returns:
+            Union[List[KHive], KHive]: A pair of KHive and FundamentalKHive.
+        """
         if self.H.is_fundamental_khive():
             return self.H
         splitted_alpha: List[List[int]] = self.split_alpha()
@@ -175,7 +185,7 @@ class Split:
 
 
 def decompose(H: KHive) -> List[KHive]:
-    """Split KHive to a pair of KHive and FundamentalKHive.
+    """Decompose KHive into FundamentalKHive by applying the function split repeatedly.
 
     Args:
         H (KHive): KHive
