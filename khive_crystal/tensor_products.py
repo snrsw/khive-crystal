@@ -28,14 +28,24 @@ class TensorProductsOfKHives:
 
         Examples:
             >>> khives: KHives = KHives(n=3, alpha=[1, 1, 0])
-            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(tensort_products_khives=[khives, khives])
-            >>> H: List[KHive] = [khives.highest_weight_vector(), khives.highest_weight_vector()]
+            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensort_products_khives=[khives, khives]
+            ... )
+            >>> H: List[KHive] = [
+            ...    khives.highest_weight_vector(),
+            ...    khives.highest_weight_vector()
+            ... ]
             >>> tensor.phi(i=2)(H)
             2
 
             >>> khives: KHives = KHives(n=3, alpha=[1, 1, 0])
-            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(tensort_products_khives=[khives, khives])
-            >>> H: List[KHive] = [khives.highest_weight_vector(), khives.highest_weight_vector()]
+            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensort_products_khives=[khives, khives]
+            ... )
+            >>> H: List[KHive] = [
+            ...    khives.highest_weight_vector(),
+            ...    khives.highest_weight_vector()
+            ... ]
             >>> tensor.phi(i=1)(H)
             0
         """
@@ -144,20 +154,27 @@ class TensorProductsOfKHives:
 
         Examples:
             >>> khives: KHives = KHives(n=3, alpha=[1, 1, 0])
-            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(tensort_products_khives=[khives, khives])
-            >>> H: List[KHive] = [khives.highest_weight_vector(), khives.highest_weight_vector()]
+            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensort_products_khives=[khives, khives]
+            ... )
+            >>> H: List[KHive] = [
+            ...    khives.highest_weight_vector(),
+            ...    khives.highest_weight_vector()
+            ... ]
             >>> tensor.epsilon(i=2)(H)
             0
 
             >>> khives: KHives = KHives(n=3, alpha=[1, 1, 0])
-            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(tensort_products_khives=[khives, khives])
+            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensort_products_khives=[khives, khives]
+            ... )
             >>> H: List[KHive] = [
             ...    KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]]),
             ...    khives.highest_weight_vector()
             ... ]
             >>> tensor.epsilon(i=2)(H)
             1
-        """
+        """  # noqa: B950
 
         def epsilon_i(tensort_products_khive: List[KHive]) -> int:
             left_khives: KHives = self.tensort_products_khives[0]
@@ -264,8 +281,13 @@ class TensorProductsOfKHives:
 
         Examples:
             >>> khives: KHives = KHives(n=3, alpha=[1, 1, 0])
-            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(tensort_products_khives=[khives, khives])
-            >>> H: List[KHive] = [khives.highest_weight_vector(), khives.highest_weight_vector()]
+            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensort_products_khives=[khives, khives]
+            ... )
+            >>> H: List[KHive] = [
+            ...    khives.highest_weight_vector(),
+            ...    khives.highest_weight_vector()
+            ... ]
             >>> tensor.weight(H)
             [2, 2, 0]
         """
