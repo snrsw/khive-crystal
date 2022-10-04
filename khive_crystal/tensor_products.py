@@ -1,5 +1,5 @@
 from logging import DEBUG, StreamHandler, getLogger
-from typing import Callable, List, Union
+from typing import Callable, List, Optional, Union
 
 from khive_crystal.khive import KHive
 from khive_crystal.khives import KHives
@@ -83,7 +83,7 @@ class TensorProductsOfKHives:
 
         return phi_i
 
-    def f(self, i: int) -> Callable[[List[KHive]], List[KHive]]:
+    def f(self, i: int) -> Callable[[List[KHive]], Optional[List[Optional[KHive]]]]:
         """f_i(tensort_products_khive)
 
         Args:
@@ -105,7 +105,7 @@ class TensorProductsOfKHives:
             [KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
         """  # noqa: B950
 
-        def f_i(tensort_products_khive: List[KHive]) -> List[KHive]:
+        def f_i(tensort_products_khive: List[KHive]) -> Optional[List[Optional[KHive]]]:
             left_khives: KHives = self.tensort_products_khives[0]
             left_khive: KHive = tensort_products_khive[0]
 
@@ -119,12 +119,16 @@ class TensorProductsOfKHives:
                 left_phi_i = left_khives.phi(i=i)(left_khive)
                 right_epsilon_i = right_khives.epsilon(i=i)(right_khive)
                 if left_phi_i > right_epsilon_i:
-                    return list(
-                        flatten_list([left_khives.f(i=i)(left_khive), right_khive])
+                    return self.zero_scalar(
+                        list(
+                            flatten_list([left_khives.f(i=i)(left_khive), right_khive])
+                        )
                     )
                 else:
-                    return list(
-                        flatten_list([left_khive, right_khives.f(i=1)(right_khive)])
+                    return self.zero_scalar(
+                        list(
+                            flatten_list([left_khive, right_khives.f(i=1)(right_khive)])
+                        )
                     )
 
             right_khives = TensorProductsOfKHives(
@@ -135,10 +139,12 @@ class TensorProductsOfKHives:
             right_epsilon_i = right_khives.epsilon(i=i)(right_khive)
 
             if left_phi_i > right_epsilon_i:
-                return list(flatten_list([left_khives.f(i=i)(left_khive), right_khive]))
+                return self.zero_scalar(
+                    list(flatten_list([left_khives.f(i=i)(left_khive), right_khive]))
+                )
             else:
-                return list(
-                    flatten_list([left_khive, right_khives.f(i=1)(right_khive)])
+                return self.zero_scalar(
+                    list(flatten_list([left_khive, right_khives.f(i=1)(right_khive)]))
                 )
 
         return f_i
@@ -210,7 +216,7 @@ class TensorProductsOfKHives:
 
         return epsilon_i
 
-    def e(self, i: int) -> Callable[[List[KHive]], List[KHive]]:
+    def e(self, i: int) -> Callable[[List[KHive]], Optional[List[Optional[KHive]]]]:
         """f_i(tensort_products_khive)
 
         Args:
@@ -229,10 +235,9 @@ class TensorProductsOfKHives:
             ...    khives.highest_weight_vector()
             ... ]
             >>> tensor.e(i=2)(H)
-            [None, None]
         """  # noqa: B950
 
-        def e_i(tensort_products_khive: List[KHive]) -> List[KHive]:
+        def e_i(tensort_products_khive: List[KHive]) -> Optional[List[Optional[KHive]]]:
             left_khives: KHives = self.tensort_products_khives[0]
             left_khive: KHive = tensort_products_khive[0]
 
@@ -246,12 +251,16 @@ class TensorProductsOfKHives:
                 left_phi_i = left_khives.phi(i=i)(left_khive)
                 right_epsilon_i = right_khives.epsilon(i=i)(right_khive)
                 if left_phi_i >= right_epsilon_i:
-                    return list(
-                        flatten_list([left_khives.e(i=i)(left_khive), right_khive])
+                    return self.zero_scalar(
+                        list(
+                            flatten_list([left_khives.e(i=i)(left_khive), right_khive])
+                        )
                     )
                 else:
-                    return list(
-                        flatten_list([left_khive, right_khives.e(i=1)(right_khive)])
+                    return self.zero_scalar(
+                        list(
+                            flatten_list([left_khive, right_khives.e(i=1)(right_khive)])
+                        )
                     )
 
             right_khives = TensorProductsOfKHives(
@@ -262,10 +271,12 @@ class TensorProductsOfKHives:
             right_epsilon_i = right_khives.epsilon(i=i)(right_khive)
 
             if left_phi_i >= right_epsilon_i:
-                return list(flatten_list([left_khives.e(i=i)(left_khive), right_khive]))
+                return self.zero_scalar(
+                    list(flatten_list([left_khives.e(i=i)(left_khive), right_khive]))
+                )
             else:
-                return list(
-                    flatten_list([left_khive, right_khives.e(i=1)(right_khive)])
+                return self.zero_scalar(
+                    list(flatten_list([left_khive, right_khives.e(i=1)(right_khive)]))
                 )
 
         return e_i
@@ -299,3 +310,27 @@ class TensorProductsOfKHives:
 
     def inner_product(self, i: int, weight: List[int]) -> int:
         pass
+
+    def zero_scalar(
+        self, tensort_products_khive: List[Optional[KHive]]
+    ) -> Optional[List[Optional[KHive]]]:
+        """zero scalar
+
+        Args:
+            tensort_products_khive (List[Optional[KHive]]): Result of the tensor product rule.
+
+        Returns:
+            Optional[List[Optional[KHive]]]: If tensort_products_khive has None, return None
+
+        Examples:
+            >>> khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+            >>> tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensort_products_khives=[khives, khives]
+            ... )
+            >>> H: List[KHive] = [
+            ...    None,
+            ...    khives.highest_weight_vector()
+            ... ]
+            >>> tensor.zero_scalar(H)
+        """
+        return None if None in tensort_products_khive else tensort_products_khive
