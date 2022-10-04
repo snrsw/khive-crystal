@@ -309,7 +309,20 @@ class TensorProductsOfKHives:
         return [sum(weights_i) for weights_i in zip(*weights)]
 
     def inner_product(self, i: int, weight: List[int]) -> int:
-        pass
+        """Compute <h_i, wt(H)>
+
+        Args:
+            i (int): h_i
+            weight (List[int]): weight.
+
+        Returns:
+            int: <h_i, wt(H)>
+        """
+        if not (i in [_ + 1 for _ in range(self.tensort_products_khives[0].n - 1)]):
+            raise ValueError("i must be in I.")
+
+        i_as_index: int = i - 1
+        return weight[i_as_index] - weight[i_as_index + 1]
 
     def zero_scalar(
         self, tensort_products_khive: List[Optional[KHive]]
