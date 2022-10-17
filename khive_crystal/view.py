@@ -2,6 +2,7 @@ import math
 from typing import List, Union
 
 import plotly.graph_objects as go
+
 from khive_crystal.khive import KHive
 
 
@@ -90,6 +91,21 @@ class View:
             ]
         )
 
+    def draw_gamma(self, H: KHive, origin: int) -> None:
+        self.fig.add_traces(
+            [
+                go.Scatter(
+                    x=self.move_origin(axis=[(_ + 0.2) / 2], origin=origin),
+                    y=[(_ + 0.7) / 2],
+                    text=[H.gamma[_]],
+                    mode="text",
+                    textfont={"color": "black"},
+                    name=None,
+                )
+                for _ in range(H.n)
+            ]
+        )
+
     def draw_lines_parallel_to_left_edge(self, H: KHive, origin: int) -> None:
         self.fig.add_traces(
             [
@@ -98,6 +114,23 @@ class View:
                     y=[0, self.center - _ * 0.5],
                     mode="lines",
                     line={"color": "grey"},
+                    name=None,
+                )
+                for _ in range(H.n)
+            ]
+        )
+
+    def draw_alpha(self, H: KHive, origin: int) -> None:
+        self.fig.add_traces(
+            [
+                go.Scatter(
+                    x=self.move_origin(
+                        axis=[self.center + (_ + 0.8) * 0.5], origin=origin
+                    ),
+                    y=[self.center - (_ + 0.3) * 0.5],
+                    text=[H.alpha[_]],
+                    mode="text",
+                    textfont={"color": "black"},
                     name=None,
                 )
                 for _ in range(H.n)
@@ -114,6 +147,21 @@ class View:
                     line={"color": "grey"},
                     name=None,
                 )
+            ]
+        )
+
+    def draw_beta(self, H: KHive, origin: int) -> None:
+        self.fig.add_traces(
+            [
+                go.Scatter(
+                    x=self.move_origin(axis=[0.5 + _], origin=origin),
+                    y=[-0.15],
+                    text=[H.beta[_]],
+                    mode="text",
+                    textfont={"color": "black"},
+                    name=None,
+                )
+                for _ in range(H.n)
             ]
         )
 
@@ -158,6 +206,9 @@ class View:
         self.draw_below_edge(H=H, origin=origin)
         self.draw_lines_parallel_to_left_edge(H=H, origin=origin)
         self.draw_lines_parallel_to_right_edge(H=H, origin=origin)
+        self.draw_alpha(H=H, origin=origin)
+        self.draw_beta(H=H, origin=origin)
+        self.draw_gamma(H=H, origin=origin)
         self.draw_Uij(H=H, origin=origin)
 
     def run(self) -> go.Figure:
