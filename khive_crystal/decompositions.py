@@ -1,5 +1,5 @@
 from copy import deepcopy
-from typing import Callable, List, Union
+from typing import Callable, List, Optional, Union
 
 from khive_crystal.khive import KHive
 from khive_crystal.utils import flatten_list
@@ -78,12 +78,23 @@ class Split:
             ... )
             >>> Split(H=H).split_full_Uij()
             [[[1, 1, 0], [1, 1], [0]], [[1, 0, 0], [1, 0], [0]]]
+
+            >>> H: KHive = KHive(
+            ...    n=4,
+            ...    alpha=[3, 3, 0, 0],
+            ...    beta=[2, 3, 1, 0],
+            ...    gamma=[0, 0, 0, 0],
+            ...    Uij=[[1, 0, 0], [1, 0], [0]]
+            ... )
+            >>> Split(H=H).split_full_Uij()
+            [[[1, 1, 0, 0], [1, 1, 0], [0, 0], [0]], [[1, 0, 0, 0], [1, 0, 0], [0, 0], [0]]]
         """
         full_Uij: List[List[int]] = deepcopy(self.H.full_Uij)
 
         # a set of \min\{j in [n] \mid U_{ij} > 0\}s for i in I.
-        full_Uij_pos_indexes: List[int] = [
-            [uij > 0 for uij in Ui].index(True) for Ui in full_Uij[:-1]
+        full_Uij_pos_indexes: List[Optional[int]] = [
+            [uij > 0 for uij in Ui].index(True) if sum(Ui) > 0 else None
+            for Ui in full_Uij[:-1]
         ]
 
         full_Uij2: List[List[int]] = [
