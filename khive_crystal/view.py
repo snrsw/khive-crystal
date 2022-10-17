@@ -2,7 +2,6 @@ import math
 from typing import List, Union
 
 import plotly.graph_objects as go
-
 from khive_crystal.khive import KHive
 
 
