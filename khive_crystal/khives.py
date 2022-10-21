@@ -354,3 +354,16 @@ class KHives:
             return max(hat_epsilon_i_k, 0)
 
         return epsilon_i_k
+
+
+def khives(n: int, alpha: List[int]) -> KHives:
+    """Get a instance of KHives
+
+    Args:
+        n (int): size
+        alpha (List[int]): right edge labels
+
+    Returns:
+        KHives: Khives
+    """
+    return KHives(n=n, alpha=alpha)

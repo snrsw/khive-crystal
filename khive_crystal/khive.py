@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import List
 
 from khive_crystal.integer_hive_graph import IntegerHiveGraph
 
@@ -169,3 +170,21 @@ class KHive(IntegerHiveGraph):
             bool: If alpha is a fundamental khive, return True
         """
         return all(alpha_i in [0, 1] for alpha_i in self.alpha)
+
+
+def khive(
+    n: int, alpha: List[int], beta: List[int], gamma: List[int], Uij: List[List[int]]
+) -> KHive:
+    """Get a instance of KHive
+
+    Args:
+        n (int): size
+        alpha (List[int]): right edge labels
+        beta (List[int]): below edge labels
+        gamma (List[int]): left edge labels
+        Uij (List[List[int]]): rhombi
+
+    Returns:
+        KHive: K-hive
+    """
+    return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
