@@ -59,7 +59,12 @@ class FundamentalKHives(KHives):
             >>> H = H_alpha.highest_weight_vector()
             >>> H_alpha.f(i=2)(H=H)
             KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
-        """
+
+            >>> H_alpha = FundamentalKHives(n=3, alpha=[1, 1, 0])
+            >>> H: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
+            >>> H_alpha.f(i=1)(H)
+            KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        """  # noqa: B950
 
         def _f(H: KHive) -> Union[KHive, None]:
             if self.phi(i=i)(H) == 0:
@@ -75,11 +80,12 @@ class FundamentalKHives(KHives):
             beta[i_as_index + 1] += 1
 
             act_point_as_index: int
-            try:
-                Uxi: List[int] = H.get_Uji()[i_as_index - 1]
-                act_point_as_index = [Uji > 0 for Uji in Uxi].index(True)
-            except ValueError:
+            Uxi: List[int] = H.get_Uji()[i_as_index - 1]
+            is_Uxi_geq_zeros: List[bool] = [Uji > 0 for Uji in Uxi]
+            if (i == 1) | (not any(is_Uxi_geq_zeros)):
                 act_point_as_index = i_as_index
+            else:
+                act_point_as_index = is_Uxi_geq_zeros.index(True)
 
             i_as_index_in_Uij: int = i_as_index - act_point_as_index - 1
             ip1_as_index_in_Uij: int = i_as_index - act_point_as_index
@@ -141,7 +147,12 @@ class FundamentalKHives(KHives):
             ... )
             >>> H_alpha.e(i=2)(H=H)
             KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
-        """
+
+            >>> H_alpha = FundamentalKHives(n=3, alpha=[1, 1, 0])
+            >>> H: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+            >>> H_alpha.e(i=1)(H)
+            KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
+        """  # noqa: B950
 
         def _e(H: KHive) -> Union[KHive, None]:
             if self.epsilon(i=i)(H) == 0:
@@ -157,11 +168,12 @@ class FundamentalKHives(KHives):
             beta[i_as_index + 1] += -1
 
             act_point_as_index: int
-            try:
-                Uxip1: List[int] = H.get_Uji()[i_as_index]
-                act_point_as_index = [Uji > 0 for Uji in Uxip1].index(True)
-            except ValueError:
+            Uxip1: List[int] = H.get_Uji()[i_as_index]
+            is_Uxip1_geq_zeros: List[bool] = [Uji > 0 for Uji in Uxip1]
+            if not any(is_Uxip1_geq_zeros):
                 act_point_as_index = i_as_index
+            else:
+                act_point_as_index = is_Uxip1_geq_zeros.index(True)
 
             i_as_index_in_Uij: int = i_as_index - act_point_as_index - 1
             ip1_as_index_in_Uij: int = i_as_index - act_point_as_index
