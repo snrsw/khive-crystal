@@ -1,8 +1,6 @@
 from dataclasses import dataclass, field
-from typing import Optional
 
 import graphviz
-
 from khive_crystal.crystal_structure import e, epsilon, f, phi
 from khive_crystal.khive import KHive
 from khive_crystal.khives import KHives
@@ -17,7 +15,7 @@ class CrystalGraph:
         self.G.node(str(H))
         for i in range(1, H.n):
             if phi(i=i)(H) > 0:
-                K: KHive = f(i=i)(H)
+                K: KHive = f(i=i)(H)  # type: ignore
                 self.G.edge(tail_name=str(H), head_name=str(K), label=i)
                 self.lower_graph(H=K)
 
@@ -25,7 +23,7 @@ class CrystalGraph:
         self.G.node(H)
         for i in range(1, H.n):
             if epsilon(i=i)(H) > 0:
-                K: KHive = e(i=i)(H)
+                K: KHive = e(i=i)(H)  # type: ignore
                 self.G.edge(tail_name=str(K), head_name=str(H), label=i)
                 self.raiging_graph(H=K)
 
