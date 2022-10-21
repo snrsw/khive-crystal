@@ -155,6 +155,16 @@ class IntegerHiveGraph:
             ... )
             >>> H.get_Uji()
             [[1], [1, 1]]
+
+            >>> H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[1, 1, 0],
+            ...    beta=[1, 0, 1],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [1]]
+            ... )
+            >>> H.get_Uji()
+            [[0], [0, 1]]
         """
 
         aligned_Uij: List[List[int]] = [
