@@ -64,7 +64,7 @@ class FundamentalKHives(KHives):
             >>> H: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
             >>> H_alpha.f(i=1)(H)
             KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
-        """
+        """  # noqa: B950
 
         def _f(H: KHive) -> Union[KHive, None]:
             if self.phi(i=i)(H) == 0:
@@ -152,7 +152,7 @@ class FundamentalKHives(KHives):
             >>> H: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
             >>> H_alpha.e(i=1)(H)
             KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
-        """
+        """  # noqa: B950
 
         def _e(H: KHive) -> Union[KHive, None]:
             if self.epsilon(i=i)(H) == 0:
