@@ -1,4 +1,3 @@
-from khive_crystal.crystal_graph import crystal_graph
 from khive_crystal.crystal_structure import e, epsilon, f, phi
 from khive_crystal.decompositions import decompose, split
 from khive_crystal.khive import khive
@@ -15,5 +14,4 @@ __all__ = [
     "epsilon",
     "f",
     "phi",
-    "crystal_graph",
 ]
