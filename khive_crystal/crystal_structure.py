@@ -75,7 +75,7 @@ def f(
         >>> H: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
         >>> f(i=2)([H, H])
         [KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
-    """  # noqa: E501
+    """  # noqa: E501, B950
 
     def f_i(
         H: Union[KHive, List[KHive]]
@@ -101,7 +101,8 @@ def f(
 
 
 def epsilon(i: int) -> Callable[[Union[KHive, List[KHive]]], int]:
-    """The entry point of epsilon_i. Given H and i, return epsilon_i(H) by appropriate crystal structure.
+    """The entry point of epsilon_i.
+    Given H and i, return epsilon_i(H) by appropriate crystal structure.
 
     Args:
         i (int): i in I
