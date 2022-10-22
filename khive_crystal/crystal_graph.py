@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 
 import graphviz
+
 from khive_crystal.crystal_structure import e, epsilon, f, phi
 from khive_crystal.khive import KHive
 from khive_crystal.khives import KHives
@@ -20,7 +21,7 @@ class CrystalGraph:
                 self.lower_graph(H=K)
 
     def raiging_graph(self, H: KHive) -> None:
-        self.G.node(H)
+        self.G.node(str(H))
         for i in range(1, H.n):
             if epsilon(i=i)(H) > 0:
                 K: KHive = e(i=i)(H)  # type: ignore
