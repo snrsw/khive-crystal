@@ -1,16 +1,13 @@
-from dataclasses import dataclass, field
-
 import graphviz
-
 from khive_crystal.crystal_structure import e, epsilon, f, phi
 from khive_crystal.khive import KHive
 from khive_crystal.khives import KHives
 
 
-@dataclass
 class CrystalGraph:
-    khives: KHives
-    G: graphviz.Digraph = field(init=False, default=graphviz.Digraph(format="png"))
+    def __init__(self, khives: KHives):
+        self.khives: KHives = khives
+        self.G: graphviz.Digraph = graphviz.Digraph(strict=True)
 
     def lower_graph(self, H: KHive) -> None:
         self.G.node(str(H))
