@@ -7,7 +7,7 @@ from khive_crystal.khive import KHive
 from khive_crystal.khives import KHives
 
 
-@dataclass(frozen=True)
+@dataclass
 class CrystalGraph:
     khives: KHives
     G: graphviz.Digraph = field(init=False, default=graphviz.Digraph(format="png"))
@@ -36,5 +36,5 @@ class CrystalGraph:
 
 
 def crystal_graph(khives: KHives) -> graphviz.Digraph:
-    crystal_graph = CrystalGraph(khives=khives).run()
+    crystal_graph: graphviz.Digraph = CrystalGraph(khives=khives).run()
     return crystal_graph
