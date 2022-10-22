@@ -17,7 +17,7 @@ class CrystalGraph:
         for i in range(1, H.n):
             if phi(i=i)(H) > 0:
                 K: KHive = f(i=i)(H)  # type: ignore
-                self.G.edge(tail_name=str(H), head_name=str(K), label=i)
+                self.G.edge(tail_name=str(H), head_name=str(K), label=str(i))
                 self.lower_graph(H=K)
 
     def raiging_graph(self, H: KHive) -> None:
@@ -25,7 +25,7 @@ class CrystalGraph:
         for i in range(1, H.n):
             if epsilon(i=i)(H) > 0:
                 K: KHive = e(i=i)(H)  # type: ignore
-                self.G.edge(tail_name=str(K), head_name=str(H), label=i)
+                self.G.edge(tail_name=str(K), head_name=str(H), label=str(i))
                 self.raiging_graph(H=K)
 
     def run(self) -> graphviz.Digraph:
