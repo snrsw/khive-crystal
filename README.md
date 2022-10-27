@@ -1,6 +1,6 @@
 # khive-crystal
 
-This is a repository contains the experimetns code for our paper `Algorithms for crystal structure on K-hives of type A`.
+This repository contains the experimetns code for our paper `Algorithms for crystal structure on K-hives of type A`.
 
 ## Overview
 
