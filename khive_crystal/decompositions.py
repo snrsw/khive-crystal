@@ -5,7 +5,7 @@ from khive_crystal.khive import KHive
 from khive_crystal.utils import flatten_list
 
 
-def split(H: KHive) -> Union[KHive, List[KHive]]:
+def psi_lambda(H: KHive) -> Union[KHive, List[KHive]]:
     """Split KHive to a pair of KHive and FundamentalKHive.
 
     Args:
@@ -22,7 +22,7 @@ def split(H: KHive) -> Union[KHive, List[KHive]]:
         ...    gamma=[0, 0, 0],
         ...    Uij=[[1, 0], [1]]
         ... )
-        >>> split(H=H)
+        >>> psi_lambda(H=H)
         [KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
     """  # noqa: B950
     return Split(H=H).run()
@@ -195,7 +195,7 @@ class Split:
         ]
 
 
-def decompose(H: KHive) -> List[KHive]:
+def psi(H: KHive) -> List[KHive]:
     """Decompose KHive into FundamentalKHive by applying the function split repeatedly.
 
     Args:
@@ -212,7 +212,7 @@ def decompose(H: KHive) -> List[KHive]:
         ...    gamma=[0, 0, 0],
         ...    Uij=[[1, 0], [1]]
         ... )
-        >>> decompose(H=H)
+        >>> psi(H=H)
         [KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
 
         >>> H: KHive = KHive(
@@ -222,11 +222,11 @@ def decompose(H: KHive) -> List[KHive]:
         ...    gamma=[0, 0, 0],
         ...    Uij=[[0, 0], [1]]
         ... )
-        >>> decompose(H=H)
+        >>> psi(H=H)
         [KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])]
     """  # noqa: B950
 
-    splitted_hive: Union[KHive, List[KHive]] = split(H=H)
+    splitted_hive: Union[KHive, List[KHive]] = psi_lambda(H=H)
     if isinstance(splitted_hive, KHive):
         return [splitted_hive]
-    return list(flatten_list([split(splitted_hive[0]), splitted_hive[1]]))
+    return list(flatten_list([psi_lambda(splitted_hive[0]), splitted_hive[1]]))
