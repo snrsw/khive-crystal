@@ -30,7 +30,7 @@ KHive(alpha=[2, 1, 0], beta=[2, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
 >>> view(khive(alpha=[2, 1, 0], beta=[2, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]]))
 ```
 
-![](.github/images/KHive(n=3,%20alpha=[2,%201,%200],%20beta=[2,%201,%200],%20gamma=[0,%200,%200],%20Uij=[[0,%200],%20[0]]).png
+![](<.github/images/KHive(n=3,%20alpha=[2,%201,%200],%20beta=[2,%201,%200],%20gamma=[0,%200,%200],%20Uij=[[0,%200],%20[0]]).png>)
 
 ### Crystal structure
 
