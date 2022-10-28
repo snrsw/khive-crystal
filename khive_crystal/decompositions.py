@@ -240,3 +240,46 @@ def psi(H: KHive) -> List[KHive]:
     if isinstance(splitted_hive, KHive):
         return [splitted_hive]
     return list(flatten_list([psi_lambda(splitted_hive[0]), splitted_hive[1]]))
+
+
+def psi_inv(H: List[KHive]) -> KHive:
+    """Compose tensor product of K-hives to a K-hive by Psi^{-1}.
+
+    Args:
+        H (List[KHive]): list of K-hives expected to belong to an image of Psi.
+
+    Returns:
+        KHive: Psi^{-1}(H)
+    """
+    return Compose(H=H).run()
+
+
+class Compose:
+    def __init__(self, H: List[KHive]) -> None:
+        self.H: List[KHive] = H
+
+    def validate_is_khive(self) -> None:
+        pass
+
+    def validate_khive_size(self) -> None:
+        pass
+
+    def get_n(self, H: List[KHive]) -> int:
+        pass
+
+    def compose_alpha(self, H: List[KHive]) -> List[int]:
+        pass
+
+    def compose_beta(self, H: List[KHive]) -> List[int]:
+        pass
+
+    def compose_Uij(self, H: List[KHive]) -> List[int]:
+        pass
+
+    def run(self) -> KHive:
+        n: int = self.get_n(H=self.H)
+        alpha: List[int] = self.compose_alpha(H=self.H)
+        beta: List[int] = self.compose_beta(H=self.H)
+        gamma: List[int] = [0 for _ in range(n)]
+        Uij: List[List[int]] = self.compose_Uij(H=self.H)
+        return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
