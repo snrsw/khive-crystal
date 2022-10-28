@@ -217,6 +217,16 @@ def psi(H: KHive) -> List[KHive]:
 
         >>> H: KHive = KHive(
         ...    n=3,
+        ...    alpha=[3, 1, 0],
+        ...    beta=[2, 2, 0],
+        ...    gamma=[0, 0, 0],
+        ...    Uij=[[1, 0], [0]]
+        ... )
+        >>> psi(H=H)
+        [KHive(n=3, alpha=[1, 0, 0], beta=[0, 1, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]]), KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
+
+        >>> H: KHive = KHive(
+        ...    n=3,
         ...    alpha=[1, 1, 0],
         ...    beta=[1, 0, 1],
         ...    gamma=[0, 0, 0],
