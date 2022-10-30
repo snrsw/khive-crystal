@@ -6,6 +6,10 @@ from khive_crystal.utils import flatten_list
 
 
 class TensorProductsOfKHives:
+    """
+    This class implements the tensor product rule for K-hives.
+    """
+
     def __init__(self, tensor_products_khives: List[KHives]) -> None:
         self.tensor_products_khives: List[KHives] = tensor_products_khives
 

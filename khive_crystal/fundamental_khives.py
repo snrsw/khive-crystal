@@ -8,6 +8,11 @@ from khive_crystal.khives import KHives
 
 @dataclass(frozen=True)
 class FundamentalKHives(KHives):
+    """
+    This class is a subclass of KHives,
+    and has the crystal structure on a set of K-hives with fundamental weight.
+    """
+
     def __post_init__(self) -> None:
         self.is_fundamental_weight()
 
