@@ -257,7 +257,7 @@ def psi_inv(H: List[KHive]) -> KHive:
         >>> H: List[KHive] = [H1, H2]
         >>> psi_inv(H=H)
         KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
-    """
+    """  # noqa: B950
     return Compose(H=H).run()
 
 
@@ -280,7 +280,7 @@ class Compose:
             Traceback (most recent call last):
             ...
             ValueError: H must be a list of KHive!
-        """
+        """  # noqa: B950
         is_valid: bool = all([isinstance(Hi, KHive) for Hi in self.H])
         if not is_valid:
             raise ValueError("H must be a list of KHive!")
@@ -299,7 +299,7 @@ class Compose:
             Traceback (most recent call last):
             ...
             ValueError: All elements of H must have the same n
-        """
+        """  # noqa: B950
         lead_n: int = self.H[0].n
         is_valid: bool = all([Hi.n == lead_n for Hi in self.H])
         if not is_valid:
@@ -324,7 +324,7 @@ class Compose:
             >>> H: List[int] = [H1, H1]
             >>> Compose(H=H).compose_alpha()
             [2, 2, 0]
-        """
+        """  # noqa: B950
         return [sum(alpha_i) for alpha_i in zip(*[Hi.alpha for Hi in self.H])]
 
     def compose_beta(self) -> List[int]:
@@ -339,7 +339,7 @@ class Compose:
             >>> H: List[int] = [H1, H2]
             >>> Compose(H=H).compose_beta()
             [1, 2, 1]
-        """
+        """  # noqa: B950
         return [sum(beta_i) for beta_i in zip(*[Hi.beta for Hi in self.H])]
 
     def compose_Uij(self) -> List[List[int]]:
@@ -364,7 +364,7 @@ class Compose:
             >>> H: List[int] = [H2, H2]
             >>> Compose(H=H).compose_Uij()
             [[2, 0], [2]]
-        """
+        """  # noqa: B950
         return [
             [sum(uij) for uij in zip(*Ui)] for Ui in zip(*[Hi.Uij for Hi in self.H])
         ]
@@ -381,7 +381,7 @@ class Compose:
             >>> H: List[KHive] = [H1, H2]
             >>> Compose(H=H).run()
             KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
-        """
+        """  # noqa: B950
         n: int = self.get_n()
         alpha: List[int] = self.compose_alpha()
         beta: List[int] = self.compose_beta()
