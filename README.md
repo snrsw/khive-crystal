@@ -17,6 +17,8 @@ pip install git+https://github.com/snrsw/khive-crystal@master
 
 ## Usage
 
+For more information, see https://snrsw.github.io/khive-crystal/
+
 ### K-hive
 
 ```python
