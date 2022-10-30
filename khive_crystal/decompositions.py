@@ -262,6 +262,11 @@ def psi_inv(H: List[KHive]) -> KHive:
 
 
 class Compose:
+    """This class has methods to compose tensor products of KHive to a KHive.
+    The entry point of this methods is "run". The function psi_inv is a wrapper of run,
+    then use psi_inv instead of using this class direct.
+    """
+
     def __init__(self, H: List[KHive]) -> None:
         self.H: List[KHive] = H
         self.validate_is_khive()

@@ -21,6 +21,10 @@ def align_length(n: int, edge: List[int]) -> List[int]:
 
 @dataclass(frozen=True)
 class IntegerHiveGraph:
+    """
+    This class generate a integer hive graph.
+    """
+
     n: int
     alpha: List[int]
     beta: List[int]

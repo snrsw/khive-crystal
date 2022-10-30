@@ -6,6 +6,8 @@ from khive_crystal.integer_hive_graph import IntegerHiveGraph
 
 @dataclass(frozen=True)
 class KHive(IntegerHiveGraph):
+    """This class is a subclass of IntegerHiveGraph, and generate a K-hive."""
+
     def __post_init__(self) -> None:
         super().__post_init__()
         self.is_k_hive()

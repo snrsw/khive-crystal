@@ -7,6 +7,8 @@ from khive_crystal.khive import KHive
 
 @dataclass(frozen=True)
 class KHives:
+    """This class has the crystal structure on K-hives."""
+
     n: int
     alpha: List[int]
 

@@ -5,6 +5,11 @@ from khive_crystal.khives import KHives
 
 
 class CrystalGraph:
+    """This class has methods to generate the crystal graph for a KHives.
+    The entry point of this methods is "run". The function crystal_graph is a wrapper of run,
+    then use crystal_graph instead of using this class direct.
+    """
+
     def __init__(self, khives: KHives):
         self.khives: KHives = khives
         self.G: graphviz.Digraph = graphviz.Digraph(strict=True)
@@ -33,5 +38,13 @@ class CrystalGraph:
 
 
 def crystal_graph(khives: KHives) -> graphviz.Digraph:
+    """Generate the crystal graph for given KHives
+
+    Args:
+        khives (KHives): khives
+
+    Returns:
+        graphviz.Digraph: the crystal graph for khives
+    """
     crystal_graph: graphviz.Digraph = CrystalGraph(khives=khives).run()
     return crystal_graph
