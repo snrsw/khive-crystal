@@ -1,0 +1,40 @@
+name: generate_pdoc
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "*.py"
+  pull_request:
+    paths:
+      - "*.py"
+  workflow_dispatch:
+
+jobs:
+  generate_pdoc:
+    name: generating pdoc
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      - name: setup
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.8
+      - name: install poetry
+        run: pip install poetry
+      - name: install dependency
+        run: poetry install --no-interaction
+      - name: generate docs
+        run: poetry run pdoc --html -o docs --force khive_crystal
+      - name: push new docs
+        run: |
+          git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+          if (git diff --shortstat | grep '[0-9]'); then \
+            git add .; \
+            git commit -m "Generating docs via GitHub Actions"; \
+            git push origin HEAD:${GITHUB_REF}; \
+          fi
