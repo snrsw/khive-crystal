@@ -257,12 +257,46 @@ def psi_inv(H: List[KHive]) -> KHive:
 class Compose:
     def __init__(self, H: List[KHive]) -> None:
         self.H: List[KHive] = H
+        self.validate_is_khive()
+        self.validate_khive_size()
 
     def validate_is_khive(self) -> None:
-        pass
+        """Validate that H is a list of KHive.
+
+        Raises:
+            ValueError: If H has an object which is not a Khive, raise error.
+
+        Examples:
+            >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            >>> H: List[int] = [H1, 1]
+            >>> Compose(H=H)
+            Traceback (most recent call last):
+            ...
+            ValueError: H must be a list of KHive!
+        """
+        is_valid: bool = all([isinstance(Hi, KHive) for Hi in self.H])
+        if not is_valid:
+            raise ValueError("H must be a list of KHive!")
 
     def validate_khive_size(self) -> None:
-        pass
+        """Validate that H.n
+
+        Raises:
+            ValueError: If H has an KHive with n != H[0].n. raise error.
+
+        Examples:
+            >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            >>> H2: KHive = KHive(n=2, alpha=[1, 0], beta=[1, 0], gamma=[0, 0], Uij=[[0]])
+            >>> H: List[int] = [H1, H2]
+            >>> Compose(H=H)
+            Traceback (most recent call last):
+            ...
+            ValueError: All elements of H must have the same n
+        """
+        lead_n: int = self.H[0].n
+        is_valid: bool = all([Hi.n == lead_n for Hi in self.H])
+        if not is_valid:
+            raise ValueError("All elements of H must have the same n")
 
     def get_n(self) -> int:
         """Get n of H
