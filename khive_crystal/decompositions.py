@@ -217,6 +217,16 @@ def psi(H: KHive) -> List[KHive]:
 
         >>> H: KHive = KHive(
         ...    n=3,
+        ...    alpha=[3, 1, 0],
+        ...    beta=[2, 2, 0],
+        ...    gamma=[0, 0, 0],
+        ...    Uij=[[1, 0], [0]]
+        ... )
+        >>> psi(H=H)
+        [KHive(n=3, alpha=[1, 0, 0], beta=[0, 1, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]]), KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
+
+        >>> H: KHive = KHive(
+        ...    n=3,
         ...    alpha=[1, 1, 0],
         ...    beta=[1, 0, 1],
         ...    gamma=[0, 0, 0],
@@ -230,3 +240,151 @@ def psi(H: KHive) -> List[KHive]:
     if isinstance(splitted_hive, KHive):
         return [splitted_hive]
     return list(flatten_list([psi_lambda(splitted_hive[0]), splitted_hive[1]]))
+
+
+def psi_inv(H: List[KHive]) -> KHive:
+    """Compose tensor product of K-hives to a K-hive by Psi^{-1}.
+
+    Args:
+        H (List[KHive]): list of K-hives expected to belong to an image of Psi.
+
+    Returns:
+        KHive: Psi^{-1}(H)
+
+    Examples:
+        >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        >>> H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        >>> H: List[KHive] = [H1, H2]
+        >>> psi_inv(H=H)
+        KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    """  # noqa: B950
+    return Compose(H=H).run()
+
+
+class Compose:
+    def __init__(self, H: List[KHive]) -> None:
+        self.H: List[KHive] = H
+        self.validate_is_khive()
+        self.validate_khive_size()
+
+    def validate_is_khive(self) -> None:
+        """Validate that H is a list of KHive.
+
+        Raises:
+            ValueError: If H has an object which is not a Khive, raise error.
+
+        Examples:
+            >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            >>> H: List[int] = [H1, 1]
+            >>> Compose(H=H)
+            Traceback (most recent call last):
+            ...
+            ValueError: H must be a list of KHive!
+        """  # noqa: B950
+        is_valid: bool = all([isinstance(Hi, KHive) for Hi in self.H])
+        if not is_valid:
+            raise ValueError("H must be a list of KHive!")
+
+    def validate_khive_size(self) -> None:
+        """Validate that H.n
+
+        Raises:
+            ValueError: If H has an KHive with n != H[0].n. raise error.
+
+        Examples:
+            >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            >>> H2: KHive = KHive(n=2, alpha=[1, 0], beta=[1, 0], gamma=[0, 0], Uij=[[0]])
+            >>> H: List[int] = [H1, H2]
+            >>> Compose(H=H)
+            Traceback (most recent call last):
+            ...
+            ValueError: All elements of H must have the same n
+        """  # noqa: B950
+        lead_n: int = self.H[0].n
+        is_valid: bool = all([Hi.n == lead_n for Hi in self.H])
+        if not is_valid:
+            raise ValueError("All elements of H must have the same n")
+
+    def get_n(self) -> int:
+        """Get n of H
+
+        Returns:
+            int: H[0].n
+        """
+        return self.H[0].n
+
+    def compose_alpha(self) -> List[int]:
+        """Compose alpha_i
+
+        Returns:
+            List[int]: alpha of psi^{-1}(H)
+
+        Examples:
+            >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            >>> H: List[int] = [H1, H1]
+            >>> Compose(H=H).compose_alpha()
+            [2, 2, 0]
+        """  # noqa: B950
+        return [sum(alpha_i) for alpha_i in zip(*[Hi.alpha for Hi in self.H])]
+
+    def compose_beta(self) -> List[int]:
+        """Compose beta_i
+
+        Returns:
+            List[int]: beta of psi^{-1}(H)
+
+        Examples:
+            >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            >>> H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+            >>> H: List[int] = [H1, H2]
+            >>> Compose(H=H).compose_beta()
+            [1, 2, 1]
+        """  # noqa: B950
+        return [sum(beta_i) for beta_i in zip(*[Hi.beta for Hi in self.H])]
+
+    def compose_Uij(self) -> List[List[int]]:
+        """Compose U_{ij}^{k}
+
+        Returns:
+            List[int]: U_{ij} of psi^{-1}(H)
+
+        Examples:
+            >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            >>> H: List[int] = [H1, H1]
+            >>> Compose(H=H).compose_Uij()
+            [[0, 0], [0]]
+
+            >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            >>> H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+            >>> H: List[int] = [H1, H2]
+            >>> Compose(H=H).compose_Uij()
+            [[1, 0], [1]]
+
+            >>> H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+            >>> H: List[int] = [H2, H2]
+            >>> Compose(H=H).compose_Uij()
+            [[2, 0], [2]]
+        """  # noqa: B950
+        return [
+            [sum(uij) for uij in zip(*Ui)] for Ui in zip(*[Hi.Uij for Hi in self.H])
+        ]
+
+    def run(self) -> KHive:
+        """Generate psi^{-1}
+
+        Returns:
+            KHive: psi^{-1}(H)
+
+        Examples:
+            >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            >>> H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+            >>> H: List[KHive] = [H1, H2]
+            >>> Compose(H=H).run()
+            KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        """  # noqa: B950
+        n: int = self.get_n()
+        alpha: List[int] = self.compose_alpha()
+        beta: List[int] = self.compose_beta()
+        gamma: List[int] = [0 for _ in range(n)]
+        Uij: List[List[int]] = self.compose_Uij()
+        return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)

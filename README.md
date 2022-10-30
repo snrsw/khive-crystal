@@ -70,7 +70,7 @@ The crystal structure on $\mathbb{H}(\lambda)$ is determined such that the map $
 
 ```python
 >>> from khive_crystal.khive import KHive
->>> from khive_crystal import khive, view, f, phi, e, epsilon, psi, psi_lambda
+>>> from khive_crystal import khive, view, f, phi, e, epsilon, psi, psi_lambda, psi_inv
 >>> H: KHive = khive(n=3, alpha=[3, 1, 0], beta=[2, 2, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
 >>> psi_lambda(H=H)
 [KHive(alpha=[2, 0, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]]), KHive(alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
