@@ -1,23 +1,22 @@
 [tool.poetry]
+authors = ["Shota Narisawa"]
+description = "Crystal structure on k-hives and related topics"
 name = "khive-crystal"
 version = "0.1.0"
-description = "Crystal structure on k-hives and related topics"
-authors = ["Your Name <you@example.com>"]
-license = "MIT"
 
 [tool.poetry.dependencies]
-python = "^3.7"
-plotly = "^5.10.0"
 graphviz = "^0.20.1"
 pdoc3 = "^0.10.0"
+plotly = "^5.10.0"
+python = "^3.7"
 
 [tool.poetry.dev-dependencies]
 pysen = {version = "^0.10.1", extras = ["lint"]}
 pytest = "^6.2.5"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]
 
 [tool.pysen]
 version = "0.9"
@@ -27,8 +26,8 @@ enable_black = true
 enable_flake8 = true
 enable_isort = true
 enable_mypy = true
-mypy_preset = "strict"
 line_length = 88
+mypy_preset = "strict"
 py_version = "py37"
 [[tool.pysen.lint.mypy_targets]]
-  paths = ["."]
+paths = ["."]
