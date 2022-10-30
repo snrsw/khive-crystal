@@ -250,6 +250,13 @@ def psi_inv(H: List[KHive]) -> KHive:
 
     Returns:
         KHive: Psi^{-1}(H)
+
+    Examples:
+        >>> H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        >>> H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        >>> H: List[KHive] = [H1, H2]
+        >>> psi_inv(H=H)
+        KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
     """
     return Compose(H=H).run()
 
