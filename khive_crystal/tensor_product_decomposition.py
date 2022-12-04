@@ -185,6 +185,25 @@ class Iota:
 
 
 def rho(a: int) -> Callable[[KHive], KHive]:
+    """Compute rho_i(H).
+
+    Returns:
+        KHive: rho_i(H)
+
+    Examples:
+    >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    >>> rho(a=1)(H)
+    KHive(n=3, alpha=[4, 2, 0], beta=[4, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    >>> rho(a=2)(H)
+    KHive(n=3, alpha=[4, 2, 0], beta=[3, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+    >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+    >>> rho(a=2)(H)
+    KHive(n=3, alpha=[3, 3, 0], beta=[2, 3, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    >>> H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+    >>> rho(a=1)(H)
+    KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    """  # noqa: B950
+
     def _rho(H: KHive) -> KHive:
         return Rho(H=H, a=a).run()
 
@@ -192,6 +211,11 @@ def rho(a: int) -> Callable[[KHive], KHive]:
 
 
 class Rho:
+    """This class has methods for rho.
+    The entry point of this methods is "run". The above function rho is a wrapper of run,
+    then use rho instead of using this class directly.
+    """
+
     def __init__(self, H: KHive, a: int) -> None:
         self.H: KHive = H
         self.a: int = a
@@ -236,7 +260,7 @@ class Rho:
         path.append((0, self.a))
 
         while True:
-            path.append((path[-1][0] + 1, path[-1][1]))
+            path.append((path[-1][0] + 1, path[-1][1]))  # even case
             next_j_candidate: List[int] = [
                 j
                 for j in range(path[-1][1] + 1, self.H.n + 1)
@@ -244,10 +268,10 @@ class Rho:
             ]
 
             if next_j_candidate == []:
-                path.append((path[-1][0], self.H.n + 1))
+                path.append((path[-1][0], self.H.n + 1))  # odd case
                 break
 
-            path.append((path[-1][0], min(next_j_candidate)))
+            path.append((path[-1][0], min(next_j_candidate)))  # odd case
 
         return path
 
