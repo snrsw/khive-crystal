@@ -1,5 +1,5 @@
 from copy import deepcopy
-from typing import Callable, List, Optional, Tuple
+from typing import Callable, List, Optional, Tuple, Union
 
 from khive_crystal.khive import KHive
 from khive_crystal.utils import get_length
@@ -9,8 +9,82 @@ def decompose(H: List[KHive]) -> KHive:
     pass
 
 
-def theta(H: List[KHive]) -> List[KHive]:
-    pass
+def theta(H: List[KHive]) -> Union[KHive, List[KHive]]:
+    """theta(H)
+
+    Args:
+        H (List[KHive]): H_1 otimes H_2
+
+    Raises:
+        ValueError: if H has elements more than 2
+
+    Returns:
+        Union[KHive, List[KHive]]: theta(H)
+
+    Examples:
+        >>> H: KHive = KHive(n=4,
+        ...     alpha=[3, 2, 1, 0],
+        ...     beta=[2, 3, 1, 0],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [1, 0, 0],
+        ...         [0, 0],
+        ...         [0]
+        ...     ]
+        ... )
+        >>> K: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        >>> theta(H=[H, K])
+        [KHive(n=4, alpha=[3, 2, 0, 0], beta=[2, 3, 0, 0], gamma=[0, 0, 0, 0], Uij=[[1, 0, 0], [0, 0], [0]]), KHive(n=4, alpha=[6, 5, 1, 0], beta=[3, 4, 3, 2], gamma=[0, 0, 0, 0], Uij=[[2, 1, 0], [1, 2], [0]])]
+
+        >>> H: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[1, 0, 0, 0],
+        ...     beta=[0, 0, 0, 1],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [0, 0, 1],
+        ...         [0, 0],
+        ...         [0]
+        ...     ]
+        ... )
+        >>> K: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        >>> theta(H=[H, K])
+        KHive(n=4, alpha=[7, 4, 1, 0], beta=[3, 4, 2, 3], gamma=[0, 0, 0, 0], Uij=[[2, 0, 2], [1, 1], [0]])
+    """  # noqa: B950
+
+    if len(H) != 2:
+        raise ValueError("len(H) must be 2.")
+
+    iota: Iota = Iota(H=H[0])
+    rho: Rho = Rho(H=H[1], a=iota.j_iota)
+
+    iota_H: Optional[KHive] = iota.run()
+    rho_H: KHive = rho.run()
+
+    if iota_H is None:
+        return rho.run()
+    else:
+        return [iota_H, rho_H]
 
 
 def iota(H: KHive) -> Optional[KHive]:
