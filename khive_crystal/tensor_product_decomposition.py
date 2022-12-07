@@ -6,7 +6,50 @@ from khive_crystal.utils import get_length
 
 
 def decompose(H: List[KHive]) -> KHive:
-    pass
+    """theta^N(H)
+
+    Args:
+        H (List[KHive]): H_1 otimes H_2
+
+    Raises:
+        ValueError: if H has elements more than 2
+
+    Returns:
+        KHive: theta^N(H)
+
+    Examples:
+        >>> H: KHive = KHive(n=4,
+        ...     alpha=[3, 2, 1, 0],
+        ...     beta=[2, 3, 1, 0],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [1, 0, 0],
+        ...         [0, 0],
+        ...         [0]
+        ...     ]
+        ... )
+        >>> K: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        >>> decompose(H=[H, K])
+        KHive(n=4, alpha=[7, 4, 2, 0], beta=[4, 6, 2, 1], gamma=[0, 0, 0, 0], Uij=[[3, 0, 0], [0, 1], [0]])
+    """  # noqa: B950
+    if len(H) != 2:
+        raise ValueError("len(H) must be 2.")
+
+    K: Union[KHive, List[KHive]] = H.copy()
+    while isinstance(K, list):
+        K = theta(H=K)
+
+    return K
 
 
 def theta(H: List[KHive]) -> Union[KHive, List[KHive]]:
