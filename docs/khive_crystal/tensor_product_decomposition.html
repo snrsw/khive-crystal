@@ -1,0 +1,1992 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>khive_crystal.tensor_product_decomposition API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>khive_crystal.tensor_product_decomposition</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">from copy import deepcopy
+from typing import Callable, List, Optional, Tuple, Union
+
+from khive_crystal.khive import KHive
+from khive_crystal.utils import get_length
+
+
+def decompose(H: List[KHive]) -&gt; KHive:
+    &#34;&#34;&#34;theta^N(H)
+
+    Args:
+        H (List[KHive]): H_1 otimes H_2
+
+    Raises:
+        ValueError: if H has elements more than 2
+
+    Returns:
+        KHive: theta^N(H)
+
+    Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=4,
+        ...     alpha=[3, 2, 1, 0],
+        ...     beta=[2, 3, 1, 0],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [1, 0, 0],
+        ...         [0, 0],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; K: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; decompose(H=[H, K])
+        KHive(n=4, alpha=[7, 4, 2, 0], beta=[4, 6, 2, 1], gamma=[0, 0, 0, 0], Uij=[[3, 0, 0], [0, 1], [0]])
+    &#34;&#34;&#34;  # noqa: B950
+    if len(H) != 2:
+        raise ValueError(&#34;len(H) must be 2.&#34;)
+
+    K: Union[KHive, List[KHive]] = H.copy()
+    while isinstance(K, list):
+        K = theta(H=K)
+
+    return K
+
+
+def theta(H: List[KHive]) -&gt; Union[KHive, List[KHive]]:
+    &#34;&#34;&#34;theta(H)
+
+    Args:
+        H (List[KHive]): H_1 otimes H_2
+
+    Raises:
+        ValueError: if H has elements more than 2
+
+    Returns:
+        Union[KHive, List[KHive]]: theta(H)
+
+    Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=4,
+        ...     alpha=[3, 2, 1, 0],
+        ...     beta=[2, 3, 1, 0],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [1, 0, 0],
+        ...         [0, 0],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; K: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; theta(H=[H, K])
+        [KHive(n=4, alpha=[3, 2, 0, 0], beta=[2, 3, 0, 0], gamma=[0, 0, 0, 0], Uij=[[1, 0, 0], [0, 0], [0]]), KHive(n=4, alpha=[6, 5, 1, 0], beta=[3, 4, 3, 2], gamma=[0, 0, 0, 0], Uij=[[2, 1, 0], [1, 2], [0]])]
+
+        &gt;&gt;&gt; H: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[1, 0, 0, 0],
+        ...     beta=[0, 0, 0, 1],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [0, 0, 1],
+        ...         [0, 0],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; K: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; theta(H=[H, K])
+        KHive(n=4, alpha=[7, 4, 1, 0], beta=[3, 4, 2, 3], gamma=[0, 0, 0, 0], Uij=[[2, 0, 2], [1, 1], [0]])
+    &#34;&#34;&#34;  # noqa: B950
+
+    if len(H) != 2:
+        raise ValueError(&#34;len(H) must be 2.&#34;)
+
+    iota: Iota = Iota(H=H[0])
+    rho: Rho = Rho(H=H[1], a=iota.j_iota)
+
+    iota_H: Optional[KHive] = iota.run()
+    rho_H: KHive = rho.run()
+
+    if iota_H is None:
+        return rho.run()
+    else:
+        return [iota_H, rho_H]
+
+
+def iota(H: KHive) -&gt; Optional[KHive]:
+    &#34;&#34;&#34;iota(H)
+
+    Args:
+        H (KHive): A K-hive.
+
+    Returns:
+        Optional[KHive]: iota(H)
+
+    Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; iota(H=H)
+        KHive(n=3, alpha=[3, 1, 0], beta=[3, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; iota(H=H)
+        KHive(n=3, alpha=[3, 1, 0], beta=[2, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+        &gt;&gt;&gt; iota(H=H)
+        KHive(n=3, alpha=[3, 1, 0], beta=[3, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; iota(H=H)
+    &#34;&#34;&#34;  # noqa: B950
+    return Iota(H=H).run()
+
+
+class Iota:
+    &#34;&#34;&#34;This class has methods for iota.
+    The entry point of this methods is &#34;run&#34;. The above function iota is a wrapper of run,
+    then use iota instead of using this class directly.
+    &#34;&#34;&#34;
+
+    def __init__(self, H: KHive) -&gt; None:
+        self.H: KHive = H
+        self.l_alpha: int = get_length(alpha=H.alpha)
+        self.l_alpha_as_index: int = get_length(alpha=H.alpha) - 1
+        self.j_iota: int = self.compute_j_iota()
+        self.j_iota_as_index: int = self.compute_j_iota() - 1
+        self.path: List[Tuple[int, int]] = self.get_path()
+
+    def get_path(self) -&gt; List[Tuple[int, int]]:
+        &#34;&#34;&#34;get path for iota.
+
+        Returns:
+            List[Tuple[int, int]]: path
+        &#34;&#34;&#34;
+        return [(self.l_alpha, 0), (self.l_alpha, self.j_iota), (0, self.j_iota)]
+
+    def compute_j_iota(self) -&gt; int:
+        &#34;&#34;&#34;Compute j_{iota(H)} = min{j in [n] | U_{l(alpha), j} != 0}.
+
+        Returns:
+            int: j_{iota(H)}
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+        2
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+        2
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+        &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+        3
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+        1
+        &#34;&#34;&#34;  # noqa: B950
+        j_iota_as_index_in_full_Uij: int = [
+            uij == 0 for uij in self.H.full_Uij[self.l_alpha_as_index]
+        ].index(False)
+        return j_iota_as_index_in_full_Uij + self.l_alpha
+
+    def compute_alpha(self) -&gt; List[int]:
+        &#34;&#34;&#34;Compute the alpha of iota(H).
+
+        Returns:
+            List[int]: the alpha of iota(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_alpha()
+        [3, 1, 0]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 0, 0], beta=[3, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_alpha()
+        [2, 0, 0]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_alpha()
+        [0, 0, 0]
+        &#34;&#34;&#34;  # noqa: B950
+        return [
+            alpha_i if i != self.l_alpha_as_index else alpha_i - 1
+            for i, alpha_i in enumerate(self.H.alpha)
+        ]
+
+    def compute_beta(self) -&gt; List[int]:
+        &#34;&#34;&#34;Compute the beta of iota(H).
+
+        Returns:
+            List[int]: the beta of iota(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_beta()
+        [3, 1, 0]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+        &gt;&gt;&gt; Iota(H=H).compute_beta()
+        [3, 0, 1]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_beta()
+        [0, 0, 0]
+        &#34;&#34;&#34;  # noqa: B950
+        return [
+            beta_i if i != self.j_iota_as_index else beta_i - 1
+            for i, beta_i in enumerate(self.H.beta)
+        ]
+
+    def compute_Uij(self) -&gt; List[List[int]]:
+        &#34;&#34;&#34;Compute the Uij of iota(H).
+
+        Returns:
+            List[List[int]]: the Uij of iota(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_Uij()
+        [[0, 0], [0]]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; Iota(H=H).compute_Uij()
+        [[1, 0], [1]]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+        &gt;&gt;&gt; Iota(H=H).compute_Uij()
+        [[0, 0], [1]]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; Iota(H=H).compute_Uij()
+        [[1, 0], [0]]
+        &#34;&#34;&#34;  # noqa: B950
+        if self.l_alpha == self.j_iota:
+            return deepcopy(self.H.Uij)
+        else:
+            return [
+                [
+                    uij
+                    if (i, j)
+                    != (self.l_alpha_as_index, self.j_iota_as_index - self.l_alpha)
+                    else uij - 1
+                    for j, uij in enumerate(ui)
+                ]
+                for i, ui in enumerate(self.H.Uij)
+            ]
+
+    def run(self) -&gt; Optional[KHive]:
+        &#34;&#34;&#34;Compute iota(H).
+
+        Returns:
+            KHive: _description_
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).run()
+        KHive(n=3, alpha=[3, 1, 0], beta=[3, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; Iota(H=H).run()
+        KHive(n=3, alpha=[3, 1, 0], beta=[2, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+        &gt;&gt;&gt; Iota(H=H).run()
+        KHive(n=3, alpha=[3, 1, 0], beta=[3, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).run()
+        &#34;&#34;&#34;  # noqa: B950
+        n: int = self.H.n
+        alpha: List[int] = self.compute_alpha()
+        beta: List[int] = self.compute_beta()
+        gamma: List[int] = [0 for _ in range(self.H.n)]
+        Uij: List[List[int]] = self.compute_Uij()
+        if sum(alpha) == 0:
+            return None
+        else:
+            return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)
+
+
+def rho(a: int) -&gt; Callable[[KHive], KHive]:
+    &#34;&#34;&#34;Compute rho_i(H).
+
+    Returns:
+        KHive: rho_i(H)
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; rho(a=1)(H)
+    KHive(n=3, alpha=[4, 2, 0], beta=[4, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; rho(a=2)(H)
+    KHive(n=3, alpha=[4, 2, 0], beta=[3, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+    &gt;&gt;&gt; rho(a=2)(H)
+    KHive(n=3, alpha=[3, 3, 0], beta=[2, 3, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+    &gt;&gt;&gt; rho(a=1)(H)
+    KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &#34;&#34;&#34;  # noqa: B950
+
+    def _rho(H: KHive) -&gt; KHive:
+        return Rho(H=H, a=a).run()
+
+    return _rho
+
+
+class Rho:
+    &#34;&#34;&#34;This class has methods for rho.
+    The entry point of this methods is &#34;run&#34;. The above function rho is a wrapper of run,
+    then use rho instead of using this class directly.
+    &#34;&#34;&#34;
+
+    def __init__(self, H: KHive, a: int) -&gt; None:
+        self.H: KHive = H
+        self.a: int = a
+        self.a_as_index: int = a - 1
+        self.path: List[Tuple[int, int]] = self.get_path()
+
+    def get_path(self) -&gt; List[Tuple[int, int]]:
+        &#34;&#34;&#34;Get a path on H, which is used to compute rho(H).
+
+        Returns:
+            List[Tuple[int, int]]: Path
+
+        Examples:
+            &gt;&gt;&gt; H: KHive = KHive(
+            ...     n=4,
+            ...     alpha=[6, 4, 1, 0],
+            ...     beta=[3, 4, 2, 2],
+            ...     gamma=[0, 0, 0, 0],
+            ...     Uij=[
+            ...         [2, 0, 1],
+            ...         [1, 1],
+            ...         [0]
+            ...     ]
+            ... )
+            &gt;&gt;&gt; Rho(H=H, a=1).get_path()
+            [(0, 1), (1, 1), (1, 2), (2, 2), (2, 3), (3, 3), (3, 5)]
+            &gt;&gt;&gt; H: KHive = KHive(
+            ...     n=4,
+            ...     alpha=[6, 4, 1, 0],
+            ...     beta=[3, 4, 2, 2],
+            ...     gamma=[0, 0, 0, 0],
+            ...     Uij=[
+            ...         [2, 0, 1],
+            ...         [1, 1],
+            ...         [0]
+            ...     ]
+            ... )
+            &gt;&gt;&gt; Rho(H=H, a=3).get_path()
+            [(0, 3), (1, 3), (1, 4), (2, 4), (2, 5)]
+        &#34;&#34;&#34;
+        path: List[Tuple[int, int]] = []
+        path.append((0, self.a))
+
+        while True:
+            path.append((path[-1][0] + 1, path[-1][1]))  # even case
+            next_j_candidate: List[int] = [
+                j
+                for j in range(path[-1][1] + 1, self.H.n + 1)
+                if self.H.Uij[path[-1][0] - 1][j - path[-1][0] - 1] &gt; 0
+            ]
+
+            if next_j_candidate == []:
+                path.append((path[-1][0], self.H.n + 1))  # odd case
+                break
+
+            path.append((path[-1][0], min(next_j_candidate)))  # odd case
+
+        return path
+
+    def compute_alpha(self) -&gt; List[int]:
+        &#34;&#34;&#34;Compute the alpha of rho_i(H).
+
+        Returns:
+            List[int]: the alpha of rho_i(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=1).compute_alpha()
+        [4, 2, 0]
+        &gt;&gt;&gt; Rho(H=H, a=2).compute_alpha()
+        [4, 2, 0]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=2).compute_alpha()
+        [3, 3, 0]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+        &gt;&gt;&gt; Rho(H=H, a=1).compute_alpha()
+        [2, 1, 0]
+        &#34;&#34;&#34;  # noqa: B950
+        i_N: int = self.path[-1][0]
+        i_N_as_index: int = i_N - 1
+        n_as_index: int = self.H.n - 1
+
+        if i_N &lt; self.H.n:
+            return [
+                alpha_i + 1 if i == i_N_as_index else alpha_i
+                for i, alpha_i in enumerate(self.H.alpha)
+            ]
+        else:
+            return [
+                alpha_i - 1 if i != n_as_index else alpha_i
+                for i, alpha_i in enumerate(self.H.alpha)
+            ]
+
+    def compute_beta(self) -&gt; List[int]:
+        &#34;&#34;&#34;Compute the beta of rho_i(H).
+
+        Returns:
+            List[int]: the beta of rho_i(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=1).compute_beta()
+        [4, 2, 0]
+        &gt;&gt;&gt; Rho(H=H, a=2).compute_beta()
+        [3, 3, 0]
+        &gt;&gt;&gt; Rho(H=H, a=3).compute_beta()
+        [3, 2, 1]
+        &#34;&#34;&#34;  # noqa: B950
+        j_0_as_index: int = self.path[0][1] - 1
+        i_N: int = self.path[-1][0]
+
+        if i_N &lt; self.H.n:
+            return [
+                beta_i if i != j_0_as_index else beta_i + 1
+                for i, beta_i in enumerate(self.H.beta)
+            ]
+        else:
+            return [
+                beta_i - 1 if i != j_0_as_index else beta_i
+                for i, beta_i in enumerate(self.H.beta)
+            ]
+
+    def compute_Uij(self) -&gt; List[List[int]]:
+        &#34;&#34;&#34;Compute the Uij of rho_i(H).
+
+        Returns:
+            List[List[int]]: the Uij of rho_i(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=1).compute_Uij()
+        [[0, 0], [0]]
+        &gt;&gt;&gt; Rho(H=H, a=2).compute_Uij()
+        [[1, 0], [0]]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=2).compute_Uij()
+        [[1, 0], [1]]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+        &gt;&gt;&gt; Rho(H=H, a=1).compute_Uij()
+        [[1, 0], [1]]
+        &#34;&#34;&#34;  # noqa: B950
+        Uij: List[List[int]] = deepcopy(self.H.Uij)
+
+        is_point_on_edge: Callable[[int], bool] = lambda m: (m == 0) or (
+            m == len(self.path) - 1
+        )
+        is_point_on_uii: Callable[[int, int], bool] = lambda i, j: i == j
+
+        for m, p_m in enumerate(self.path):
+            i_m_as_index: int = p_m[0] - 1
+            j_m_as_index: int = p_m[1] - p_m[0] - 1
+
+            if is_point_on_edge(m) or is_point_on_uii(p_m[0], p_m[1]):
+                continue
+            elif m % 2 == 0:
+                Uij[i_m_as_index][j_m_as_index] -= 1
+            else:
+                Uij[i_m_as_index][j_m_as_index] += 1
+
+        return Uij
+
+    def run(self) -&gt; KHive:
+        &#34;&#34;&#34;Compute rho_i(H).
+
+        Returns:
+            KHive: rho_i(H)
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=1).run()
+        KHive(n=3, alpha=[4, 2, 0], beta=[4, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=2).run()
+        KHive(n=3, alpha=[4, 2, 0], beta=[3, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=2).run()
+        KHive(n=3, alpha=[3, 3, 0], beta=[2, 3, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+        &gt;&gt;&gt; Rho(H=H, a=1).run()
+        KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &#34;&#34;&#34;  # noqa: B950
+        n: int = self.H.n
+        alpha: List[int] = self.compute_alpha()
+        beta: List[int] = self.compute_beta()
+        gamma: List[int] = [0 for _ in range(self.H.n)]
+        Uij: List[List[int]] = self.compute_Uij()
+
+        return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="khive_crystal.tensor_product_decomposition.decompose"><code class="name flex">
+<span>def <span class="ident">decompose</span></span>(<span>H: List[khive_crystal.khive.KHive]) ‑> khive_crystal.khive.KHive</span>
+</code></dt>
+<dd>
+<div class="desc"><p>theta^N(H)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>H</code></strong> :&ensp;<code>List[KHive]</code></dt>
+<dd>H_1 otimes H_2</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>if H has elements more than 2</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>KHive</code></dt>
+<dd>theta^N(H)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=4,
+...     alpha=[3, 2, 1, 0],
+...     beta=[2, 3, 1, 0],
+...     gamma=[0, 0, 0, 0],
+...     Uij=[
+...         [1, 0, 0],
+...         [0, 0],
+...         [0]
+...     ]
+... )
+&gt;&gt;&gt; K: KHive = KHive(
+...     n=4,
+...     alpha=[6, 4, 1, 0],
+...     beta=[3, 4, 2, 2],
+...     gamma=[0, 0, 0, 0],
+...     Uij=[
+...         [2, 0, 1],
+...         [1, 1],
+...         [0]
+...     ]
+... )
+&gt;&gt;&gt; decompose(H=[H, K])
+KHive(n=4, alpha=[7, 4, 2, 0], beta=[4, 6, 2, 1], gamma=[0, 0, 0, 0], Uij=[[3, 0, 0], [0, 1], [0]])
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def decompose(H: List[KHive]) -&gt; KHive:
+    &#34;&#34;&#34;theta^N(H)
+
+    Args:
+        H (List[KHive]): H_1 otimes H_2
+
+    Raises:
+        ValueError: if H has elements more than 2
+
+    Returns:
+        KHive: theta^N(H)
+
+    Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=4,
+        ...     alpha=[3, 2, 1, 0],
+        ...     beta=[2, 3, 1, 0],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [1, 0, 0],
+        ...         [0, 0],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; K: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; decompose(H=[H, K])
+        KHive(n=4, alpha=[7, 4, 2, 0], beta=[4, 6, 2, 1], gamma=[0, 0, 0, 0], Uij=[[3, 0, 0], [0, 1], [0]])
+    &#34;&#34;&#34;  # noqa: B950
+    if len(H) != 2:
+        raise ValueError(&#34;len(H) must be 2.&#34;)
+
+    K: Union[KHive, List[KHive]] = H.copy()
+    while isinstance(K, list):
+        K = theta(H=K)
+
+    return K</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.iota"><code class="name flex">
+<span>def <span class="ident">iota</span></span>(<span>H: khive_crystal.khive.KHive) ‑> Optional[khive_crystal.khive.KHive]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>iota(H)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>H</code></strong> :&ensp;<code>KHive</code></dt>
+<dd>A K-hive.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Optional[KHive]</code></dt>
+<dd>iota(H)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; iota(H=H)
+KHive(n=3, alpha=[3, 1, 0], beta=[3, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; iota(H=H)
+KHive(n=3, alpha=[3, 1, 0], beta=[2, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+&gt;&gt;&gt; iota(H=H)
+KHive(n=3, alpha=[3, 1, 0], beta=[3, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; iota(H=H)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def iota(H: KHive) -&gt; Optional[KHive]:
+    &#34;&#34;&#34;iota(H)
+
+    Args:
+        H (KHive): A K-hive.
+
+    Returns:
+        Optional[KHive]: iota(H)
+
+    Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; iota(H=H)
+        KHive(n=3, alpha=[3, 1, 0], beta=[3, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; iota(H=H)
+        KHive(n=3, alpha=[3, 1, 0], beta=[2, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+        &gt;&gt;&gt; iota(H=H)
+        KHive(n=3, alpha=[3, 1, 0], beta=[3, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; iota(H=H)
+    &#34;&#34;&#34;  # noqa: B950
+    return Iota(H=H).run()</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.rho"><code class="name flex">
+<span>def <span class="ident">rho</span></span>(<span>a: int) ‑> Callable[[khive_crystal.khive.KHive], khive_crystal.khive.KHive]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute rho_i(H).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>KHive</code></dt>
+<dd>rho_i(H)</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; rho(a=1)(H)
+KHive(n=3, alpha=[4, 2, 0], beta=[4, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; rho(a=2)(H)
+KHive(n=3, alpha=[4, 2, 0], beta=[3, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+&gt;&gt;&gt; rho(a=2)(H)
+KHive(n=3, alpha=[3, 3, 0], beta=[2, 3, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+&gt;&gt;&gt; rho(a=1)(H)
+KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def rho(a: int) -&gt; Callable[[KHive], KHive]:
+    &#34;&#34;&#34;Compute rho_i(H).
+
+    Returns:
+        KHive: rho_i(H)
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; rho(a=1)(H)
+    KHive(n=3, alpha=[4, 2, 0], beta=[4, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; rho(a=2)(H)
+    KHive(n=3, alpha=[4, 2, 0], beta=[3, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+    &gt;&gt;&gt; rho(a=2)(H)
+    KHive(n=3, alpha=[3, 3, 0], beta=[2, 3, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+    &gt;&gt;&gt; rho(a=1)(H)
+    KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &#34;&#34;&#34;  # noqa: B950
+
+    def _rho(H: KHive) -&gt; KHive:
+        return Rho(H=H, a=a).run()
+
+    return _rho</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.theta"><code class="name flex">
+<span>def <span class="ident">theta</span></span>(<span>H: List[khive_crystal.khive.KHive]) ‑> Union[khive_crystal.khive.KHive, List[khive_crystal.khive.KHive]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>theta(H)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>H</code></strong> :&ensp;<code>List[KHive]</code></dt>
+<dd>H_1 otimes H_2</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>if H has elements more than 2</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Union[KHive, List[KHive]]</code></dt>
+<dd>theta(H)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=4,
+...     alpha=[3, 2, 1, 0],
+...     beta=[2, 3, 1, 0],
+...     gamma=[0, 0, 0, 0],
+...     Uij=[
+...         [1, 0, 0],
+...         [0, 0],
+...         [0]
+...     ]
+... )
+&gt;&gt;&gt; K: KHive = KHive(
+...     n=4,
+...     alpha=[6, 4, 1, 0],
+...     beta=[3, 4, 2, 2],
+...     gamma=[0, 0, 0, 0],
+...     Uij=[
+...         [2, 0, 1],
+...         [1, 1],
+...         [0]
+...     ]
+... )
+&gt;&gt;&gt; theta(H=[H, K])
+[KHive(n=4, alpha=[3, 2, 0, 0], beta=[2, 3, 0, 0], gamma=[0, 0, 0, 0], Uij=[[1, 0, 0], [0, 0], [0]]), KHive(n=4, alpha=[6, 5, 1, 0], beta=[3, 4, 3, 2], gamma=[0, 0, 0, 0], Uij=[[2, 1, 0], [1, 2], [0]])]
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...     n=4,
+...     alpha=[1, 0, 0, 0],
+...     beta=[0, 0, 0, 1],
+...     gamma=[0, 0, 0, 0],
+...     Uij=[
+...         [0, 0, 1],
+...         [0, 0],
+...         [0]
+...     ]
+... )
+&gt;&gt;&gt; K: KHive = KHive(
+...     n=4,
+...     alpha=[6, 4, 1, 0],
+...     beta=[3, 4, 2, 2],
+...     gamma=[0, 0, 0, 0],
+...     Uij=[
+...         [2, 0, 1],
+...         [1, 1],
+...         [0]
+...     ]
+... )
+&gt;&gt;&gt; theta(H=[H, K])
+KHive(n=4, alpha=[7, 4, 1, 0], beta=[3, 4, 2, 3], gamma=[0, 0, 0, 0], Uij=[[2, 0, 2], [1, 1], [0]])
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def theta(H: List[KHive]) -&gt; Union[KHive, List[KHive]]:
+    &#34;&#34;&#34;theta(H)
+
+    Args:
+        H (List[KHive]): H_1 otimes H_2
+
+    Raises:
+        ValueError: if H has elements more than 2
+
+    Returns:
+        Union[KHive, List[KHive]]: theta(H)
+
+    Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=4,
+        ...     alpha=[3, 2, 1, 0],
+        ...     beta=[2, 3, 1, 0],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [1, 0, 0],
+        ...         [0, 0],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; K: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; theta(H=[H, K])
+        [KHive(n=4, alpha=[3, 2, 0, 0], beta=[2, 3, 0, 0], gamma=[0, 0, 0, 0], Uij=[[1, 0, 0], [0, 0], [0]]), KHive(n=4, alpha=[6, 5, 1, 0], beta=[3, 4, 3, 2], gamma=[0, 0, 0, 0], Uij=[[2, 1, 0], [1, 2], [0]])]
+
+        &gt;&gt;&gt; H: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[1, 0, 0, 0],
+        ...     beta=[0, 0, 0, 1],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [0, 0, 1],
+        ...         [0, 0],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; K: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; theta(H=[H, K])
+        KHive(n=4, alpha=[7, 4, 1, 0], beta=[3, 4, 2, 3], gamma=[0, 0, 0, 0], Uij=[[2, 0, 2], [1, 1], [0]])
+    &#34;&#34;&#34;  # noqa: B950
+
+    if len(H) != 2:
+        raise ValueError(&#34;len(H) must be 2.&#34;)
+
+    iota: Iota = Iota(H=H[0])
+    rho: Rho = Rho(H=H[1], a=iota.j_iota)
+
+    iota_H: Optional[KHive] = iota.run()
+    rho_H: KHive = rho.run()
+
+    if iota_H is None:
+        return rho.run()
+    else:
+        return [iota_H, rho_H]</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="khive_crystal.tensor_product_decomposition.Iota"><code class="flex name class">
+<span>class <span class="ident">Iota</span></span>
+<span>(</span><span>H: khive_crystal.khive.KHive)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This class has methods for iota.
+The entry point of this methods is "run". The above function iota is a wrapper of run,
+then use iota instead of using this class directly.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Iota:
+    &#34;&#34;&#34;This class has methods for iota.
+    The entry point of this methods is &#34;run&#34;. The above function iota is a wrapper of run,
+    then use iota instead of using this class directly.
+    &#34;&#34;&#34;
+
+    def __init__(self, H: KHive) -&gt; None:
+        self.H: KHive = H
+        self.l_alpha: int = get_length(alpha=H.alpha)
+        self.l_alpha_as_index: int = get_length(alpha=H.alpha) - 1
+        self.j_iota: int = self.compute_j_iota()
+        self.j_iota_as_index: int = self.compute_j_iota() - 1
+        self.path: List[Tuple[int, int]] = self.get_path()
+
+    def get_path(self) -&gt; List[Tuple[int, int]]:
+        &#34;&#34;&#34;get path for iota.
+
+        Returns:
+            List[Tuple[int, int]]: path
+        &#34;&#34;&#34;
+        return [(self.l_alpha, 0), (self.l_alpha, self.j_iota), (0, self.j_iota)]
+
+    def compute_j_iota(self) -&gt; int:
+        &#34;&#34;&#34;Compute j_{iota(H)} = min{j in [n] | U_{l(alpha), j} != 0}.
+
+        Returns:
+            int: j_{iota(H)}
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+        2
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+        2
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+        &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+        3
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+        1
+        &#34;&#34;&#34;  # noqa: B950
+        j_iota_as_index_in_full_Uij: int = [
+            uij == 0 for uij in self.H.full_Uij[self.l_alpha_as_index]
+        ].index(False)
+        return j_iota_as_index_in_full_Uij + self.l_alpha
+
+    def compute_alpha(self) -&gt; List[int]:
+        &#34;&#34;&#34;Compute the alpha of iota(H).
+
+        Returns:
+            List[int]: the alpha of iota(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_alpha()
+        [3, 1, 0]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 0, 0], beta=[3, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_alpha()
+        [2, 0, 0]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_alpha()
+        [0, 0, 0]
+        &#34;&#34;&#34;  # noqa: B950
+        return [
+            alpha_i if i != self.l_alpha_as_index else alpha_i - 1
+            for i, alpha_i in enumerate(self.H.alpha)
+        ]
+
+    def compute_beta(self) -&gt; List[int]:
+        &#34;&#34;&#34;Compute the beta of iota(H).
+
+        Returns:
+            List[int]: the beta of iota(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_beta()
+        [3, 1, 0]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+        &gt;&gt;&gt; Iota(H=H).compute_beta()
+        [3, 0, 1]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_beta()
+        [0, 0, 0]
+        &#34;&#34;&#34;  # noqa: B950
+        return [
+            beta_i if i != self.j_iota_as_index else beta_i - 1
+            for i, beta_i in enumerate(self.H.beta)
+        ]
+
+    def compute_Uij(self) -&gt; List[List[int]]:
+        &#34;&#34;&#34;Compute the Uij of iota(H).
+
+        Returns:
+            List[List[int]]: the Uij of iota(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).compute_Uij()
+        [[0, 0], [0]]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; Iota(H=H).compute_Uij()
+        [[1, 0], [1]]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+        &gt;&gt;&gt; Iota(H=H).compute_Uij()
+        [[0, 0], [1]]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; Iota(H=H).compute_Uij()
+        [[1, 0], [0]]
+        &#34;&#34;&#34;  # noqa: B950
+        if self.l_alpha == self.j_iota:
+            return deepcopy(self.H.Uij)
+        else:
+            return [
+                [
+                    uij
+                    if (i, j)
+                    != (self.l_alpha_as_index, self.j_iota_as_index - self.l_alpha)
+                    else uij - 1
+                    for j, uij in enumerate(ui)
+                ]
+                for i, ui in enumerate(self.H.Uij)
+            ]
+
+    def run(self) -&gt; Optional[KHive]:
+        &#34;&#34;&#34;Compute iota(H).
+
+        Returns:
+            KHive: _description_
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).run()
+        KHive(n=3, alpha=[3, 1, 0], beta=[3, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; Iota(H=H).run()
+        KHive(n=3, alpha=[3, 1, 0], beta=[2, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+        &gt;&gt;&gt; Iota(H=H).run()
+        KHive(n=3, alpha=[3, 1, 0], beta=[3, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Iota(H=H).run()
+        &#34;&#34;&#34;  # noqa: B950
+        n: int = self.H.n
+        alpha: List[int] = self.compute_alpha()
+        beta: List[int] = self.compute_beta()
+        gamma: List[int] = [0 for _ in range(self.H.n)]
+        Uij: List[List[int]] = self.compute_Uij()
+        if sum(alpha) == 0:
+            return None
+        else:
+            return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="khive_crystal.tensor_product_decomposition.Iota.compute_Uij"><code class="name flex">
+<span>def <span class="ident">compute_Uij</span></span>(<span>self) ‑> List[List[int]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the Uij of iota(H).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[List[int]]</code></dt>
+<dd>the Uij of iota(H).</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Iota(H=H).compute_Uij()
+[[0, 0], [0]]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; Iota(H=H).compute_Uij()
+[[1, 0], [1]]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+&gt;&gt;&gt; Iota(H=H).compute_Uij()
+[[0, 0], [1]]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; Iota(H=H).compute_Uij()
+[[1, 0], [0]]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_Uij(self) -&gt; List[List[int]]:
+    &#34;&#34;&#34;Compute the Uij of iota(H).
+
+    Returns:
+        List[List[int]]: the Uij of iota(H).
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Iota(H=H).compute_Uij()
+    [[0, 0], [0]]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &gt;&gt;&gt; Iota(H=H).compute_Uij()
+    [[1, 0], [1]]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+    &gt;&gt;&gt; Iota(H=H).compute_Uij()
+    [[0, 0], [1]]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &gt;&gt;&gt; Iota(H=H).compute_Uij()
+    [[1, 0], [0]]
+    &#34;&#34;&#34;  # noqa: B950
+    if self.l_alpha == self.j_iota:
+        return deepcopy(self.H.Uij)
+    else:
+        return [
+            [
+                uij
+                if (i, j)
+                != (self.l_alpha_as_index, self.j_iota_as_index - self.l_alpha)
+                else uij - 1
+                for j, uij in enumerate(ui)
+            ]
+            for i, ui in enumerate(self.H.Uij)
+        ]</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.Iota.compute_alpha"><code class="name flex">
+<span>def <span class="ident">compute_alpha</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the alpha of iota(H).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[int]</code></dt>
+<dd>the alpha of iota(H).</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Iota(H=H).compute_alpha()
+[3, 1, 0]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 0, 0], beta=[3, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Iota(H=H).compute_alpha()
+[2, 0, 0]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Iota(H=H).compute_alpha()
+[0, 0, 0]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_alpha(self) -&gt; List[int]:
+    &#34;&#34;&#34;Compute the alpha of iota(H).
+
+    Returns:
+        List[int]: the alpha of iota(H).
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Iota(H=H).compute_alpha()
+    [3, 1, 0]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 0, 0], beta=[3, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Iota(H=H).compute_alpha()
+    [2, 0, 0]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Iota(H=H).compute_alpha()
+    [0, 0, 0]
+    &#34;&#34;&#34;  # noqa: B950
+    return [
+        alpha_i if i != self.l_alpha_as_index else alpha_i - 1
+        for i, alpha_i in enumerate(self.H.alpha)
+    ]</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.Iota.compute_beta"><code class="name flex">
+<span>def <span class="ident">compute_beta</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the beta of iota(H).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[int]</code></dt>
+<dd>the beta of iota(H).</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Iota(H=H).compute_beta()
+[3, 1, 0]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+&gt;&gt;&gt; Iota(H=H).compute_beta()
+[3, 0, 1]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Iota(H=H).compute_beta()
+[0, 0, 0]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_beta(self) -&gt; List[int]:
+    &#34;&#34;&#34;Compute the beta of iota(H).
+
+    Returns:
+        List[int]: the beta of iota(H).
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Iota(H=H).compute_beta()
+    [3, 1, 0]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+    &gt;&gt;&gt; Iota(H=H).compute_beta()
+    [3, 0, 1]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Iota(H=H).compute_beta()
+    [0, 0, 0]
+    &#34;&#34;&#34;  # noqa: B950
+    return [
+        beta_i if i != self.j_iota_as_index else beta_i - 1
+        for i, beta_i in enumerate(self.H.beta)
+    ]</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.Iota.compute_j_iota"><code class="name flex">
+<span>def <span class="ident">compute_j_iota</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute j_{iota(H)} = min{j in [n] | U_{l(alpha), j} != 0}.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>j_{iota(H)}</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Iota(H=H).compute_j_iota()
+2
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; Iota(H=H).compute_j_iota()
+2
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+&gt;&gt;&gt; Iota(H=H).compute_j_iota()
+3
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Iota(H=H).compute_j_iota()
+1
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_j_iota(self) -&gt; int:
+    &#34;&#34;&#34;Compute j_{iota(H)} = min{j in [n] | U_{l(alpha), j} != 0}.
+
+    Returns:
+        int: j_{iota(H)}
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+    2
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+    2
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+    &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+    3
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Iota(H=H).compute_j_iota()
+    1
+    &#34;&#34;&#34;  # noqa: B950
+    j_iota_as_index_in_full_Uij: int = [
+        uij == 0 for uij in self.H.full_Uij[self.l_alpha_as_index]
+    ].index(False)
+    return j_iota_as_index_in_full_Uij + self.l_alpha</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.Iota.get_path"><code class="name flex">
+<span>def <span class="ident">get_path</span></span>(<span>self) ‑> List[Tuple[int, int]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>get path for iota.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[Tuple[int, int]]</code></dt>
+<dd>path</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_path(self) -&gt; List[Tuple[int, int]]:
+    &#34;&#34;&#34;get path for iota.
+
+    Returns:
+        List[Tuple[int, int]]: path
+    &#34;&#34;&#34;
+    return [(self.l_alpha, 0), (self.l_alpha, self.j_iota), (0, self.j_iota)]</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.Iota.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self) ‑> Optional[khive_crystal.khive.KHive]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute iota(H).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>KHive</code></dt>
+<dd><em>description</em></dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Iota(H=H).run()
+KHive(n=3, alpha=[3, 1, 0], beta=[3, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; Iota(H=H).run()
+KHive(n=3, alpha=[3, 1, 0], beta=[2, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+&gt;&gt;&gt; Iota(H=H).run()
+KHive(n=3, alpha=[3, 1, 0], beta=[3, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Iota(H=H).run()
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self) -&gt; Optional[KHive]:
+    &#34;&#34;&#34;Compute iota(H).
+
+    Returns:
+        KHive: _description_
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Iota(H=H).run()
+    KHive(n=3, alpha=[3, 1, 0], beta=[3, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &gt;&gt;&gt; Iota(H=H).run()
+    KHive(n=3, alpha=[3, 1, 0], beta=[2, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 0, 2], gamma=[0, 0, 0], Uij=[[0, 0], [2]])
+    &gt;&gt;&gt; Iota(H=H).run()
+    KHive(n=3, alpha=[3, 1, 0], beta=[3, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Iota(H=H).run()
+    &#34;&#34;&#34;  # noqa: B950
+    n: int = self.H.n
+    alpha: List[int] = self.compute_alpha()
+    beta: List[int] = self.compute_beta()
+    gamma: List[int] = [0 for _ in range(self.H.n)]
+    Uij: List[List[int]] = self.compute_Uij()
+    if sum(alpha) == 0:
+        return None
+    else:
+        return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.Rho"><code class="flex name class">
+<span>class <span class="ident">Rho</span></span>
+<span>(</span><span>H: khive_crystal.khive.KHive, a: int)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This class has methods for rho.
+The entry point of this methods is "run". The above function rho is a wrapper of run,
+then use rho instead of using this class directly.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Rho:
+    &#34;&#34;&#34;This class has methods for rho.
+    The entry point of this methods is &#34;run&#34;. The above function rho is a wrapper of run,
+    then use rho instead of using this class directly.
+    &#34;&#34;&#34;
+
+    def __init__(self, H: KHive, a: int) -&gt; None:
+        self.H: KHive = H
+        self.a: int = a
+        self.a_as_index: int = a - 1
+        self.path: List[Tuple[int, int]] = self.get_path()
+
+    def get_path(self) -&gt; List[Tuple[int, int]]:
+        &#34;&#34;&#34;Get a path on H, which is used to compute rho(H).
+
+        Returns:
+            List[Tuple[int, int]]: Path
+
+        Examples:
+            &gt;&gt;&gt; H: KHive = KHive(
+            ...     n=4,
+            ...     alpha=[6, 4, 1, 0],
+            ...     beta=[3, 4, 2, 2],
+            ...     gamma=[0, 0, 0, 0],
+            ...     Uij=[
+            ...         [2, 0, 1],
+            ...         [1, 1],
+            ...         [0]
+            ...     ]
+            ... )
+            &gt;&gt;&gt; Rho(H=H, a=1).get_path()
+            [(0, 1), (1, 1), (1, 2), (2, 2), (2, 3), (3, 3), (3, 5)]
+            &gt;&gt;&gt; H: KHive = KHive(
+            ...     n=4,
+            ...     alpha=[6, 4, 1, 0],
+            ...     beta=[3, 4, 2, 2],
+            ...     gamma=[0, 0, 0, 0],
+            ...     Uij=[
+            ...         [2, 0, 1],
+            ...         [1, 1],
+            ...         [0]
+            ...     ]
+            ... )
+            &gt;&gt;&gt; Rho(H=H, a=3).get_path()
+            [(0, 3), (1, 3), (1, 4), (2, 4), (2, 5)]
+        &#34;&#34;&#34;
+        path: List[Tuple[int, int]] = []
+        path.append((0, self.a))
+
+        while True:
+            path.append((path[-1][0] + 1, path[-1][1]))  # even case
+            next_j_candidate: List[int] = [
+                j
+                for j in range(path[-1][1] + 1, self.H.n + 1)
+                if self.H.Uij[path[-1][0] - 1][j - path[-1][0] - 1] &gt; 0
+            ]
+
+            if next_j_candidate == []:
+                path.append((path[-1][0], self.H.n + 1))  # odd case
+                break
+
+            path.append((path[-1][0], min(next_j_candidate)))  # odd case
+
+        return path
+
+    def compute_alpha(self) -&gt; List[int]:
+        &#34;&#34;&#34;Compute the alpha of rho_i(H).
+
+        Returns:
+            List[int]: the alpha of rho_i(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=1).compute_alpha()
+        [4, 2, 0]
+        &gt;&gt;&gt; Rho(H=H, a=2).compute_alpha()
+        [4, 2, 0]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=2).compute_alpha()
+        [3, 3, 0]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+        &gt;&gt;&gt; Rho(H=H, a=1).compute_alpha()
+        [2, 1, 0]
+        &#34;&#34;&#34;  # noqa: B950
+        i_N: int = self.path[-1][0]
+        i_N_as_index: int = i_N - 1
+        n_as_index: int = self.H.n - 1
+
+        if i_N &lt; self.H.n:
+            return [
+                alpha_i + 1 if i == i_N_as_index else alpha_i
+                for i, alpha_i in enumerate(self.H.alpha)
+            ]
+        else:
+            return [
+                alpha_i - 1 if i != n_as_index else alpha_i
+                for i, alpha_i in enumerate(self.H.alpha)
+            ]
+
+    def compute_beta(self) -&gt; List[int]:
+        &#34;&#34;&#34;Compute the beta of rho_i(H).
+
+        Returns:
+            List[int]: the beta of rho_i(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=1).compute_beta()
+        [4, 2, 0]
+        &gt;&gt;&gt; Rho(H=H, a=2).compute_beta()
+        [3, 3, 0]
+        &gt;&gt;&gt; Rho(H=H, a=3).compute_beta()
+        [3, 2, 1]
+        &#34;&#34;&#34;  # noqa: B950
+        j_0_as_index: int = self.path[0][1] - 1
+        i_N: int = self.path[-1][0]
+
+        if i_N &lt; self.H.n:
+            return [
+                beta_i if i != j_0_as_index else beta_i + 1
+                for i, beta_i in enumerate(self.H.beta)
+            ]
+        else:
+            return [
+                beta_i - 1 if i != j_0_as_index else beta_i
+                for i, beta_i in enumerate(self.H.beta)
+            ]
+
+    def compute_Uij(self) -&gt; List[List[int]]:
+        &#34;&#34;&#34;Compute the Uij of rho_i(H).
+
+        Returns:
+            List[List[int]]: the Uij of rho_i(H).
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=1).compute_Uij()
+        [[0, 0], [0]]
+        &gt;&gt;&gt; Rho(H=H, a=2).compute_Uij()
+        [[1, 0], [0]]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=2).compute_Uij()
+        [[1, 0], [1]]
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+        &gt;&gt;&gt; Rho(H=H, a=1).compute_Uij()
+        [[1, 0], [1]]
+        &#34;&#34;&#34;  # noqa: B950
+        Uij: List[List[int]] = deepcopy(self.H.Uij)
+
+        is_point_on_edge: Callable[[int], bool] = lambda m: (m == 0) or (
+            m == len(self.path) - 1
+        )
+        is_point_on_uii: Callable[[int, int], bool] = lambda i, j: i == j
+
+        for m, p_m in enumerate(self.path):
+            i_m_as_index: int = p_m[0] - 1
+            j_m_as_index: int = p_m[1] - p_m[0] - 1
+
+            if is_point_on_edge(m) or is_point_on_uii(p_m[0], p_m[1]):
+                continue
+            elif m % 2 == 0:
+                Uij[i_m_as_index][j_m_as_index] -= 1
+            else:
+                Uij[i_m_as_index][j_m_as_index] += 1
+
+        return Uij
+
+    def run(self) -&gt; KHive:
+        &#34;&#34;&#34;Compute rho_i(H).
+
+        Returns:
+            KHive: rho_i(H)
+
+        Examples:
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=1).run()
+        KHive(n=3, alpha=[4, 2, 0], beta=[4, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=2).run()
+        KHive(n=3, alpha=[4, 2, 0], beta=[3, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+        &gt;&gt;&gt; Rho(H=H, a=2).run()
+        KHive(n=3, alpha=[3, 3, 0], beta=[2, 3, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+        &gt;&gt;&gt; Rho(H=H, a=1).run()
+        KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &#34;&#34;&#34;  # noqa: B950
+        n: int = self.H.n
+        alpha: List[int] = self.compute_alpha()
+        beta: List[int] = self.compute_beta()
+        gamma: List[int] = [0 for _ in range(self.H.n)]
+        Uij: List[List[int]] = self.compute_Uij()
+
+        return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="khive_crystal.tensor_product_decomposition.Rho.compute_Uij"><code class="name flex">
+<span>def <span class="ident">compute_Uij</span></span>(<span>self) ‑> List[List[int]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the Uij of rho_i(H).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[List[int]]</code></dt>
+<dd>the Uij of rho_i(H).</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Rho(H=H, a=1).compute_Uij()
+[[0, 0], [0]]
+&gt;&gt;&gt; Rho(H=H, a=2).compute_Uij()
+[[1, 0], [0]]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+&gt;&gt;&gt; Rho(H=H, a=2).compute_Uij()
+[[1, 0], [1]]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+&gt;&gt;&gt; Rho(H=H, a=1).compute_Uij()
+[[1, 0], [1]]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_Uij(self) -&gt; List[List[int]]:
+    &#34;&#34;&#34;Compute the Uij of rho_i(H).
+
+    Returns:
+        List[List[int]]: the Uij of rho_i(H).
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Rho(H=H, a=1).compute_Uij()
+    [[0, 0], [0]]
+    &gt;&gt;&gt; Rho(H=H, a=2).compute_Uij()
+    [[1, 0], [0]]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+    &gt;&gt;&gt; Rho(H=H, a=2).compute_Uij()
+    [[1, 0], [1]]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+    &gt;&gt;&gt; Rho(H=H, a=1).compute_Uij()
+    [[1, 0], [1]]
+    &#34;&#34;&#34;  # noqa: B950
+    Uij: List[List[int]] = deepcopy(self.H.Uij)
+
+    is_point_on_edge: Callable[[int], bool] = lambda m: (m == 0) or (
+        m == len(self.path) - 1
+    )
+    is_point_on_uii: Callable[[int, int], bool] = lambda i, j: i == j
+
+    for m, p_m in enumerate(self.path):
+        i_m_as_index: int = p_m[0] - 1
+        j_m_as_index: int = p_m[1] - p_m[0] - 1
+
+        if is_point_on_edge(m) or is_point_on_uii(p_m[0], p_m[1]):
+            continue
+        elif m % 2 == 0:
+            Uij[i_m_as_index][j_m_as_index] -= 1
+        else:
+            Uij[i_m_as_index][j_m_as_index] += 1
+
+    return Uij</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.Rho.compute_alpha"><code class="name flex">
+<span>def <span class="ident">compute_alpha</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the alpha of rho_i(H).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[int]</code></dt>
+<dd>the alpha of rho_i(H).</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Rho(H=H, a=1).compute_alpha()
+[4, 2, 0]
+&gt;&gt;&gt; Rho(H=H, a=2).compute_alpha()
+[4, 2, 0]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+&gt;&gt;&gt; Rho(H=H, a=2).compute_alpha()
+[3, 3, 0]
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+&gt;&gt;&gt; Rho(H=H, a=1).compute_alpha()
+[2, 1, 0]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_alpha(self) -&gt; List[int]:
+    &#34;&#34;&#34;Compute the alpha of rho_i(H).
+
+    Returns:
+        List[int]: the alpha of rho_i(H).
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Rho(H=H, a=1).compute_alpha()
+    [4, 2, 0]
+    &gt;&gt;&gt; Rho(H=H, a=2).compute_alpha()
+    [4, 2, 0]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+    &gt;&gt;&gt; Rho(H=H, a=2).compute_alpha()
+    [3, 3, 0]
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+    &gt;&gt;&gt; Rho(H=H, a=1).compute_alpha()
+    [2, 1, 0]
+    &#34;&#34;&#34;  # noqa: B950
+    i_N: int = self.path[-1][0]
+    i_N_as_index: int = i_N - 1
+    n_as_index: int = self.H.n - 1
+
+    if i_N &lt; self.H.n:
+        return [
+            alpha_i + 1 if i == i_N_as_index else alpha_i
+            for i, alpha_i in enumerate(self.H.alpha)
+        ]
+    else:
+        return [
+            alpha_i - 1 if i != n_as_index else alpha_i
+            for i, alpha_i in enumerate(self.H.alpha)
+        ]</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.Rho.compute_beta"><code class="name flex">
+<span>def <span class="ident">compute_beta</span></span>(<span>self) ‑> List[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the beta of rho_i(H).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[int]</code></dt>
+<dd>the beta of rho_i(H).</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Rho(H=H, a=1).compute_beta()
+[4, 2, 0]
+&gt;&gt;&gt; Rho(H=H, a=2).compute_beta()
+[3, 3, 0]
+&gt;&gt;&gt; Rho(H=H, a=3).compute_beta()
+[3, 2, 1]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compute_beta(self) -&gt; List[int]:
+    &#34;&#34;&#34;Compute the beta of rho_i(H).
+
+    Returns:
+        List[int]: the beta of rho_i(H).
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Rho(H=H, a=1).compute_beta()
+    [4, 2, 0]
+    &gt;&gt;&gt; Rho(H=H, a=2).compute_beta()
+    [3, 3, 0]
+    &gt;&gt;&gt; Rho(H=H, a=3).compute_beta()
+    [3, 2, 1]
+    &#34;&#34;&#34;  # noqa: B950
+    j_0_as_index: int = self.path[0][1] - 1
+    i_N: int = self.path[-1][0]
+
+    if i_N &lt; self.H.n:
+        return [
+            beta_i if i != j_0_as_index else beta_i + 1
+            for i, beta_i in enumerate(self.H.beta)
+        ]
+    else:
+        return [
+            beta_i - 1 if i != j_0_as_index else beta_i
+            for i, beta_i in enumerate(self.H.beta)
+        ]</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.Rho.get_path"><code class="name flex">
+<span>def <span class="ident">get_path</span></span>(<span>self) ‑> List[Tuple[int, int]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a path on H, which is used to compute rho(H).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[Tuple[int, int]]</code></dt>
+<dd>Path</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...     n=4,
+...     alpha=[6, 4, 1, 0],
+...     beta=[3, 4, 2, 2],
+...     gamma=[0, 0, 0, 0],
+...     Uij=[
+...         [2, 0, 1],
+...         [1, 1],
+...         [0]
+...     ]
+... )
+&gt;&gt;&gt; Rho(H=H, a=1).get_path()
+[(0, 1), (1, 1), (1, 2), (2, 2), (2, 3), (3, 3), (3, 5)]
+&gt;&gt;&gt; H: KHive = KHive(
+...     n=4,
+...     alpha=[6, 4, 1, 0],
+...     beta=[3, 4, 2, 2],
+...     gamma=[0, 0, 0, 0],
+...     Uij=[
+...         [2, 0, 1],
+...         [1, 1],
+...         [0]
+...     ]
+... )
+&gt;&gt;&gt; Rho(H=H, a=3).get_path()
+[(0, 3), (1, 3), (1, 4), (2, 4), (2, 5)]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_path(self) -&gt; List[Tuple[int, int]]:
+    &#34;&#34;&#34;Get a path on H, which is used to compute rho(H).
+
+    Returns:
+        List[Tuple[int, int]]: Path
+
+    Examples:
+        &gt;&gt;&gt; H: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; Rho(H=H, a=1).get_path()
+        [(0, 1), (1, 1), (1, 2), (2, 2), (2, 3), (3, 3), (3, 5)]
+        &gt;&gt;&gt; H: KHive = KHive(
+        ...     n=4,
+        ...     alpha=[6, 4, 1, 0],
+        ...     beta=[3, 4, 2, 2],
+        ...     gamma=[0, 0, 0, 0],
+        ...     Uij=[
+        ...         [2, 0, 1],
+        ...         [1, 1],
+        ...         [0]
+        ...     ]
+        ... )
+        &gt;&gt;&gt; Rho(H=H, a=3).get_path()
+        [(0, 3), (1, 3), (1, 4), (2, 4), (2, 5)]
+    &#34;&#34;&#34;
+    path: List[Tuple[int, int]] = []
+    path.append((0, self.a))
+
+    while True:
+        path.append((path[-1][0] + 1, path[-1][1]))  # even case
+        next_j_candidate: List[int] = [
+            j
+            for j in range(path[-1][1] + 1, self.H.n + 1)
+            if self.H.Uij[path[-1][0] - 1][j - path[-1][0] - 1] &gt; 0
+        ]
+
+        if next_j_candidate == []:
+            path.append((path[-1][0], self.H.n + 1))  # odd case
+            break
+
+        path.append((path[-1][0], min(next_j_candidate)))  # odd case
+
+    return path</code></pre>
+</details>
+</dd>
+<dt id="khive_crystal.tensor_product_decomposition.Rho.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self) ‑> khive_crystal.khive.KHive</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute rho_i(H).</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>KHive</code></dt>
+<dd>rho_i(H)</dd>
+</dl>
+<p>Examples:</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Rho(H=H, a=1).run()
+KHive(n=3, alpha=[4, 2, 0], beta=[4, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; Rho(H=H, a=2).run()
+KHive(n=3, alpha=[4, 2, 0], beta=[3, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+&gt;&gt;&gt; Rho(H=H, a=2).run()
+KHive(n=3, alpha=[3, 3, 0], beta=[2, 3, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+&gt;&gt;&gt; Rho(H=H, a=1).run()
+KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def run(self) -&gt; KHive:
+    &#34;&#34;&#34;Compute rho_i(H).
+
+    Returns:
+        KHive: rho_i(H)
+
+    Examples:
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Rho(H=H, a=1).run()
+    KHive(n=3, alpha=[4, 2, 0], beta=[4, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+    &gt;&gt;&gt; Rho(H=H, a=2).run()
+    KHive(n=3, alpha=[4, 2, 0], beta=[3, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[2, 2, 1], gamma=[0, 0, 0], Uij=[[0, 1], [0]])
+    &gt;&gt;&gt; Rho(H=H, a=2).run()
+    KHive(n=3, alpha=[3, 3, 0], beta=[2, 3, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &gt;&gt;&gt; H: KHive = KHive(n=3, alpha=[3, 2, 0], beta=[1, 2, 2], gamma=[0, 0, 0], Uij=[[2, 0], [2]])
+    &gt;&gt;&gt; Rho(H=H, a=1).run()
+    KHive(n=3, alpha=[2, 1, 0], beta=[1, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+    &#34;&#34;&#34;  # noqa: B950
+    n: int = self.H.n
+    alpha: List[int] = self.compute_alpha()
+    beta: List[int] = self.compute_beta()
+    gamma: List[int] = [0 for _ in range(self.H.n)]
+    Uij: List[List[int]] = self.compute_Uij()
+
+    return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="khive_crystal" href="index.html">khive_crystal</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="khive_crystal.tensor_product_decomposition.decompose" href="#khive_crystal.tensor_product_decomposition.decompose">decompose</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.iota" href="#khive_crystal.tensor_product_decomposition.iota">iota</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.rho" href="#khive_crystal.tensor_product_decomposition.rho">rho</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.theta" href="#khive_crystal.tensor_product_decomposition.theta">theta</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="khive_crystal.tensor_product_decomposition.Iota" href="#khive_crystal.tensor_product_decomposition.Iota">Iota</a></code></h4>
+<ul class="two-column">
+<li><code><a title="khive_crystal.tensor_product_decomposition.Iota.compute_Uij" href="#khive_crystal.tensor_product_decomposition.Iota.compute_Uij">compute_Uij</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.Iota.compute_alpha" href="#khive_crystal.tensor_product_decomposition.Iota.compute_alpha">compute_alpha</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.Iota.compute_beta" href="#khive_crystal.tensor_product_decomposition.Iota.compute_beta">compute_beta</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.Iota.compute_j_iota" href="#khive_crystal.tensor_product_decomposition.Iota.compute_j_iota">compute_j_iota</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.Iota.get_path" href="#khive_crystal.tensor_product_decomposition.Iota.get_path">get_path</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.Iota.run" href="#khive_crystal.tensor_product_decomposition.Iota.run">run</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="khive_crystal.tensor_product_decomposition.Rho" href="#khive_crystal.tensor_product_decomposition.Rho">Rho</a></code></h4>
+<ul class="">
+<li><code><a title="khive_crystal.tensor_product_decomposition.Rho.compute_Uij" href="#khive_crystal.tensor_product_decomposition.Rho.compute_Uij">compute_Uij</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.Rho.compute_alpha" href="#khive_crystal.tensor_product_decomposition.Rho.compute_alpha">compute_alpha</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.Rho.compute_beta" href="#khive_crystal.tensor_product_decomposition.Rho.compute_beta">compute_beta</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.Rho.get_path" href="#khive_crystal.tensor_product_decomposition.Rho.get_path">get_path</a></code></li>
+<li><code><a title="khive_crystal.tensor_product_decomposition.Rho.run" href="#khive_crystal.tensor_product_decomposition.Rho.run">run</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
