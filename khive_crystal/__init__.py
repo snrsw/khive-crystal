@@ -3,6 +3,7 @@ from khive_crystal.crystal_structure import e, epsilon, f, phi
 from khive_crystal.decompositions import psi, psi_inv, psi_lambda
 from khive_crystal.khive import khive
 from khive_crystal.khives import khives
+from khive_crystal.tensor_product_decomposition import decompose, iota, rho, theta
 from khive_crystal.view import view
 
 __all__ = [
@@ -17,4 +18,8 @@ __all__ = [
     "f",
     "phi",
     "crystal_graph",
+    "decompose",
+    "theta",
+    "iota",
+    "rho",
 ]
