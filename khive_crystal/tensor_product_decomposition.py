@@ -167,6 +167,15 @@ class Iota:
         self.l_alpha_as_index: int = get_length(alpha=H.alpha) - 1
         self.j_iota: int = self.compute_j_iota()
         self.j_iota_as_index: int = self.compute_j_iota() - 1
+        self.path: List[Tuple[int, int]] = self.get_path()
+
+    def get_path(self) -> List[Tuple[int, int]]:
+        """get path for iota.
+
+        Returns:
+            List[Tuple[int, int]]: path
+        """
+        return [(self.l_alpha, 0), (self.l_alpha, self.j_iota), (0, self.j_iota)]
 
     def compute_j_iota(self) -> int:
         """Compute j_{iota(H)} = min{j in [n] | U_{l(alpha), j} != 0}.
