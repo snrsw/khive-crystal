@@ -239,7 +239,7 @@ def psi(H: KHive) -> List[KHive]:
     splitted_hive: Union[KHive, List[KHive]] = psi_lambda(H=H)
     if isinstance(splitted_hive, KHive):
         return [splitted_hive]
-    return list(flatten_list([psi_lambda(splitted_hive[0]), splitted_hive[1]]))
+    return list(flatten_list([psi(splitted_hive[0]), splitted_hive[1]]))
 
 
 def psi_inv(H: List[KHive]) -> KHive:
