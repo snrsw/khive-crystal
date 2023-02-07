@@ -4,7 +4,7 @@ This repository contains the experimetns code for our paper `Algorithms for crys
 
 ## Overview
 
-Let $\mathfrak{g}$ be a Lie algebra of type $A_{n-1}$. Let $P^+$ be a dominant integral weight lattice of $\mathfrak{g}$. For $\lambda \in P^+$, let $\mathbb{H}(\lambda)$ be a set of K-hives which right edge labels is determied by $\lambda$.
+Let $\mathfrak{g}$ be a Lie algebra of type $A_{n-1}$. Let $P^+$ be a set of dominant integral weights of $\mathfrak{g}$. For $\lambda \in P^+$, let $\mathbb{H}(\lambda)$ be a set of K-hives which right edge labels is determied by $\lambda$.
 `khive-crystal` compute the crystal structure on $\mathbb{H}(\lambda)$.
 
 ## Getting started
