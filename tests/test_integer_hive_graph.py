@@ -1,4 +1,5 @@
 import pytest
+
 from khive_crystal.integer_hive_graph import IntegerHiveGraph
 
 

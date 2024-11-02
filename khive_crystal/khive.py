@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import List
 
 from khive_crystal.integer_hive_graph import IntegerHiveGraph
 
@@ -49,7 +48,7 @@ class KHive(IntegerHiveGraph):
             True
         """
 
-        return all(x >= y for x, y in zip(self.alpha, self.alpha[1:]))
+        return all(x >= y for x, y in zip(self.alpha, self.alpha[1:], strict=False))
 
     def is_zero_partition(self) -> bool:
         """Check gamma is 0
@@ -175,7 +174,7 @@ class KHive(IntegerHiveGraph):
 
 
 def khive(
-    n: int, alpha: List[int], beta: List[int], gamma: List[int], Uij: List[List[int]]
+    n: int, alpha: list[int], beta: list[int], gamma: list[int], Uij: list[list[int]]
 ) -> KHive:
     """Get a instance of KHive
 

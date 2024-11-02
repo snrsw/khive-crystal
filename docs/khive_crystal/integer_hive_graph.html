@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>khive_crystal.integer_hive_graph API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>khive_crystal.integer_hive_graph</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="khive_crystal.integer_hive_graph.align_length"><code class="name flex">
+<span>def <span class="ident">align_length</span></span>(<span>n: int, edge: list[int]) ‑> list[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>align length of edge to n</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>n</code></strong> :&ensp;<code>int</code></dt>
+<dd>length</dd>
+<dt><strong><code>edge</code></strong> :&ensp;<code>List[int]</code></dt>
+<dd>boundary edge labels</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[int]</code></dt>
+<dd>length aligned boundary edge labels</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; align_length(n=3, edge=[2, 2])
+[2, 2, 0]
+</code></pre></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph"><code class="flex name class">
+<span>class <span class="ident">IntegerHiveGraph</span></span>
+<span>(</span><span>n: int, alpha: list[int], beta: list[int], gamma: list[int], Uij: list[list[int]])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This class generate a integer hive graph.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@dataclass(frozen=True)
+class IntegerHiveGraph:
+    &#34;&#34;&#34;
+    This class generate a integer hive graph.
+    &#34;&#34;&#34;
+
+    n: int
+    alpha: list[int]
+    beta: list[int]
+    gamma: list[int]
+    Uij: list[list[int]]
+    full_Uij: list[list[int]] = field(init=False, repr=False)
+
+    def __post_init__(self) -&gt; None:
+        object.__setattr__(self, &#34;alpha&#34;, align_length(n=self.n, edge=self.alpha))
+        object.__setattr__(self, &#34;beta&#34;, align_length(n=self.n, edge=self.beta))
+        object.__setattr__(self, &#34;gamma&#34;, align_length(n=self.n, edge=self.gamma))
+        object.__setattr__(self, &#34;full_Uij&#34;, self.add_Uii())
+        self.is_integer_hive_graph()
+
+    def compute_Uii(self, i: int) -&gt; int:
+        &#34;&#34;&#34;compute U_{ii}
+            U_{ii} := beta_{i} - sum_{k=1}^{i-1}U_{ki}
+
+        Args:
+            i (int): index
+
+        Returns:
+            int: U_{ii}
+
+        Examples:
+            &gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[1, 1, 0],
+            ...    beta=[1, 1, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
+            &gt;&gt;&gt; H.compute_Uii(i=1)
+            1
+
+            &gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[3, 3, 0],
+            ...    beta=[2, 3, 1],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 0], [1]]
+            ... )
+            &gt;&gt;&gt; H.compute_Uii(i=2)
+            2
+
+            &gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[3, 1, 0],
+            ...    beta=[1, 1, 2],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 1], [1]]
+            ... )
+            &gt;&gt;&gt; H.compute_Uii(i=3)
+            0
+        &#34;&#34;&#34;
+
+        if i &lt; 1:
+            raise ValueError(&#34;i should be in [n].&#34;)
+
+        i_as_index: int = i - 1
+        Uji: list[list[int]] = self.get_Uji()
+        return (
+            self.beta[i_as_index] - sum(Uji[i_as_index - 1]) if 1 &lt; i else self.beta[0]
+        )
+
+    def add_Uii(self) -&gt; list[list[int]]:
+        &#34;&#34;&#34;Add Uii to Uij
+
+        Returns:
+            List[List[int]]: [U_{ii}, U_{i,i+1}, ...]
+
+        Examples:
+            &gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[1, 1, 0],
+            ...    beta=[1, 1, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
+            &gt;&gt;&gt; H.add_Uii()
+            [[1, 0, 0], [1, 0], [0]]
+
+            &gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[3, 2, 0],
+            ...    beta=[3, 2, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
+            &gt;&gt;&gt; H.add_Uii()
+            [[3, 0, 0], [2, 0], [0]]
+        &#34;&#34;&#34;
+        return [[self.compute_Uii(i=i + 1)] + ui for i, ui in enumerate(self.Uij)] + [
+            [self.compute_Uii(i=self.n)]
+        ]
+
+    def get_Uji(self) -&gt; list[list[int]]:
+        &#34;&#34;&#34;get Uji by aligning Uij.
+        Let Uij = [[U_{12}, U_{13}, U_{14}], [U_{23}, U_{24}], [U_{34}]].
+        Then Uji = [[U_{12}], [U_{13}, U_{23}], [U_{14}, U_{24}], [U_{34}]].
+
+        Returns:
+            List[List[int]]: Uji
+
+        Examples:
+            &gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[2, 1, 0],
+            ...    beta=[2, 1, 0],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [0]]
+            ... )
+            &gt;&gt;&gt; H.get_Uji()
+            [[0], [0, 0]]
+
+            &gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[2, 1, 0],
+            ...    beta=[0, 2, 1],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[2, 0], [1]]
+            ... )
+            &gt;&gt;&gt; H.get_Uji()
+            [[2], [0, 1]]
+
+            &gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[3, 1, 0],
+            ...    beta=[1, 1, 2],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 1], [1]]
+            ... )
+            &gt;&gt;&gt; H.get_Uji()
+            [[1], [1, 1]]
+
+            &gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+            ...    n=3,
+            ...    alpha=[1, 1, 0],
+            ...    beta=[1, 0, 1],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[0, 0], [1]]
+            ... )
+            &gt;&gt;&gt; H.get_Uji()
+            [[0], [0, 1]]
+        &#34;&#34;&#34;
+
+        aligned_Uij: list[list[int]] = [
+            [0] * ((self.n - 1) - len(ui)) + ui for ui in self.Uij
+        ]
+        return [list(uj)[: j + 1] for j, uj in enumerate(zip(*aligned_Uij, strict=False))]
+
+    def integer_hive_graph_condition(self, k: int) -&gt; bool:
+        &#34;&#34;&#34;Compute the condition of integer hive graph:
+        beta_{i} = gamma_{i} + sum_{k=1}^{i-1} U_{ki} + alpha_{i} - sum_{k=i+1}^{n}U_{ik}
+
+        Args:
+            k (int): i
+
+        Returns:
+            bool: is condition holds
+        &#34;&#34;&#34;
+
+        k_as_index: int = k - 1
+        is_hold: bool
+        if k == 1:
+            is_hold = self.beta[0] == (self.gamma[0] + self.alpha[0] - sum(self.Uij[0]))
+        elif k == self.n:
+            is_hold = self.beta[k_as_index] == (
+                self.gamma[k_as_index]
+                + sum(self.get_Uji()[k_as_index - 1])  # \sum_{l=1}^{k-1} U_{lk}
+                + self.alpha[k_as_index]
+            )
+        else:
+            is_hold = self.beta[k_as_index] == (
+                self.gamma[k_as_index]
+                + sum(self.get_Uji()[k_as_index - 1])  # \sum_{l=1}^{k-1} U_{lk}
+                + self.alpha[k_as_index]
+                - sum(self.Uij[k_as_index])
+            )  # \sum_{l=k+1}^{n} U_{kl}
+        return is_hold
+
+    def is_integer_hive_graph(self) -&gt; None:
+        &#34;&#34;&#34;Check the condition of integer hive graph.
+
+        Raises:
+            ValueError: If the condition is not satisfied raise error, otherwise nothing.
+        &#34;&#34;&#34;
+
+        conditions: list[bool] = [
+            self.integer_hive_graph_condition(k=k + 1) for k in range(self.n)
+        ]
+
+        is_condition_hold: bool = sum(conditions) == len(conditions)
+
+        if not is_condition_hold:
+            raise ValueError(
+                f&#34;&#34;&#34;
+                Given values dose not satisfy the definition of a interger hive graph.
+                {self},
+                conditions = {conditions}
+                &#34;&#34;&#34;
+            )</code></pre>
+</details>
+<h3>Subclasses</h3>
+<ul class="hlist">
+<li>khive_crystal.khive.KHive</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.Uij"><code class="name">var <span class="ident">Uij</span> : list[list[int]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.alpha"><code class="name">var <span class="ident">alpha</span> : list[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.beta"><code class="name">var <span class="ident">beta</span> : list[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.full_Uij"><code class="name">var <span class="ident">full_Uij</span> : list[list[int]]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.gamma"><code class="name">var <span class="ident">gamma</span> : list[int]</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.n"><code class="name">var <span class="ident">n</span> : int</code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.add_Uii"><code class="name flex">
+<span>def <span class="ident">add_Uii</span></span>(<span>self) ‑> list[list[int]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add Uii to Uij</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[List[int]]</code></dt>
+<dd>[U_{ii}, U_{i,i+1}, &hellip;]</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+...    n=3,
+...    alpha=[1, 1, 0],
+...    beta=[1, 1, 0],
+...    gamma=[0, 0, 0],
+...    Uij=[[0, 0], [0]]
+... )
+&gt;&gt;&gt; H.add_Uii()
+[[1, 0, 0], [1, 0], [0]]
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+...    n=3,
+...    alpha=[3, 2, 0],
+...    beta=[3, 2, 0],
+...    gamma=[0, 0, 0],
+...    Uij=[[0, 0], [0]]
+... )
+&gt;&gt;&gt; H.add_Uii()
+[[3, 0, 0], [2, 0], [0]]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.compute_Uii"><code class="name flex">
+<span>def <span class="ident">compute_Uii</span></span>(<span>self, i: int) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>compute U_{ii}
+U_{ii} := beta_{i} - sum_{k=1}^{i-1}U_{ki}</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>i</code></strong> :&ensp;<code>int</code></dt>
+<dd>index</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>U_{ii}</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+...    n=3,
+...    alpha=[1, 1, 0],
+...    beta=[1, 1, 0],
+...    gamma=[0, 0, 0],
+...    Uij=[[0, 0], [0]]
+... )
+&gt;&gt;&gt; H.compute_Uii(i=1)
+1
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+...    n=3,
+...    alpha=[3, 3, 0],
+...    beta=[2, 3, 1],
+...    gamma=[0, 0, 0],
+...    Uij=[[1, 0], [1]]
+... )
+&gt;&gt;&gt; H.compute_Uii(i=2)
+2
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+...    n=3,
+...    alpha=[3, 1, 0],
+...    beta=[1, 1, 2],
+...    gamma=[0, 0, 0],
+...    Uij=[[1, 1], [1]]
+... )
+&gt;&gt;&gt; H.compute_Uii(i=3)
+0
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.get_Uji"><code class="name flex">
+<span>def <span class="ident">get_Uji</span></span>(<span>self) ‑> list[list[int]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>get Uji by aligning Uij.
+Let Uij = [[U_{12}, U_{13}, U_{14}], [U_{23}, U_{24}], [U_{34}]].
+Then Uji = [[U_{12}], [U_{13}, U_{23}], [U_{14}, U_{24}], [U_{34}]].</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[List[int]]</code></dt>
+<dd>Uji</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+...    n=3,
+...    alpha=[2, 1, 0],
+...    beta=[2, 1, 0],
+...    gamma=[0, 0, 0],
+...    Uij=[[0, 0], [0]]
+... )
+&gt;&gt;&gt; H.get_Uji()
+[[0], [0, 0]]
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+...    n=3,
+...    alpha=[2, 1, 0],
+...    beta=[0, 2, 1],
+...    gamma=[0, 0, 0],
+...    Uij=[[2, 0], [1]]
+... )
+&gt;&gt;&gt; H.get_Uji()
+[[2], [0, 1]]
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+...    n=3,
+...    alpha=[3, 1, 0],
+...    beta=[1, 1, 2],
+...    gamma=[0, 0, 0],
+...    Uij=[[1, 1], [1]]
+... )
+&gt;&gt;&gt; H.get_Uji()
+[[1], [1, 1]]
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: IntegerHiveGraph = IntegerHiveGraph(
+...    n=3,
+...    alpha=[1, 1, 0],
+...    beta=[1, 0, 1],
+...    gamma=[0, 0, 0],
+...    Uij=[[0, 0], [1]]
+... )
+&gt;&gt;&gt; H.get_Uji()
+[[0], [0, 1]]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.integer_hive_graph_condition"><code class="name flex">
+<span>def <span class="ident">integer_hive_graph_condition</span></span>(<span>self, k: int) ‑> bool</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute the condition of integer hive graph:
+beta_{i} = gamma_{i} + sum_{k=1}^{i-1} U_{ki} + alpha_{i} - sum_{k=i+1}^{n}U_{ik}</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>k</code></strong> :&ensp;<code>int</code></dt>
+<dd>i</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>bool</code></dt>
+<dd>is condition holds</dd>
+</dl></div>
+</dd>
+<dt id="khive_crystal.integer_hive_graph.IntegerHiveGraph.is_integer_hive_graph"><code class="name flex">
+<span>def <span class="ident">is_integer_hive_graph</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check the condition of integer hive graph.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If the condition is not satisfied raise error, otherwise nothing.</dd>
+</dl></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="khive_crystal" href="index.html">khive_crystal</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="khive_crystal.integer_hive_graph.align_length" href="#khive_crystal.integer_hive_graph.align_length">align_length</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph">IntegerHiveGraph</a></code></h4>
+<ul class="">
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.Uij" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.Uij">Uij</a></code></li>
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.add_Uii" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.add_Uii">add_Uii</a></code></li>
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.alpha" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.alpha">alpha</a></code></li>
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.beta" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.beta">beta</a></code></li>
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.compute_Uii" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.compute_Uii">compute_Uii</a></code></li>
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.full_Uij" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.full_Uij">full_Uij</a></code></li>
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.gamma" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.gamma">gamma</a></code></li>
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.get_Uji" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.get_Uji">get_Uji</a></code></li>
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.integer_hive_graph_condition" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.integer_hive_graph_condition">integer_hive_graph_condition</a></code></li>
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.is_integer_hive_graph" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.is_integer_hive_graph">is_integer_hive_graph</a></code></li>
+<li><code><a title="khive_crystal.integer_hive_graph.IntegerHiveGraph.n" href="#khive_crystal.integer_hive_graph.IntegerHiveGraph.n">n</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>

@@ -1,4 +1,4 @@
-from typing import Callable, List, Optional, Union
+from collections.abc import Callable
 
 from khive_crystal.khive import KHive
 from khive_crystal.khives import KHives
@@ -10,10 +10,10 @@ class TensorProductsOfKHives:
     This class implements the tensor product rule for K-hives.
     """
 
-    def __init__(self, tensor_products_khives: List[KHives]) -> None:
-        self.tensor_products_khives: List[KHives] = tensor_products_khives
+    def __init__(self, tensor_products_khives: list[KHives]) -> None:
+        self.tensor_products_khives: list[KHives] = tensor_products_khives
 
-    def phi(self, i: int) -> Callable[[List[KHive]], int]:
+    def phi(self, i: int) -> Callable[[list[KHive]], int]:
         """phi_i(tensor_products_khive)
 
         Args:
@@ -46,12 +46,12 @@ class TensorProductsOfKHives:
             0
         """
 
-        def phi_i(tensor_products_khive: List[KHive]) -> int:
+        def phi_i(tensor_products_khive: list[KHive]) -> int:
             left_khives: KHives = self.tensor_products_khives[0]
             left_khive: KHive = tensor_products_khive[0]
 
-            right_khives: Union[TensorProductsOfKHives, KHives]
-            right_khive: Union[List[KHive], KHive]
+            right_khives: TensorProductsOfKHives | KHives
+            right_khive: list[KHive] | KHive
             if len(self.tensor_products_khives[1:]) == 1:
                 right_khives = self.tensor_products_khives[1]
                 right_khive = tensor_products_khive[1]
@@ -79,7 +79,7 @@ class TensorProductsOfKHives:
 
         return phi_i
 
-    def f(self, i: int) -> Callable[[List[KHive]], Optional[List[Optional[KHive]]]]:
+    def f(self, i: int) -> Callable[[list[KHive]], list[KHive | None] | None]:
         """f_i(tensor_products_khive)
 
         Args:
@@ -101,12 +101,12 @@ class TensorProductsOfKHives:
             [KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
         """  # noqa: B950
 
-        def f_i(tensor_products_khive: List[KHive]) -> Optional[List[Optional[KHive]]]:
+        def f_i(tensor_products_khive: list[KHive]) -> list[KHive | None] | None:
             left_khives: KHives = self.tensor_products_khives[0]
             left_khive: KHive = tensor_products_khive[0]
 
-            right_khives: Union[TensorProductsOfKHives, KHives]
-            right_khive: Union[List[KHive], KHive]
+            right_khives: TensorProductsOfKHives | KHives
+            right_khive: list[KHive] | KHive
             right_epsilon_i: int
             left_phi_i: int
             if len(self.tensor_products_khives[1:]) == 1:
@@ -145,7 +145,7 @@ class TensorProductsOfKHives:
 
         return f_i
 
-    def epsilon(self, i: int) -> Callable[[List[KHive]], int]:
+    def epsilon(self, i: int) -> Callable[[list[KHive]], int]:
         """epsilon_i(tensor_products_khive)
 
         Args:
@@ -178,12 +178,12 @@ class TensorProductsOfKHives:
             1
         """  # noqa: B950
 
-        def epsilon_i(tensor_products_khive: List[KHive]) -> int:
+        def epsilon_i(tensor_products_khive: list[KHive]) -> int:
             left_khives: KHives = self.tensor_products_khives[0]
             left_khive: KHive = tensor_products_khive[0]
 
-            right_khives: Union[TensorProductsOfKHives, KHives]
-            right_khive: Union[List[KHive], KHive]
+            right_khives: TensorProductsOfKHives | KHives
+            right_khive: list[KHive] | KHive
             if len(self.tensor_products_khives[1:]) == 1:
                 right_khives = self.tensor_products_khives[1]
                 right_khive = tensor_products_khive[1]
@@ -212,7 +212,7 @@ class TensorProductsOfKHives:
 
         return epsilon_i
 
-    def e(self, i: int) -> Callable[[List[KHive]], Optional[List[Optional[KHive]]]]:
+    def e(self, i: int) -> Callable[[list[KHive]], list[KHive | None] | None]:
         """f_i(tensor_products_khive)
 
         Args:
@@ -233,12 +233,12 @@ class TensorProductsOfKHives:
             >>> tensor.e(i=2)(H)
         """  # noqa: B950
 
-        def e_i(tensor_products_khive: List[KHive]) -> Optional[List[Optional[KHive]]]:
+        def e_i(tensor_products_khive: list[KHive]) -> list[KHive | None] | None:
             left_khives: KHives = self.tensor_products_khives[0]
             left_khive: KHive = tensor_products_khive[0]
 
-            right_khives: Union[TensorProductsOfKHives, KHives]
-            right_khive: Union[List[KHive], KHive]
+            right_khives: TensorProductsOfKHives | KHives
+            right_khive: list[KHive] | KHive
             right_epsilon_i: int
             left_phi_i: int
             if len(self.tensor_products_khives[1:]) == 1:
@@ -277,7 +277,7 @@ class TensorProductsOfKHives:
 
         return e_i
 
-    def weight(self, tensor_products_khive: List[KHive]) -> List[int]:
+    def weight(self, tensor_products_khive: list[KHive]) -> list[int]:
         """weight(tensor_products_khive)
 
         Args:
@@ -298,13 +298,13 @@ class TensorProductsOfKHives:
             >>> tensor.weight(H)
             [2, 2, 0]
         """
-        weights: List[List[int]] = [
+        weights: list[list[int]] = [
             khives.weight(H=H)
-            for H, khives in zip(tensor_products_khive, self.tensor_products_khives)
+            for H, khives in zip(tensor_products_khive, self.tensor_products_khives, strict=False)
         ]
-        return [sum(weights_i) for weights_i in zip(*weights)]
+        return [sum(weights_i) for weights_i in zip(*weights, strict=False)]
 
-    def inner_product(self, i: int, weight: List[int]) -> int:
+    def inner_product(self, i: int, weight: list[int]) -> int:
         """Compute <h_i, wt(H)>
 
         Args:
@@ -314,15 +314,15 @@ class TensorProductsOfKHives:
         Returns:
             int: <h_i, wt(H)>
         """
-        if not (i in [_ + 1 for _ in range(self.tensor_products_khives[0].n - 1)]):
+        if i not in [_ + 1 for _ in range(self.tensor_products_khives[0].n - 1)]:
             raise ValueError("i must be in I.")
 
         i_as_index: int = i - 1
         return weight[i_as_index] - weight[i_as_index + 1]
 
     def zero_scalar(
-        self, tensor_products_khive: List[Optional[KHive]]
-    ) -> Optional[List[Optional[KHive]]]:
+        self, tensor_products_khive: list[KHive | None]
+    ) -> list[KHive | None] | None:
         """zero scalar
 
         Args:

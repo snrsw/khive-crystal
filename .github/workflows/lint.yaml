@@ -15,10 +15,10 @@ jobs:
       - name: setup
         uses: actions/setup-python@v1
         with:
-          python-version: 3.8
-      - name: install poetry
-        run: pip install poetry
+          python-version: 3.11
+      - name: install uv
+        run: pip install uv
       - name: install dependency
-        run: poetry install --no-interaction
+        run: uv sync
       - name: run lint
-        run: poetry run pysen run lint
+        run: uv run poe lint

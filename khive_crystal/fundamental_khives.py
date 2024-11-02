@@ -1,6 +1,6 @@
+from collections.abc import Callable
 from copy import deepcopy
 from dataclasses import dataclass
-from typing import Callable, List, Union
 
 from khive_crystal.khive import KHive
 from khive_crystal.khives import KHives
@@ -46,7 +46,7 @@ class FundamentalKHives(KHives):
 
         return _phi
 
-    def f(self, i: int) -> Callable[[KHive], Union[KHive, None]]:
+    def f(self, i: int) -> Callable[[KHive], KHive | None]:
         """Get f_i(H)
 
         Args:
@@ -71,22 +71,22 @@ class FundamentalKHives(KHives):
             KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
         """  # noqa: B950
 
-        def _f(H: KHive) -> Union[KHive, None]:
+        def _f(H: KHive) -> KHive | None:
             if self.phi(i=i)(H) == 0:
                 return None
 
             i_as_index: int = i - 1
 
-            beta: List[int] = H.beta.copy()
-            gamma: List[int] = [0] * self.n
-            Uij: List[List[int]] = deepcopy(H.Uij)
+            beta: list[int] = H.beta.copy()
+            gamma: list[int] = [0] * self.n
+            Uij: list[list[int]] = deepcopy(H.Uij)
 
             beta[i_as_index] += -1
             beta[i_as_index + 1] += 1
 
             act_point_as_index: int
-            Uxi: List[int] = H.get_Uji()[i_as_index - 1]
-            is_Uxi_geq_zeros: List[bool] = [Uji > 0 for Uji in Uxi]
+            Uxi: list[int] = H.get_Uji()[i_as_index - 1]
+            is_Uxi_geq_zeros: list[bool] = [Uji > 0 for Uji in Uxi]
             if (i == 1) | (not any(is_Uxi_geq_zeros)):
                 act_point_as_index = i_as_index
             else:
@@ -128,7 +128,7 @@ class FundamentalKHives(KHives):
 
         return _epsilon
 
-    def e(self, i: int) -> Callable[[KHive], Union[KHive, None]]:
+    def e(self, i: int) -> Callable[[KHive], KHive | None]:
         """Get e_i(H)
 
         Args:
@@ -159,22 +159,22 @@ class FundamentalKHives(KHives):
             KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])
         """  # noqa: B950
 
-        def _e(H: KHive) -> Union[KHive, None]:
+        def _e(H: KHive) -> KHive | None:
             if self.epsilon(i=i)(H) == 0:
                 return None
 
             i_as_index: int = i - 1
 
-            beta: List[int] = H.beta.copy()
-            gamma: List[int] = [0] * self.n
-            Uij: List[List[int]] = deepcopy(H.Uij)
+            beta: list[int] = H.beta.copy()
+            gamma: list[int] = [0] * self.n
+            Uij: list[list[int]] = deepcopy(H.Uij)
 
             beta[i_as_index] += 1
             beta[i_as_index + 1] += -1
 
             act_point_as_index: int
-            Uxip1: List[int] = H.get_Uji()[i_as_index]
-            is_Uxip1_geq_zeros: List[bool] = [Uji > 0 for Uji in Uxip1]
+            Uxip1: list[int] = H.get_Uji()[i_as_index]
+            is_Uxip1_geq_zeros: list[bool] = [Uji > 0 for Uji in Uxip1]
             if not any(is_Uxip1_geq_zeros):
                 act_point_as_index = i_as_index
             else:

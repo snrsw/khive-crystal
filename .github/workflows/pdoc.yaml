@@ -5,10 +5,10 @@ on:
     branches:
       - master
     paths:
-      - "*.py"
+      - "**/*.py"
   pull_request:
     paths:
-      - "*.py"
+      - "**/*.py"
   workflow_dispatch:
 
 jobs:
@@ -21,13 +21,13 @@ jobs:
       - name: setup
         uses: actions/setup-python@v1
         with:
-          python-version: 3.8
-      - name: install poetry
-        run: pip install poetry
+          python-version: 3.11
+      - name: install uv
+        run: pip install uv
       - name: install dependency
-        run: poetry install --no-interaction
+        run: uv sync
       - name: generate docs
-        run: poetry run pdoc --html -o docs --force khive_crystal
+        run: uv run pdoc --html -o docs --force khive_crystal
       - name: push new docs
         run: |
           git remote set-url origin https://github-actions:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}

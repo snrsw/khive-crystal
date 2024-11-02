@@ -1,6 +1,6 @@
+from collections.abc import Callable
 from copy import deepcopy
 from dataclasses import dataclass
-from typing import Callable, List, Union
 
 from khive_crystal.khive import KHive
 
@@ -10,7 +10,7 @@ class KHives:
     """This class has the crystal structure on K-hives."""
 
     n: int
-    alpha: List[int]
+    alpha: list[int]
 
     def __post_init__(self) -> None:
         pass
@@ -42,11 +42,11 @@ class KHives:
             >>> H_alpha.highest_weight_vector()
             KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
         """
-        zeros: List[int] = [0] * self.n
-        Uij: List[List[int]] = [[0] * (self.n - i) for i in range(1, self.n)]
+        zeros: list[int] = [0] * self.n
+        Uij: list[list[int]] = [[0] * (self.n - i) for i in range(1, self.n)]
         return KHive(n=self.n, alpha=self.alpha, beta=self.alpha, gamma=zeros, Uij=Uij)
 
-    def weight(self, H: KHive) -> List[int]:
+    def weight(self, H: KHive) -> list[int]:
         """Get wt(H)
 
         Args:
@@ -63,7 +63,7 @@ class KHives:
         """
         return H.beta
 
-    def inner_product(self, i: int, weight: List[int]) -> int:
+    def inner_product(self, i: int, weight: list[int]) -> int:
         """Compute <h_i, wt(H)>
 
         Args:
@@ -79,13 +79,13 @@ class KHives:
             >>> H_alpha.inner_product(i=1, weight=H_alpha.weight(H=H))
             1
         """
-        if not (i in [_ + 1 for _ in range(self.n - 1)]):
+        if i not in [_ + 1 for _ in range(self.n - 1)]:
             raise ValueError("i must be in I.")
 
         i_as_index: int = i - 1
         return weight[i_as_index] - weight[i_as_index + 1]
 
-    def f(self, i: int) -> Callable[[KHive], Union[KHive, None]]:
+    def f(self, i: int) -> Callable[[KHive], KHive | None]:
         """Get f_i(H)
 
         Args:
@@ -105,12 +105,12 @@ class KHives:
             KHive(n=3, alpha=[3, 2, 0], beta=[2, 3, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]])
         """
 
-        def f_i(H: KHive) -> Union[KHive, None]:
+        def f_i(H: KHive) -> KHive | None:
             if self.phi(i=i)(H) == 0:
                 return None
 
-            beta: List[int] = deepcopy(H.beta)
-            Uij: List[List[int]] = deepcopy(H.Uij)
+            beta: list[int] = deepcopy(H.beta)
+            Uij: list[list[int]] = deepcopy(H.Uij)
 
             i_as_index: int = i - 1
 
@@ -198,7 +198,7 @@ class KHives:
 
         return phi_i_k
 
-    def e(self, i: int) -> Callable[[KHive], Union[KHive, None]]:
+    def e(self, i: int) -> Callable[[KHive], KHive | None]:
         """Get e_i(H)
 
         Args:
@@ -224,12 +224,12 @@ class KHives:
             KHive(n=3, alpha=[3, 2, 0], beta=[3, 2, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
         """
 
-        def e_i(H: KHive) -> Union[KHive, None]:
+        def e_i(H: KHive) -> KHive | None:
             if self.epsilon(i=i)(H) == 0:
                 return None
 
-            beta: List[int] = deepcopy(H.beta)
-            Uij: List[List[int]] = deepcopy(H.Uij)
+            beta: list[int] = deepcopy(H.beta)
+            Uij: list[list[int]] = deepcopy(H.Uij)
 
             i_as_index: int = i - 1
 
@@ -358,7 +358,7 @@ class KHives:
         return epsilon_i_k
 
 
-def khives(n: int, alpha: List[int]) -> KHives:
+def khives(n: int, alpha: list[int]) -> KHives:
     """Get a instance of KHives
 
     Args:
