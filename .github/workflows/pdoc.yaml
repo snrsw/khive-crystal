@@ -5,10 +5,10 @@ on:
     branches:
       - master
     paths:
-      - "*.py"
+      - "**/*.py"
   pull_request:
     paths:
-      - "*.py"
+      - "**/*.py"
   workflow_dispatch:
 
 jobs:
