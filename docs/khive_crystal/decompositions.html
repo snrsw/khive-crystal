@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>khive_crystal.decompositions API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>khive_crystal.decompositions</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="khive_crystal.decompositions.psi"><code class="name flex">
+<span>def <span class="ident">psi</span></span>(<span>H: khive_crystal.khive.KHive) ‑> list[khive_crystal.khive.KHive]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Decompose KHive into FundamentalKHive by applying the function split repeatedly.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>H</code></strong> :&ensp;<code>KHive</code></dt>
+<dd>KHive</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[KHive]</code></dt>
+<dd>A pair of KHive and FundamentalKHive.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...    n=3,
+...    alpha=[3, 3, 0],
+...    beta=[2, 3, 1],
+...    gamma=[0, 0, 0],
+...    Uij=[[1, 0], [1]]
+... )
+&gt;&gt;&gt; psi(H=H)
+[KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...    n=3,
+...    alpha=[3, 1, 0],
+...    beta=[2, 2, 0],
+...    gamma=[0, 0, 0],
+...    Uij=[[1, 0], [0]]
+... )
+&gt;&gt;&gt; psi(H=H)
+[KHive(n=3, alpha=[1, 0, 0], beta=[0, 1, 0], gamma=[0, 0, 0], Uij=[[1, 0], [0]]), KHive(n=3, alpha=[1, 0, 0], beta=[1, 0, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...    n=3,
+...    alpha=[1, 1, 0],
+...    beta=[1, 0, 1],
+...    gamma=[0, 0, 0],
+...    Uij=[[0, 0], [1]]
+... )
+&gt;&gt;&gt; psi(H=H)
+[KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.decompositions.psi_inv"><code class="name flex">
+<span>def <span class="ident">psi_inv</span></span>(<span>H: list[khive_crystal.khive.KHive]) ‑> khive_crystal.khive.KHive</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compose tensor product of K-hives to a K-hive by Psi^{-1}.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>H</code></strong> :&ensp;<code>List[KHive]</code></dt>
+<dd>list of K-hives expected to belong to an image of Psi.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>KHive</code></dt>
+<dd>Psi^{-1}(H)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; H: List[KHive] = [H1, H2]
+&gt;&gt;&gt; psi_inv(H=H)
+KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.decompositions.psi_lambda"><code class="name flex">
+<span>def <span class="ident">psi_lambda</span></span>(<span>H: khive_crystal.khive.KHive) ‑> khive_crystal.khive.KHive | list[khive_crystal.khive.KHive]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Split KHive to a pair of KHive and FundamentalKHive.</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>H</code></strong> :&ensp;<code>KHive</code></dt>
+<dd>KHive</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[KHive]</code></dt>
+<dd>A pair of KHive and FundamentalKHive.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...    n=3,
+...    alpha=[3, 3, 0],
+...    beta=[2, 3, 1],
+...    gamma=[0, 0, 0],
+...    Uij=[[1, 0], [1]]
+... )
+&gt;&gt;&gt; psi_lambda(H=H)
+[KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
+</code></pre></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="khive_crystal.decompositions.Compose"><code class="flex name class">
+<span>class <span class="ident">Compose</span></span>
+<span>(</span><span>H: list[khive_crystal.khive.KHive])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This class has methods to compose tensor products of KHive to a KHive.
+The entry point of this methods is "run". The function psi_inv is a wrapper of run,
+then use psi_inv instead of using this class direct.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Compose:
+    &#34;&#34;&#34;This class has methods to compose tensor products of KHive to a KHive.
+    The entry point of this methods is &#34;run&#34;. The function psi_inv is a wrapper of run,
+    then use psi_inv instead of using this class direct.
+    &#34;&#34;&#34;
+
+    def __init__(self, H: list[KHive]) -&gt; None:
+        self.H: list[KHive] = H
+        self.validate_is_khive()
+        self.validate_khive_size()
+
+    def validate_is_khive(self) -&gt; None:
+        &#34;&#34;&#34;Validate that H is a list of KHive.
+
+        Raises:
+            ValueError: If H has an object which is not a Khive, raise error.
+
+        Examples:
+            &gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            &gt;&gt;&gt; H: List[int] = [H1, 1]
+            &gt;&gt;&gt; Compose(H=H)
+            Traceback (most recent call last):
+            ...
+            ValueError: H must be a list of KHive!
+        &#34;&#34;&#34;  # noqa: B950
+        is_valid: bool = all(isinstance(Hi, KHive) for Hi in self.H)
+        if not is_valid:
+            raise ValueError(&#34;H must be a list of KHive!&#34;)
+
+    def validate_khive_size(self) -&gt; None:
+        &#34;&#34;&#34;Validate that H.n
+
+        Raises:
+            ValueError: If H has an KHive with n != H[0].n. raise error.
+
+        Examples:
+            &gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            &gt;&gt;&gt; H2: KHive = KHive(n=2, alpha=[1, 0], beta=[1, 0], gamma=[0, 0], Uij=[[0]])
+            &gt;&gt;&gt; H: List[int] = [H1, H2]
+            &gt;&gt;&gt; Compose(H=H)
+            Traceback (most recent call last):
+            ...
+            ValueError: All elements of H must have the same n
+        &#34;&#34;&#34;  # noqa: B950
+        lead_n: int = self.H[0].n
+        is_valid: bool = all(Hi.n == lead_n for Hi in self.H)
+        if not is_valid:
+            raise ValueError(&#34;All elements of H must have the same n&#34;)
+
+    def get_n(self) -&gt; int:
+        &#34;&#34;&#34;Get n of H
+
+        Returns:
+            int: H[0].n
+        &#34;&#34;&#34;
+        return self.H[0].n
+
+    def compose_alpha(self) -&gt; list[int]:
+        &#34;&#34;&#34;Compose alpha_i
+
+        Returns:
+            List[int]: alpha of psi^{-1}(H)
+
+        Examples:
+            &gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            &gt;&gt;&gt; H: List[int] = [H1, H1]
+            &gt;&gt;&gt; Compose(H=H).compose_alpha()
+            [2, 2, 0]
+        &#34;&#34;&#34;  # noqa: B950
+        return [sum(alpha_i) for alpha_i in zip(*[Hi.alpha for Hi in self.H], strict=False)]
+
+    def compose_beta(self) -&gt; list[int]:
+        &#34;&#34;&#34;Compose beta_i
+
+        Returns:
+            List[int]: beta of psi^{-1}(H)
+
+        Examples:
+            &gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            &gt;&gt;&gt; H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+            &gt;&gt;&gt; H: List[int] = [H1, H2]
+            &gt;&gt;&gt; Compose(H=H).compose_beta()
+            [1, 2, 1]
+        &#34;&#34;&#34;  # noqa: B950
+        return [sum(beta_i) for beta_i in zip(*[Hi.beta for Hi in self.H], strict=False)]
+
+    def compose_Uij(self) -&gt; list[list[int]]:
+        &#34;&#34;&#34;Compose U_{ij}^{k}
+
+        Returns:
+            List[int]: U_{ij} of psi^{-1}(H)
+
+        Examples:
+            &gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            &gt;&gt;&gt; H: List[int] = [H1, H1]
+            &gt;&gt;&gt; Compose(H=H).compose_Uij()
+            [[0, 0], [0]]
+
+            &gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            &gt;&gt;&gt; H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+            &gt;&gt;&gt; H: List[int] = [H1, H2]
+            &gt;&gt;&gt; Compose(H=H).compose_Uij()
+            [[1, 0], [1]]
+
+            &gt;&gt;&gt; H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+            &gt;&gt;&gt; H: List[int] = [H2, H2]
+            &gt;&gt;&gt; Compose(H=H).compose_Uij()
+            [[2, 0], [2]]
+        &#34;&#34;&#34;  # noqa: B950
+        return [
+            [sum(uij) for uij in zip(*Ui, strict=False)] for Ui in zip(*[Hi.Uij for Hi in self.H], strict=False)
+        ]
+
+    def run(self) -&gt; KHive:
+        &#34;&#34;&#34;Generate psi^{-1}
+
+        Returns:
+            KHive: psi^{-1}(H)
+
+        Examples:
+            &gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+            &gt;&gt;&gt; H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+            &gt;&gt;&gt; H: List[KHive] = [H1, H2]
+            &gt;&gt;&gt; Compose(H=H).run()
+            KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+        &#34;&#34;&#34;  # noqa: B950
+        n: int = self.get_n()
+        alpha: list[int] = self.compose_alpha()
+        beta: list[int] = self.compose_beta()
+        gamma: list[int] = [0 for _ in range(n)]
+        Uij: list[list[int]] = self.compose_Uij()
+        return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="khive_crystal.decompositions.Compose.compose_Uij"><code class="name flex">
+<span>def <span class="ident">compose_Uij</span></span>(<span>self) ‑> list[list[int]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compose U_{ij}^{k}</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[int]</code></dt>
+<dd>U_{ij} of psi^{-1}(H)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; H: List[int] = [H1, H1]
+&gt;&gt;&gt; Compose(H=H).compose_Uij()
+[[0, 0], [0]]
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; H: List[int] = [H1, H2]
+&gt;&gt;&gt; Compose(H=H).compose_Uij()
+[[1, 0], [1]]
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; H: List[int] = [H2, H2]
+&gt;&gt;&gt; Compose(H=H).compose_Uij()
+[[2, 0], [2]]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.decompositions.Compose.compose_alpha"><code class="name flex">
+<span>def <span class="ident">compose_alpha</span></span>(<span>self) ‑> list[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compose alpha_i</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[int]</code></dt>
+<dd>alpha of psi^{-1}(H)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; H: List[int] = [H1, H1]
+&gt;&gt;&gt; Compose(H=H).compose_alpha()
+[2, 2, 0]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.decompositions.Compose.compose_beta"><code class="name flex">
+<span>def <span class="ident">compose_beta</span></span>(<span>self) ‑> list[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compose beta_i</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[int]</code></dt>
+<dd>beta of psi^{-1}(H)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; H: List[int] = [H1, H2]
+&gt;&gt;&gt; Compose(H=H).compose_beta()
+[1, 2, 1]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.decompositions.Compose.get_n"><code class="name flex">
+<span>def <span class="ident">get_n</span></span>(<span>self) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get n of H</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd>H[0].n</dd>
+</dl></div>
+</dd>
+<dt id="khive_crystal.decompositions.Compose.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self) ‑> khive_crystal.khive.KHive</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate psi^{-1}</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>KHive</code></dt>
+<dd>psi^{-1}(H)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; H2: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[0, 1, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+&gt;&gt;&gt; H: List[KHive] = [H1, H2]
+&gt;&gt;&gt; Compose(H=H).run()
+KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.decompositions.Compose.validate_is_khive"><code class="name flex">
+<span>def <span class="ident">validate_is_khive</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Validate that H is a list of KHive.</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If H has an object which is not a Khive, raise error.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; H: List[int] = [H1, 1]
+&gt;&gt;&gt; Compose(H=H)
+Traceback (most recent call last):
+...
+ValueError: H must be a list of KHive!
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.decompositions.Compose.validate_khive_size"><code class="name flex">
+<span>def <span class="ident">validate_khive_size</span></span>(<span>self) ‑> None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Validate that H.n</p>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If H has an KHive with n != H[0].n. raise error.</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H1: KHive = KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])
+&gt;&gt;&gt; H2: KHive = KHive(n=2, alpha=[1, 0], beta=[1, 0], gamma=[0, 0], Uij=[[0]])
+&gt;&gt;&gt; H: List[int] = [H1, H2]
+&gt;&gt;&gt; Compose(H=H)
+Traceback (most recent call last):
+...
+ValueError: All elements of H must have the same n
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+<dt id="khive_crystal.decompositions.Split"><code class="flex name class">
+<span>class <span class="ident">Split</span></span>
+<span>(</span><span>H: khive_crystal.khive.KHive)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This class has methods to split KHive to a pair of KHive and FundamentalKHive.
+The entry point of this methods is "run". The above function split is a wrapper of run,
+then use split instead of using this class direct.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Split:
+    &#34;&#34;&#34;This class has methods to split KHive to a pair of KHive and FundamentalKHive.
+    The entry point of this methods is &#34;run&#34;. The above function split is a wrapper of run,
+    then use split instead of using this class direct.
+    &#34;&#34;&#34;
+
+    def __init__(self, H: KHive) -&gt; None:
+        self.H: KHive = H
+
+    def split_alpha(self) -&gt; list[list[int]]:
+        &#34;&#34;&#34;Split H.alpha
+
+        Returns:
+            List[List[int]]: [alpha^{(1)}, alpha^{(2)}]
+
+        Examples:
+            &gt;&gt;&gt; H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[3, 3, 0],
+            ...    beta=[2, 3, 1],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 0], [1]]
+            ... )
+            &gt;&gt;&gt; Split(H=H).split_alpha()
+            [[2, 2, 0], [1, 1, 0]]
+        &#34;&#34;&#34;
+        alpha: list[int] = self.H.alpha.copy()
+        alpha2: list[int] = [1 if alpha_i &gt; 0 else 0 for alpha_i in alpha]
+        alpha1: list[int] = [
+            alpha_i - alpha2_i for alpha_i, alpha2_i in zip(alpha, alpha2, strict=False)
+        ]
+
+        return [alpha1, alpha2]
+
+    def split_full_Uij(self) -&gt; list[list[list[int]]]:
+        &#34;&#34;&#34;Split H.Uij
+
+        Returns:
+            List[List[List[int]]]: [U_{ij}^{(1)}, U_{ij}^{(2)}] (i&lt;=j)
+
+        Examples:
+            &gt;&gt;&gt; H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[3, 3, 0],
+            ...    beta=[2, 3, 1],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 0], [1]]
+            ... )
+            &gt;&gt;&gt; Split(H=H).split_full_Uij()
+            [[[1, 1, 0], [1, 1], [0]], [[1, 0, 0], [1, 0], [0]]]
+
+            &gt;&gt;&gt; H: KHive = KHive(
+            ...    n=4,
+            ...    alpha=[3, 3, 0, 0],
+            ...    beta=[2, 3, 1, 0],
+            ...    gamma=[0, 0, 0, 0],
+            ...    Uij=[[1, 0, 0], [1, 0], [0]]
+            ... )
+            &gt;&gt;&gt; Split(H=H).split_full_Uij()
+            [[[1, 1, 0, 0], [1, 1, 0], [0, 0], [0]], [[1, 0, 0, 0], [1, 0, 0], [0, 0], [0]]]
+        &#34;&#34;&#34;
+        full_Uij: list[list[int]] = deepcopy(self.H.full_Uij)
+
+        # a set of \min\{j in [n] \mid U_{ij} &gt; 0\}s for i in I.
+        full_Uij_pos_indexes: list[int | None] = [
+            [uij &gt; 0 for uij in Ui].index(True) if sum(Ui) &gt; 0 else None
+            for Ui in full_Uij[:-1]
+        ]
+
+        full_Uij2: list[list[int]] = [
+            [1 if j == Ui_pos_index else 0 for j, uij in enumerate(Ui)]
+            for Ui, Ui_pos_index in zip(full_Uij, full_Uij_pos_indexes, strict=False)
+        ] + [
+            [0]
+        ]  # U_{nn} is always 0
+        full_Uij1: list[list[int]] = [
+            [uij - uij2 for uij, uij2 in zip(Ui, Ui2, strict=False)]
+            for Ui, Ui2 in zip(full_Uij, full_Uij2, strict=False)
+        ]
+
+        return [full_Uij1, full_Uij2]
+
+    def get_splitted_Uij(self) -&gt; list[list[list[int]]]:
+        &#34;&#34;&#34;Get splitted result of H.Uij from splitted H.full_Uij
+
+        Returns:
+            List[List[List[int]]]: [U_{ij}^{(1)}, U_{ij}^{(2)}] (i&lt;j)
+
+        Examples:
+            &gt;&gt;&gt; H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[3, 3, 0],
+            ...    beta=[2, 3, 1],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 0], [1]]
+            ... )
+            &gt;&gt;&gt; Split(H=H).get_splitted_Uij()
+            [[[1, 0], [1]], [[0, 0], [0]]]
+        &#34;&#34;&#34;
+        splitted_full_Uij: list[list[list[int]]] = self.split_full_Uij()
+        return [
+            [full_Ui[1:] for full_Ui in full_Uij[:-1]] for full_Uij in splitted_full_Uij
+        ]
+
+    def split_beta(self) -&gt; list[list[int]]:
+        &#34;&#34;&#34;Split H.beta
+
+        Returns:
+            List[List[int]]: [alpha^{(1)}, alpha^{(2)}]
+
+        Examples:
+            &gt;&gt;&gt; H: KHive = KHive(
+            ...    n=3,
+            ...    alpha=[3, 3, 0],
+            ...    beta=[2, 3, 1],
+            ...    gamma=[0, 0, 0],
+            ...    Uij=[[1, 0], [1]]
+            ... )
+            &gt;&gt;&gt; Split(H=H).split_beta()
+            [[1, 2, 1], [1, 1, 0]]
+        &#34;&#34;&#34;
+
+        splitted_full_Uij: list[list[list[int]]] = self.split_full_Uij()
+
+        align: Callable[[list[list[int]]], list[list[int]]] = lambda full_Uij: [
+            [0] * ((self.H.n) - len(ui)) + ui for ui in full_Uij
+        ]
+        aligned_full_Uij1: list[list[int]] = align(splitted_full_Uij[0])
+        aligned_full_Uij2: list[list[int]] = align(splitted_full_Uij[1])
+
+        get_full_Uji: Callable[
+            [list[list[int]]], list[list[int]]
+        ] = lambda aligned_full_Uij: [
+            list(uj)[: j + 1] for j, uj in enumerate(zip(*aligned_full_Uij, strict=False))
+        ]
+        full_Uji1: list[list[int]] = get_full_Uji(aligned_full_Uij1)
+        full_Uji2: list[list[int]] = get_full_Uji(aligned_full_Uij2)
+
+        beta1: list[int] = [sum(Uj) for Uj in full_Uji1]
+        beta2: list[int] = [sum(Uj) for Uj in full_Uji2]
+
+        return [beta1, beta2]
+
+    def run(self) -&gt; list[KHive] | KHive:
+        &#34;&#34;&#34;Split KHive to a pair of KHive and FundamentalKHive.
+
+        Returns:
+            Union[List[KHive], KHive]: A pair of KHive and FundamentalKHive.
+        &#34;&#34;&#34;
+        if self.H.is_fundamental_khive():
+            return self.H
+        splitted_alpha: list[list[int]] = self.split_alpha()
+        splitted_Uij: list[list[list[int]]] = self.get_splitted_Uij()
+        splitted_beta: list[list[int]] = self.split_beta()
+        gamma: list[int] = [0] * self.H.n
+        return [
+            KHive(
+                n=self.H.n,
+                alpha=splitted_alpha[i],
+                beta=splitted_beta[i],
+                gamma=gamma,
+                Uij=splitted_Uij[i],
+            )
+            for i in range(2)
+        ]</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="khive_crystal.decompositions.Split.get_splitted_Uij"><code class="name flex">
+<span>def <span class="ident">get_splitted_Uij</span></span>(<span>self) ‑> list[list[list[int]]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get splitted result of H.Uij from splitted H.full_Uij</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[List[List[int]]]</code></dt>
+<dd>[U_{ij}^{(1)}, U_{ij}^{(2)}] (i&lt;j)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...    n=3,
+...    alpha=[3, 3, 0],
+...    beta=[2, 3, 1],
+...    gamma=[0, 0, 0],
+...    Uij=[[1, 0], [1]]
+... )
+&gt;&gt;&gt; Split(H=H).get_splitted_Uij()
+[[[1, 0], [1]], [[0, 0], [0]]]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.decompositions.Split.run"><code class="name flex">
+<span>def <span class="ident">run</span></span>(<span>self) ‑> khive_crystal.khive.KHive | list[khive_crystal.khive.KHive]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Split KHive to a pair of KHive and FundamentalKHive.</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Union[List[KHive], KHive]</code></dt>
+<dd>A pair of KHive and FundamentalKHive.</dd>
+</dl></div>
+</dd>
+<dt id="khive_crystal.decompositions.Split.split_alpha"><code class="name flex">
+<span>def <span class="ident">split_alpha</span></span>(<span>self) ‑> list[list[int]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Split H.alpha</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[List[int]]</code></dt>
+<dd>[alpha^{(1)}, alpha^{(2)}]</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...    n=3,
+...    alpha=[3, 3, 0],
+...    beta=[2, 3, 1],
+...    gamma=[0, 0, 0],
+...    Uij=[[1, 0], [1]]
+... )
+&gt;&gt;&gt; Split(H=H).split_alpha()
+[[2, 2, 0], [1, 1, 0]]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.decompositions.Split.split_beta"><code class="name flex">
+<span>def <span class="ident">split_beta</span></span>(<span>self) ‑> list[list[int]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Split H.beta</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[List[int]]</code></dt>
+<dd>[alpha^{(1)}, alpha^{(2)}]</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...    n=3,
+...    alpha=[3, 3, 0],
+...    beta=[2, 3, 1],
+...    gamma=[0, 0, 0],
+...    Uij=[[1, 0], [1]]
+... )
+&gt;&gt;&gt; Split(H=H).split_beta()
+[[1, 2, 1], [1, 1, 0]]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.decompositions.Split.split_full_Uij"><code class="name flex">
+<span>def <span class="ident">split_full_Uij</span></span>(<span>self) ‑> list[list[list[int]]]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Split H.Uij</p>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[List[List[int]]]</code></dt>
+<dd>[U_{ij}^{(1)}, U_{ij}^{(2)}] (i&lt;=j)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...    n=3,
+...    alpha=[3, 3, 0],
+...    beta=[2, 3, 1],
+...    gamma=[0, 0, 0],
+...    Uij=[[1, 0], [1]]
+... )
+&gt;&gt;&gt; Split(H=H).split_full_Uij()
+[[[1, 1, 0], [1, 1], [0]], [[1, 0, 0], [1, 0], [0]]]
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; H: KHive = KHive(
+...    n=4,
+...    alpha=[3, 3, 0, 0],
+...    beta=[2, 3, 1, 0],
+...    gamma=[0, 0, 0, 0],
+...    Uij=[[1, 0, 0], [1, 0], [0]]
+... )
+&gt;&gt;&gt; Split(H=H).split_full_Uij()
+[[[1, 1, 0, 0], [1, 1, 0], [0, 0], [0]], [[1, 0, 0, 0], [1, 0, 0], [0, 0], [0]]]
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="khive_crystal" href="index.html">khive_crystal</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="khive_crystal.decompositions.psi" href="#khive_crystal.decompositions.psi">psi</a></code></li>
+<li><code><a title="khive_crystal.decompositions.psi_inv" href="#khive_crystal.decompositions.psi_inv">psi_inv</a></code></li>
+<li><code><a title="khive_crystal.decompositions.psi_lambda" href="#khive_crystal.decompositions.psi_lambda">psi_lambda</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="khive_crystal.decompositions.Compose" href="#khive_crystal.decompositions.Compose">Compose</a></code></h4>
+<ul class="two-column">
+<li><code><a title="khive_crystal.decompositions.Compose.compose_Uij" href="#khive_crystal.decompositions.Compose.compose_Uij">compose_Uij</a></code></li>
+<li><code><a title="khive_crystal.decompositions.Compose.compose_alpha" href="#khive_crystal.decompositions.Compose.compose_alpha">compose_alpha</a></code></li>
+<li><code><a title="khive_crystal.decompositions.Compose.compose_beta" href="#khive_crystal.decompositions.Compose.compose_beta">compose_beta</a></code></li>
+<li><code><a title="khive_crystal.decompositions.Compose.get_n" href="#khive_crystal.decompositions.Compose.get_n">get_n</a></code></li>
+<li><code><a title="khive_crystal.decompositions.Compose.run" href="#khive_crystal.decompositions.Compose.run">run</a></code></li>
+<li><code><a title="khive_crystal.decompositions.Compose.validate_is_khive" href="#khive_crystal.decompositions.Compose.validate_is_khive">validate_is_khive</a></code></li>
+<li><code><a title="khive_crystal.decompositions.Compose.validate_khive_size" href="#khive_crystal.decompositions.Compose.validate_khive_size">validate_khive_size</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="khive_crystal.decompositions.Split" href="#khive_crystal.decompositions.Split">Split</a></code></h4>
+<ul class="">
+<li><code><a title="khive_crystal.decompositions.Split.get_splitted_Uij" href="#khive_crystal.decompositions.Split.get_splitted_Uij">get_splitted_Uij</a></code></li>
+<li><code><a title="khive_crystal.decompositions.Split.run" href="#khive_crystal.decompositions.Split.run">run</a></code></li>
+<li><code><a title="khive_crystal.decompositions.Split.split_alpha" href="#khive_crystal.decompositions.Split.split_alpha">split_alpha</a></code></li>
+<li><code><a title="khive_crystal.decompositions.Split.split_beta" href="#khive_crystal.decompositions.Split.split_beta">split_beta</a></code></li>
+<li><code><a title="khive_crystal.decompositions.Split.split_full_Uij" href="#khive_crystal.decompositions.Split.split_full_Uij">split_full_Uij</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>

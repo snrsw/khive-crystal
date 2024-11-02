@@ -1,0 +1,633 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.1">
+<title>khive_crystal.tensor_products API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>khive_crystal.tensor_products</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="khive_crystal.tensor_products.TensorProductsOfKHives"><code class="flex name class">
+<span>class <span class="ident">TensorProductsOfKHives</span></span>
+<span>(</span><span>tensor_products_khives: list[khive_crystal.khives.KHives])</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This class implements the tensor product rule for K-hives.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TensorProductsOfKHives:
+    &#34;&#34;&#34;
+    This class implements the tensor product rule for K-hives.
+    &#34;&#34;&#34;
+
+    def __init__(self, tensor_products_khives: list[KHives]) -&gt; None:
+        self.tensor_products_khives: list[KHives] = tensor_products_khives
+
+    def phi(self, i: int) -&gt; Callable[[list[KHive]], int]:
+        &#34;&#34;&#34;phi_i(tensor_products_khive)
+
+        Args:
+            i (int): i in I
+
+        Returns:
+            Callable[[List[KHive]], int]: phi_i
+
+        Examples:
+            &gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+            &gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensor_products_khives=[khives, khives]
+            ... )
+            &gt;&gt;&gt; H: List[KHive] = [
+            ...    khives.highest_weight_vector(),
+            ...    khives.highest_weight_vector()
+            ... ]
+            &gt;&gt;&gt; tensor.phi(i=2)(H)
+            2
+
+            &gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+            &gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensor_products_khives=[khives, khives]
+            ... )
+            &gt;&gt;&gt; H: List[KHive] = [
+            ...    khives.highest_weight_vector(),
+            ...    khives.highest_weight_vector()
+            ... ]
+            &gt;&gt;&gt; tensor.phi(i=1)(H)
+            0
+        &#34;&#34;&#34;
+
+        def phi_i(tensor_products_khive: list[KHive]) -&gt; int:
+            left_khives: KHives = self.tensor_products_khives[0]
+            left_khive: KHive = tensor_products_khive[0]
+
+            right_khives: TensorProductsOfKHives | KHives
+            right_khive: list[KHive] | KHive
+            if len(self.tensor_products_khives[1:]) == 1:
+                right_khives = self.tensor_products_khives[1]
+                right_khive = tensor_products_khive[1]
+
+                return max(
+                    right_khives.phi(i=i)(right_khive),
+                    left_khives.phi(i=i)(left_khive)
+                    + right_khives.inner_product(
+                        i=i, weight=right_khives.weight(H=right_khive)
+                    ),
+                )
+
+            right_khives = TensorProductsOfKHives(
+                tensor_products_khives=self.tensor_products_khives[1:]
+            )
+            right_khive = tensor_products_khive[1:]
+
+            return max(
+                right_khives.phi(i=i)(right_khive),
+                left_khives.phi(i=i)(left_khive)
+                + right_khives.inner_product(
+                    i=i, weight=right_khives.weight(tensor_products_khive=right_khive)
+                ),
+            )
+
+        return phi_i
+
+    def f(self, i: int) -&gt; Callable[[list[KHive]], list[KHive | None] | None]:
+        &#34;&#34;&#34;f_i(tensor_products_khive)
+
+        Args:
+            i (int): i in I
+
+        Returns:
+            Callable[[List[KHive]], List[KHive]]: f_i
+
+        Examples:
+            &gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+            &gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensor_products_khives=[khives, khives]
+            ... )
+            &gt;&gt;&gt; H: List[KHive] = [
+            ...    khives.highest_weight_vector(),
+            ...    khives.highest_weight_vector()
+            ... ]
+            &gt;&gt;&gt; tensor.f(i=2)(H)
+            [KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
+        &#34;&#34;&#34;  # noqa: B950
+
+        def f_i(tensor_products_khive: list[KHive]) -&gt; list[KHive | None] | None:
+            left_khives: KHives = self.tensor_products_khives[0]
+            left_khive: KHive = tensor_products_khive[0]
+
+            right_khives: TensorProductsOfKHives | KHives
+            right_khive: list[KHive] | KHive
+            right_epsilon_i: int
+            left_phi_i: int
+            if len(self.tensor_products_khives[1:]) == 1:
+                right_khives = self.tensor_products_khives[1]
+                right_khive = tensor_products_khive[1]
+                left_phi_i = left_khives.phi(i=i)(left_khive)
+                right_epsilon_i = right_khives.epsilon(i=i)(right_khive)
+                if left_phi_i &gt; right_epsilon_i:
+                    return self.zero_scalar(
+                        list(
+                            flatten_list([left_khives.f(i=i)(left_khive), right_khive])
+                        )
+                    )
+                else:
+                    return self.zero_scalar(
+                        list(
+                            flatten_list([left_khive, right_khives.f(i=1)(right_khive)])
+                        )
+                    )
+
+            right_khives = TensorProductsOfKHives(
+                tensor_products_khives=self.tensor_products_khives[1:]
+            )
+            right_khive = tensor_products_khive[1:]
+            left_phi_i = left_khives.phi(i=i)(left_khive)
+            right_epsilon_i = right_khives.epsilon(i=i)(right_khive)
+
+            if left_phi_i &gt; right_epsilon_i:
+                return self.zero_scalar(
+                    list(flatten_list([left_khives.f(i=i)(left_khive), right_khive]))
+                )
+            else:
+                return self.zero_scalar(
+                    list(flatten_list([left_khive, right_khives.f(i=1)(right_khive)]))
+                )
+
+        return f_i
+
+    def epsilon(self, i: int) -&gt; Callable[[list[KHive]], int]:
+        &#34;&#34;&#34;epsilon_i(tensor_products_khive)
+
+        Args:
+            i (int): i in I
+
+        Returns:
+            Callable[[List[KHive]], int]: epsilon_i
+
+        Examples:
+            &gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+            &gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensor_products_khives=[khives, khives]
+            ... )
+            &gt;&gt;&gt; H: List[KHive] = [
+            ...    khives.highest_weight_vector(),
+            ...    khives.highest_weight_vector()
+            ... ]
+            &gt;&gt;&gt; tensor.epsilon(i=2)(H)
+            0
+
+            &gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+            &gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensor_products_khives=[khives, khives]
+            ... )
+            &gt;&gt;&gt; H: List[KHive] = [
+            ...    KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]]),
+            ...    khives.highest_weight_vector()
+            ... ]
+            &gt;&gt;&gt; tensor.epsilon(i=2)(H)
+            1
+        &#34;&#34;&#34;  # noqa: B950
+
+        def epsilon_i(tensor_products_khive: list[KHive]) -&gt; int:
+            left_khives: KHives = self.tensor_products_khives[0]
+            left_khive: KHive = tensor_products_khive[0]
+
+            right_khives: TensorProductsOfKHives | KHives
+            right_khive: list[KHive] | KHive
+            if len(self.tensor_products_khives[1:]) == 1:
+                right_khives = self.tensor_products_khives[1]
+                right_khive = tensor_products_khive[1]
+
+                return max(
+                    left_khives.epsilon(i=i)(left_khive),
+                    right_khives.epsilon(i=i)(right_khive)
+                    - left_khives.inner_product(
+                        i=i, weight=left_khives.weight(H=left_khive)
+                    ),
+                )
+
+            right_khives = TensorProductsOfKHives(
+                tensor_products_khives=self.tensor_products_khives[1:]
+            )
+            right_khive = tensor_products_khive[1:]
+
+            return max(
+                left_khives.epsilon(i=i)(left_khive),
+                right_khives.epsilon(i=i)(right_khive)
+                - left_khives.inner_product(
+                    i=i,
+                    weight=left_khives.weight(H=left_khive),
+                ),
+            )
+
+        return epsilon_i
+
+    def e(self, i: int) -&gt; Callable[[list[KHive]], list[KHive | None] | None]:
+        &#34;&#34;&#34;f_i(tensor_products_khive)
+
+        Args:
+            i (int): i in I
+
+        Returns:
+            Callable[[List[KHive]], List[KHive]]: f_i
+
+        Examples:
+            &gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+            &gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensor_products_khives=[khives, khives]
+            ... )
+            &gt;&gt;&gt; H: List[KHive] = [
+            ...    khives.highest_weight_vector(),
+            ...    khives.highest_weight_vector()
+            ... ]
+            &gt;&gt;&gt; tensor.e(i=2)(H)
+        &#34;&#34;&#34;  # noqa: B950
+
+        def e_i(tensor_products_khive: list[KHive]) -&gt; list[KHive | None] | None:
+            left_khives: KHives = self.tensor_products_khives[0]
+            left_khive: KHive = tensor_products_khive[0]
+
+            right_khives: TensorProductsOfKHives | KHives
+            right_khive: list[KHive] | KHive
+            right_epsilon_i: int
+            left_phi_i: int
+            if len(self.tensor_products_khives[1:]) == 1:
+                right_khives = self.tensor_products_khives[1]
+                right_khive = tensor_products_khive[1]
+                left_phi_i = left_khives.phi(i=i)(left_khive)
+                right_epsilon_i = right_khives.epsilon(i=i)(right_khive)
+                if left_phi_i &gt;= right_epsilon_i:
+                    return self.zero_scalar(
+                        list(
+                            flatten_list([left_khives.e(i=i)(left_khive), right_khive])
+                        )
+                    )
+                else:
+                    return self.zero_scalar(
+                        list(
+                            flatten_list([left_khive, right_khives.e(i=1)(right_khive)])
+                        )
+                    )
+
+            right_khives = TensorProductsOfKHives(
+                tensor_products_khives=self.tensor_products_khives[1:]
+            )
+            right_khive = tensor_products_khive[1:]
+            left_phi_i = left_khives.phi(i=i)(left_khive)
+            right_epsilon_i = right_khives.epsilon(i=i)(right_khive)
+
+            if left_phi_i &gt;= right_epsilon_i:
+                return self.zero_scalar(
+                    list(flatten_list([left_khives.e(i=i)(left_khive), right_khive]))
+                )
+            else:
+                return self.zero_scalar(
+                    list(flatten_list([left_khive, right_khives.e(i=1)(right_khive)]))
+                )
+
+        return e_i
+
+    def weight(self, tensor_products_khive: list[KHive]) -&gt; list[int]:
+        &#34;&#34;&#34;weight(tensor_products_khive)
+
+        Args:
+            tensor_products_khive (List[KHive]): _description_
+
+        Returns:
+            List[int]: weight(tensor_products_khive)
+
+        Examples:
+            &gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+            &gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensor_products_khives=[khives, khives]
+            ... )
+            &gt;&gt;&gt; H: List[KHive] = [
+            ...    khives.highest_weight_vector(),
+            ...    khives.highest_weight_vector()
+            ... ]
+            &gt;&gt;&gt; tensor.weight(H)
+            [2, 2, 0]
+        &#34;&#34;&#34;
+        weights: list[list[int]] = [
+            khives.weight(H=H)
+            for H, khives in zip(tensor_products_khive, self.tensor_products_khives, strict=False)
+        ]
+        return [sum(weights_i) for weights_i in zip(*weights, strict=False)]
+
+    def inner_product(self, i: int, weight: list[int]) -&gt; int:
+        &#34;&#34;&#34;Compute &lt;h_i, wt(H)&gt;
+
+        Args:
+            i (int): h_i
+            weight (List[int]): weight.
+
+        Returns:
+            int: &lt;h_i, wt(H)&gt;
+        &#34;&#34;&#34;
+        if i not in [_ + 1 for _ in range(self.tensor_products_khives[0].n - 1)]:
+            raise ValueError(&#34;i must be in I.&#34;)
+
+        i_as_index: int = i - 1
+        return weight[i_as_index] - weight[i_as_index + 1]
+
+    def zero_scalar(
+        self, tensor_products_khive: list[KHive | None]
+    ) -&gt; list[KHive | None] | None:
+        &#34;&#34;&#34;zero scalar
+
+        Args:
+            tensor_products_khive (List[Optional[KHive]]): Result of the tensor product rule.
+
+        Returns:
+            Optional[List[Optional[KHive]]]: If tensor_products_khive has None, return None
+
+        Examples:
+            &gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+            &gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+            ...    tensor_products_khives=[khives, khives]
+            ... )
+            &gt;&gt;&gt; H: List[KHive] = [
+            ...    None,
+            ...    khives.highest_weight_vector()
+            ... ]
+            &gt;&gt;&gt; tensor.zero_scalar(H)
+        &#34;&#34;&#34;
+        return None if None in tensor_products_khive else tensor_products_khive</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="khive_crystal.tensor_products.TensorProductsOfKHives.e"><code class="name flex">
+<span>def <span class="ident">e</span></span>(<span>self, i: int) ‑> collections.abc.Callable[[list[khive_crystal.khive.KHive]], list[khive_crystal.khive.KHive | None] | None]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>f_i(tensor_products_khive)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>i</code></strong> :&ensp;<code>int</code></dt>
+<dd>i in I</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Callable[[List[KHive]], List[KHive]]</code></dt>
+<dd>f_i</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+&gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+...    tensor_products_khives=[khives, khives]
+... )
+&gt;&gt;&gt; H: List[KHive] = [
+...    khives.highest_weight_vector(),
+...    khives.highest_weight_vector()
+... ]
+&gt;&gt;&gt; tensor.e(i=2)(H)
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.tensor_products.TensorProductsOfKHives.epsilon"><code class="name flex">
+<span>def <span class="ident">epsilon</span></span>(<span>self, i: int) ‑> collections.abc.Callable[[list[khive_crystal.khive.KHive]], int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>epsilon_i(tensor_products_khive)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>i</code></strong> :&ensp;<code>int</code></dt>
+<dd>i in I</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Callable[[List[KHive]], int]</code></dt>
+<dd>epsilon_i</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+&gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+...    tensor_products_khives=[khives, khives]
+... )
+&gt;&gt;&gt; H: List[KHive] = [
+...    khives.highest_weight_vector(),
+...    khives.highest_weight_vector()
+... ]
+&gt;&gt;&gt; tensor.epsilon(i=2)(H)
+0
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+&gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+...    tensor_products_khives=[khives, khives]
+... )
+&gt;&gt;&gt; H: List[KHive] = [
+...    KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]]),
+...    khives.highest_weight_vector()
+... ]
+&gt;&gt;&gt; tensor.epsilon(i=2)(H)
+1
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.tensor_products.TensorProductsOfKHives.f"><code class="name flex">
+<span>def <span class="ident">f</span></span>(<span>self, i: int) ‑> collections.abc.Callable[[list[khive_crystal.khive.KHive]], list[khive_crystal.khive.KHive | None] | None]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>f_i(tensor_products_khive)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>i</code></strong> :&ensp;<code>int</code></dt>
+<dd>i in I</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Callable[[List[KHive]], List[KHive]]</code></dt>
+<dd>f_i</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+&gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+...    tensor_products_khives=[khives, khives]
+... )
+&gt;&gt;&gt; H: List[KHive] = [
+...    khives.highest_weight_vector(),
+...    khives.highest_weight_vector()
+... ]
+&gt;&gt;&gt; tensor.f(i=2)(H)
+[KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]]), KHive(n=3, alpha=[1, 1, 0], beta=[1, 1, 0], gamma=[0, 0, 0], Uij=[[0, 0], [0]])]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.tensor_products.TensorProductsOfKHives.inner_product"><code class="name flex">
+<span>def <span class="ident">inner_product</span></span>(<span>self, i: int, weight: list[int]) ‑> int</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Compute <h_i, wt(H)></p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>i</code></strong> :&ensp;<code>int</code></dt>
+<dd>h_i</dd>
+<dt><strong><code>weight</code></strong> :&ensp;<code>List[int]</code></dt>
+<dd>weight.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>int</code></dt>
+<dd><h_i, wt(H)></dd>
+</dl></div>
+</dd>
+<dt id="khive_crystal.tensor_products.TensorProductsOfKHives.phi"><code class="name flex">
+<span>def <span class="ident">phi</span></span>(<span>self, i: int) ‑> collections.abc.Callable[[list[khive_crystal.khive.KHive]], int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>phi_i(tensor_products_khive)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>i</code></strong> :&ensp;<code>int</code></dt>
+<dd>i in I</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Callable[[List[KHive]], int]</code></dt>
+<dd>phi_i</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+&gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+...    tensor_products_khives=[khives, khives]
+... )
+&gt;&gt;&gt; H: List[KHive] = [
+...    khives.highest_weight_vector(),
+...    khives.highest_weight_vector()
+... ]
+&gt;&gt;&gt; tensor.phi(i=2)(H)
+2
+</code></pre>
+<pre><code class="language-python-repl">&gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+&gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+...    tensor_products_khives=[khives, khives]
+... )
+&gt;&gt;&gt; H: List[KHive] = [
+...    khives.highest_weight_vector(),
+...    khives.highest_weight_vector()
+... ]
+&gt;&gt;&gt; tensor.phi(i=1)(H)
+0
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.tensor_products.TensorProductsOfKHives.weight"><code class="name flex">
+<span>def <span class="ident">weight</span></span>(<span>self, tensor_products_khive: list[khive_crystal.khive.KHive]) ‑> list[int]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>weight(tensor_products_khive)</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>tensor_products_khive</code></strong> :&ensp;<code>List[KHive]</code></dt>
+<dd><em>description</em></dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>List[int]</code></dt>
+<dd>weight(tensor_products_khive)</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+&gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+...    tensor_products_khives=[khives, khives]
+... )
+&gt;&gt;&gt; H: List[KHive] = [
+...    khives.highest_weight_vector(),
+...    khives.highest_weight_vector()
+... ]
+&gt;&gt;&gt; tensor.weight(H)
+[2, 2, 0]
+</code></pre></div>
+</dd>
+<dt id="khive_crystal.tensor_products.TensorProductsOfKHives.zero_scalar"><code class="name flex">
+<span>def <span class="ident">zero_scalar</span></span>(<span>self, tensor_products_khive: list[khive_crystal.khive.KHive | None]) ‑> list[khive_crystal.khive.KHive | None] | None</span>
+</code></dt>
+<dd>
+<div class="desc"><p>zero scalar</p>
+<h2 id="args">Args</h2>
+<dl>
+<dt><strong><code>tensor_products_khive</code></strong> :&ensp;<code>List[Optional[KHive]]</code></dt>
+<dd>Result of the tensor product rule.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><code>Optional[List[Optional[KHive]]]</code></dt>
+<dd>If tensor_products_khive has None, return None</dd>
+</dl>
+<h2 id="examples">Examples</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; khives: KHives = KHives(n=3, alpha=[1, 1, 0])
+&gt;&gt;&gt; tensor: TensorProductsOfKHives = TensorProductsOfKHives(
+...    tensor_products_khives=[khives, khives]
+... )
+&gt;&gt;&gt; H: List[KHive] = [
+...    None,
+...    khives.highest_weight_vector()
+... ]
+&gt;&gt;&gt; tensor.zero_scalar(H)
+</code></pre></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="khive_crystal" href="index.html">khive_crystal</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="khive_crystal.tensor_products.TensorProductsOfKHives" href="#khive_crystal.tensor_products.TensorProductsOfKHives">TensorProductsOfKHives</a></code></h4>
+<ul class="two-column">
+<li><code><a title="khive_crystal.tensor_products.TensorProductsOfKHives.e" href="#khive_crystal.tensor_products.TensorProductsOfKHives.e">e</a></code></li>
+<li><code><a title="khive_crystal.tensor_products.TensorProductsOfKHives.epsilon" href="#khive_crystal.tensor_products.TensorProductsOfKHives.epsilon">epsilon</a></code></li>
+<li><code><a title="khive_crystal.tensor_products.TensorProductsOfKHives.f" href="#khive_crystal.tensor_products.TensorProductsOfKHives.f">f</a></code></li>
+<li><code><a title="khive_crystal.tensor_products.TensorProductsOfKHives.inner_product" href="#khive_crystal.tensor_products.TensorProductsOfKHives.inner_product">inner_product</a></code></li>
+<li><code><a title="khive_crystal.tensor_products.TensorProductsOfKHives.phi" href="#khive_crystal.tensor_products.TensorProductsOfKHives.phi">phi</a></code></li>
+<li><code><a title="khive_crystal.tensor_products.TensorProductsOfKHives.weight" href="#khive_crystal.tensor_products.TensorProductsOfKHives.weight">weight</a></code></li>
+<li><code><a title="khive_crystal.tensor_products.TensorProductsOfKHives.zero_scalar" href="#khive_crystal.tensor_products.TensorProductsOfKHives.zero_scalar">zero_scalar</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.1</a>.</p>
+</footer>
+</body>
+</html>
