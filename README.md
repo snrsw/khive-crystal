@@ -3,7 +3,7 @@
 [![lint](https://github.com/snrsw/khive-crystal/actions/workflows/lint.yaml/badge.svg)](https://github.com/snrsw/khive-crystal/actions/workflows/lint.yaml)
 [![test](https://github.com/snrsw/khive-crystal/actions/workflows/test.yaml/badge.svg)](https://github.com/snrsw/khive-crystal/actions/workflows/test.yaml)
 [![generate_pdoc](https://github.com/snrsw/khive-crystal/actions/workflows/pdoc.yaml/badge.svg)](https://github.com/snrsw/khive-crystal/actions/workflows/pdoc.yaml)
-[![generate_pdoc](https://github.com/snrsw/khive-crystal/actions/workflows/pdoc.yaml/badge.svg)](https://github.com/snrsw/khive-crystal/actions/workflows/pdoc.yaml)
+[![image](https://img.shields.io/pypi/pyversions/khive-crystal.svg)](https://pypi.python.org/pypi/khive-crystal)
 
 This repository contains the experimetns code for our paper `Algorithms for crystal structure on K-hives of type A`.
 
@@ -21,7 +21,7 @@ Let $\mathfrak{g}$ be a Lie algebra of type $A_{n-1}$. Let $P^+$ be a set of dom
 ### Install
 
 ```bash
-pip install git+https://github.com/snrsw/khive-crystal@master
+pip install khive-crystal
 ```
 
 ## Usage
