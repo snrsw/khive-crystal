@@ -21,4 +21,4 @@ jobs:
       - name: install dependency
         run: uv sync
       - name: run lint
-        run: poetry run poe lint
+        run: uv run poe lint
