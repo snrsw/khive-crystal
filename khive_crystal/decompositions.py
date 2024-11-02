@@ -1,11 +1,11 @@
+from collections.abc import Callable
 from copy import deepcopy
-from typing import Callable, List, Optional, Union
 
 from khive_crystal.khive import KHive
 from khive_crystal.utils import flatten_list
 
 
-def psi_lambda(H: KHive) -> Union[KHive, List[KHive]]:
+def psi_lambda(H: KHive) -> KHive | list[KHive]:
     """Split KHive to a pair of KHive and FundamentalKHive.
 
     Args:
@@ -37,7 +37,7 @@ class Split:
     def __init__(self, H: KHive) -> None:
         self.H: KHive = H
 
-    def split_alpha(self) -> List[List[int]]:
+    def split_alpha(self) -> list[list[int]]:
         """Split H.alpha
 
         Returns:
@@ -54,15 +54,15 @@ class Split:
             >>> Split(H=H).split_alpha()
             [[2, 2, 0], [1, 1, 0]]
         """
-        alpha: List[int] = self.H.alpha.copy()
-        alpha2: List[int] = [1 if alpha_i > 0 else 0 for alpha_i in alpha]
-        alpha1: List[int] = [
-            alpha_i - alpha2_i for alpha_i, alpha2_i in zip(alpha, alpha2)
+        alpha: list[int] = self.H.alpha.copy()
+        alpha2: list[int] = [1 if alpha_i > 0 else 0 for alpha_i in alpha]
+        alpha1: list[int] = [
+            alpha_i - alpha2_i for alpha_i, alpha2_i in zip(alpha, alpha2, strict=False)
         ]
 
         return [alpha1, alpha2]
 
-    def split_full_Uij(self) -> List[List[List[int]]]:
+    def split_full_Uij(self) -> list[list[list[int]]]:
         """Split H.Uij
 
         Returns:
@@ -89,28 +89,28 @@ class Split:
             >>> Split(H=H).split_full_Uij()
             [[[1, 1, 0, 0], [1, 1, 0], [0, 0], [0]], [[1, 0, 0, 0], [1, 0, 0], [0, 0], [0]]]
         """
-        full_Uij: List[List[int]] = deepcopy(self.H.full_Uij)
+        full_Uij: list[list[int]] = deepcopy(self.H.full_Uij)
 
         # a set of \min\{j in [n] \mid U_{ij} > 0\}s for i in I.
-        full_Uij_pos_indexes: List[Optional[int]] = [
+        full_Uij_pos_indexes: list[int | None] = [
             [uij > 0 for uij in Ui].index(True) if sum(Ui) > 0 else None
             for Ui in full_Uij[:-1]
         ]
 
-        full_Uij2: List[List[int]] = [
+        full_Uij2: list[list[int]] = [
             [1 if j == Ui_pos_index else 0 for j, uij in enumerate(Ui)]
-            for Ui, Ui_pos_index in zip(full_Uij, full_Uij_pos_indexes)
+            for Ui, Ui_pos_index in zip(full_Uij, full_Uij_pos_indexes, strict=False)
         ] + [
             [0]
         ]  # U_{nn} is always 0
-        full_Uij1: List[List[int]] = [
-            [uij - uij2 for uij, uij2 in zip(Ui, Ui2)]
-            for Ui, Ui2 in zip(full_Uij, full_Uij2)
+        full_Uij1: list[list[int]] = [
+            [uij - uij2 for uij, uij2 in zip(Ui, Ui2, strict=False)]
+            for Ui, Ui2 in zip(full_Uij, full_Uij2, strict=False)
         ]
 
         return [full_Uij1, full_Uij2]
 
-    def get_splitted_Uij(self) -> List[List[List[int]]]:
+    def get_splitted_Uij(self) -> list[list[list[int]]]:
         """Get splitted result of H.Uij from splitted H.full_Uij
 
         Returns:
@@ -127,12 +127,12 @@ class Split:
             >>> Split(H=H).get_splitted_Uij()
             [[[1, 0], [1]], [[0, 0], [0]]]
         """
-        splitted_full_Uij: List[List[List[int]]] = self.split_full_Uij()
+        splitted_full_Uij: list[list[list[int]]] = self.split_full_Uij()
         return [
             [full_Ui[1:] for full_Ui in full_Uij[:-1]] for full_Uij in splitted_full_Uij
         ]
 
-    def split_beta(self) -> List[List[int]]:
+    def split_beta(self) -> list[list[int]]:
         """Split H.beta
 
         Returns:
@@ -150,28 +150,28 @@ class Split:
             [[1, 2, 1], [1, 1, 0]]
         """
 
-        splitted_full_Uij: List[List[List[int]]] = self.split_full_Uij()
+        splitted_full_Uij: list[list[list[int]]] = self.split_full_Uij()
 
-        align: Callable[[List[List[int]]], List[List[int]]] = lambda full_Uij: [
+        align: Callable[[list[list[int]]], list[list[int]]] = lambda full_Uij: [
             [0] * ((self.H.n) - len(ui)) + ui for ui in full_Uij
         ]
-        aligned_full_Uij1: List[List[int]] = align(splitted_full_Uij[0])
-        aligned_full_Uij2: List[List[int]] = align(splitted_full_Uij[1])
+        aligned_full_Uij1: list[list[int]] = align(splitted_full_Uij[0])
+        aligned_full_Uij2: list[list[int]] = align(splitted_full_Uij[1])
 
         get_full_Uji: Callable[
-            [List[List[int]]], List[List[int]]
+            [list[list[int]]], list[list[int]]
         ] = lambda aligned_full_Uij: [
-            list(uj)[: j + 1] for j, uj in enumerate(zip(*aligned_full_Uij))
+            list(uj)[: j + 1] for j, uj in enumerate(zip(*aligned_full_Uij, strict=False))
         ]
-        full_Uji1: List[List[int]] = get_full_Uji(aligned_full_Uij1)
-        full_Uji2: List[List[int]] = get_full_Uji(aligned_full_Uij2)
+        full_Uji1: list[list[int]] = get_full_Uji(aligned_full_Uij1)
+        full_Uji2: list[list[int]] = get_full_Uji(aligned_full_Uij2)
 
-        beta1: List[int] = [sum(Uj) for Uj in full_Uji1]
-        beta2: List[int] = [sum(Uj) for Uj in full_Uji2]
+        beta1: list[int] = [sum(Uj) for Uj in full_Uji1]
+        beta2: list[int] = [sum(Uj) for Uj in full_Uji2]
 
         return [beta1, beta2]
 
-    def run(self) -> Union[List[KHive], KHive]:
+    def run(self) -> list[KHive] | KHive:
         """Split KHive to a pair of KHive and FundamentalKHive.
 
         Returns:
@@ -179,10 +179,10 @@ class Split:
         """
         if self.H.is_fundamental_khive():
             return self.H
-        splitted_alpha: List[List[int]] = self.split_alpha()
-        splitted_Uij: List[List[List[int]]] = self.get_splitted_Uij()
-        splitted_beta: List[List[int]] = self.split_beta()
-        gamma: List[int] = [0] * self.H.n
+        splitted_alpha: list[list[int]] = self.split_alpha()
+        splitted_Uij: list[list[list[int]]] = self.get_splitted_Uij()
+        splitted_beta: list[list[int]] = self.split_beta()
+        gamma: list[int] = [0] * self.H.n
         return [
             KHive(
                 n=self.H.n,
@@ -195,7 +195,7 @@ class Split:
         ]
 
 
-def psi(H: KHive) -> List[KHive]:
+def psi(H: KHive) -> list[KHive]:
     """Decompose KHive into FundamentalKHive by applying the function split repeatedly.
 
     Args:
@@ -236,13 +236,13 @@ def psi(H: KHive) -> List[KHive]:
         [KHive(n=3, alpha=[1, 1, 0], beta=[1, 0, 1], gamma=[0, 0, 0], Uij=[[0, 0], [1]])]
     """  # noqa: B950
 
-    splitted_hive: Union[KHive, List[KHive]] = psi_lambda(H=H)
+    splitted_hive: KHive | list[KHive] = psi_lambda(H=H)
     if isinstance(splitted_hive, KHive):
         return [splitted_hive]
     return list(flatten_list([psi(splitted_hive[0]), splitted_hive[1]]))
 
 
-def psi_inv(H: List[KHive]) -> KHive:
+def psi_inv(H: list[KHive]) -> KHive:
     """Compose tensor product of K-hives to a K-hive by Psi^{-1}.
 
     Args:
@@ -267,8 +267,8 @@ class Compose:
     then use psi_inv instead of using this class direct.
     """
 
-    def __init__(self, H: List[KHive]) -> None:
-        self.H: List[KHive] = H
+    def __init__(self, H: list[KHive]) -> None:
+        self.H: list[KHive] = H
         self.validate_is_khive()
         self.validate_khive_size()
 
@@ -286,7 +286,7 @@ class Compose:
             ...
             ValueError: H must be a list of KHive!
         """  # noqa: B950
-        is_valid: bool = all([isinstance(Hi, KHive) for Hi in self.H])
+        is_valid: bool = all(isinstance(Hi, KHive) for Hi in self.H)
         if not is_valid:
             raise ValueError("H must be a list of KHive!")
 
@@ -306,7 +306,7 @@ class Compose:
             ValueError: All elements of H must have the same n
         """  # noqa: B950
         lead_n: int = self.H[0].n
-        is_valid: bool = all([Hi.n == lead_n for Hi in self.H])
+        is_valid: bool = all(Hi.n == lead_n for Hi in self.H)
         if not is_valid:
             raise ValueError("All elements of H must have the same n")
 
@@ -318,7 +318,7 @@ class Compose:
         """
         return self.H[0].n
 
-    def compose_alpha(self) -> List[int]:
+    def compose_alpha(self) -> list[int]:
         """Compose alpha_i
 
         Returns:
@@ -330,9 +330,9 @@ class Compose:
             >>> Compose(H=H).compose_alpha()
             [2, 2, 0]
         """  # noqa: B950
-        return [sum(alpha_i) for alpha_i in zip(*[Hi.alpha for Hi in self.H])]
+        return [sum(alpha_i) for alpha_i in zip(*[Hi.alpha for Hi in self.H], strict=False)]
 
-    def compose_beta(self) -> List[int]:
+    def compose_beta(self) -> list[int]:
         """Compose beta_i
 
         Returns:
@@ -345,9 +345,9 @@ class Compose:
             >>> Compose(H=H).compose_beta()
             [1, 2, 1]
         """  # noqa: B950
-        return [sum(beta_i) for beta_i in zip(*[Hi.beta for Hi in self.H])]
+        return [sum(beta_i) for beta_i in zip(*[Hi.beta for Hi in self.H], strict=False)]
 
-    def compose_Uij(self) -> List[List[int]]:
+    def compose_Uij(self) -> list[list[int]]:
         """Compose U_{ij}^{k}
 
         Returns:
@@ -371,7 +371,7 @@ class Compose:
             [[2, 0], [2]]
         """  # noqa: B950
         return [
-            [sum(uij) for uij in zip(*Ui)] for Ui in zip(*[Hi.Uij for Hi in self.H])
+            [sum(uij) for uij in zip(*Ui, strict=False)] for Ui in zip(*[Hi.Uij for Hi in self.H], strict=False)
         ]
 
     def run(self) -> KHive:
@@ -388,8 +388,8 @@ class Compose:
             KHive(n=3, alpha=[2, 2, 0], beta=[1, 2, 1], gamma=[0, 0, 0], Uij=[[1, 0], [1]])
         """  # noqa: B950
         n: int = self.get_n()
-        alpha: List[int] = self.compose_alpha()
-        beta: List[int] = self.compose_beta()
-        gamma: List[int] = [0 for _ in range(n)]
-        Uij: List[List[int]] = self.compose_Uij()
+        alpha: list[int] = self.compose_alpha()
+        beta: list[int] = self.compose_beta()
+        gamma: list[int] = [0 for _ in range(n)]
+        Uij: list[list[int]] = self.compose_Uij()
         return KHive(n=n, alpha=alpha, beta=beta, gamma=gamma, Uij=Uij)

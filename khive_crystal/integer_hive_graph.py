@@ -1,8 +1,7 @@
 from dataclasses import dataclass, field
-from typing import List
 
 
-def align_length(n: int, edge: List[int]) -> List[int]:
+def align_length(n: int, edge: list[int]) -> list[int]:
     """align length of edge to n
 
     Args:
@@ -26,11 +25,11 @@ class IntegerHiveGraph:
     """
 
     n: int
-    alpha: List[int]
-    beta: List[int]
-    gamma: List[int]
-    Uij: List[List[int]]
-    full_Uij: List[List[int]] = field(init=False, repr=False)
+    alpha: list[int]
+    beta: list[int]
+    gamma: list[int]
+    Uij: list[list[int]]
+    full_Uij: list[list[int]] = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "alpha", align_length(n=self.n, edge=self.alpha))
@@ -85,12 +84,12 @@ class IntegerHiveGraph:
             raise ValueError("i should be in [n].")
 
         i_as_index: int = i - 1
-        Uji: List[List[int]] = self.get_Uji()
+        Uji: list[list[int]] = self.get_Uji()
         return (
             self.beta[i_as_index] - sum(Uji[i_as_index - 1]) if 1 < i else self.beta[0]
         )
 
-    def add_Uii(self) -> List[List[int]]:
+    def add_Uii(self) -> list[list[int]]:
         """Add Uii to Uij
 
         Returns:
@@ -121,7 +120,7 @@ class IntegerHiveGraph:
             [self.compute_Uii(i=self.n)]
         ]
 
-    def get_Uji(self) -> List[List[int]]:
+    def get_Uji(self) -> list[list[int]]:
         """get Uji by aligning Uij.
         Let Uij = [[U_{12}, U_{13}, U_{14}], [U_{23}, U_{24}], [U_{34}]].
         Then Uji = [[U_{12}], [U_{13}, U_{23}], [U_{14}, U_{24}], [U_{34}]].
@@ -171,10 +170,10 @@ class IntegerHiveGraph:
             [[0], [0, 1]]
         """
 
-        aligned_Uij: List[List[int]] = [
+        aligned_Uij: list[list[int]] = [
             [0] * ((self.n - 1) - len(ui)) + ui for ui in self.Uij
         ]
-        return [list(uj)[: j + 1] for j, uj in enumerate(zip(*aligned_Uij))]
+        return [list(uj)[: j + 1] for j, uj in enumerate(zip(*aligned_Uij, strict=False))]
 
     def integer_hive_graph_condition(self, k: int) -> bool:
         """Compute the condition of integer hive graph:
@@ -213,7 +212,7 @@ class IntegerHiveGraph:
             ValueError: If the condition is not satisfied raise error, otherwise nothing.
         """
 
-        conditions: List[bool] = [
+        conditions: list[bool] = [
             self.integer_hive_graph_condition(k=k + 1) for k in range(self.n)
         ]
 

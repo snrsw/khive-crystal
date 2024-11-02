@@ -1,11 +1,11 @@
 import math
-from typing import List, Union
 
 import plotly.graph_objects as go
+
 from khive_crystal.khive import KHive
 
 
-def view(H: Union[KHive, List[KHive]]) -> go.Figure:
+def view(H: KHive | list[KHive]) -> go.Figure:
     """Plot self.H to self.fig. If self.H is a KHive, plot it as origin = (0, 0).
     If self.H is a list of KHive, plot it as tensor products of KHive.
     This is a wrapper of the entry point of the class View.
@@ -22,13 +22,13 @@ def view(H: Union[KHive, List[KHive]]) -> go.Figure:
 class View:
     """This class has methods to view KHive or a list of KHive."""
 
-    def __init__(self, H: Union[KHive, List[KHive]]) -> None:
+    def __init__(self, H: KHive | list[KHive]) -> None:
         """init
 
         Args:
             H (Union[KHive, List[KHive]]): KHive or a list of KHive to plot.
         """
-        self.H: Union[KHive, List[KHive]] = H
+        self.H: KHive | list[KHive] = H
         self.fig: go.Figure = self.setup_figure()
         self.center = self.get_center()
 
@@ -64,7 +64,7 @@ class View:
         )
         return fig
 
-    def move_origin(self, axis: List[float], origin: int) -> List[float]:
+    def move_origin(self, axis: list[float], origin: int) -> list[float]:
         """Move origin of a graph.
 
         Args:

@@ -1,4 +1,4 @@
-from typing import Callable, List, Optional, Union
+from collections.abc import Callable
 
 from khive_crystal.fundamental_khives import FundamentalKHives
 from khive_crystal.khive import KHive
@@ -6,7 +6,7 @@ from khive_crystal.khives import KHives
 from khive_crystal.tensor_products import TensorProductsOfKHives
 
 
-def phi(i: int) -> Callable[[Union[KHive, List[KHive]]], int]:
+def phi(i: int) -> Callable[[KHive | list[KHive]], int]:
     """The entry point of phi_i. Given H and i, return phi_i(H) by appropriate crystal structure.
 
     Args:
@@ -29,15 +29,15 @@ def phi(i: int) -> Callable[[Union[KHive, List[KHive]]], int]:
         2
     """  # noqa: B950
 
-    def phi_i(H: Union[KHive, List[KHive]]) -> int:
+    def phi_i(H: KHive | list[KHive]) -> int:
         if isinstance(H, KHive):
             if H.is_fundamental_khive():
                 return FundamentalKHives(n=H.n, alpha=H.alpha).phi(i=i)(H)
             else:
                 return KHives(n=H.n, alpha=H.alpha).phi(i=i)(H)
         else:  # if H = List[KHives]
-            tensor_products_khives: List[Union[KHives, FundamentalKHives]]
-            if all([Hi.is_fundamental_khive() for Hi in H]):
+            tensor_products_khives: list[KHives | FundamentalKHives]
+            if all(Hi.is_fundamental_khive() for Hi in H):
                 tensor_products_khives = [
                     FundamentalKHives(n=Hi.n, alpha=Hi.alpha) for Hi in H
                 ]
@@ -53,7 +53,7 @@ def phi(i: int) -> Callable[[Union[KHive, List[KHive]]], int]:
 def f(
     i: int,
 ) -> Callable[
-    [Union[KHive, List[KHive]]], Union[Optional[KHive], Optional[List[Optional[KHive]]]]
+    [KHive | list[KHive]], KHive | None | list[KHive | None] | None
 ]:
     """The entry point of f_i. Given H and i, return f_i(H) by appropriate crystal structure.
 
@@ -78,16 +78,16 @@ def f(
     """  # noqa: E501, B950
 
     def f_i(
-        H: Union[KHive, List[KHive]]
-    ) -> Union[Optional[KHive], Optional[List[Optional[KHive]]]]:
+        H: KHive | list[KHive]
+    ) -> KHive | None | list[KHive | None] | None:
         if isinstance(H, KHive):
             if H.is_fundamental_khive():
                 return FundamentalKHives(n=H.n, alpha=H.alpha).f(i=i)(H)
             else:
                 return KHives(n=H.n, alpha=H.alpha).f(i=i)(H)
         else:  # if H = List[KHives]
-            tensor_products_khives: List[Union[KHives, FundamentalKHives]]
-            if all([Hi.is_fundamental_khive() for Hi in H]):
+            tensor_products_khives: list[KHives | FundamentalKHives]
+            if all(Hi.is_fundamental_khive() for Hi in H):
                 tensor_products_khives = [
                     FundamentalKHives(n=Hi.n, alpha=Hi.alpha) for Hi in H
                 ]
@@ -100,7 +100,7 @@ def f(
     return f_i
 
 
-def epsilon(i: int) -> Callable[[Union[KHive, List[KHive]]], int]:
+def epsilon(i: int) -> Callable[[KHive | list[KHive]], int]:
     """The entry point of epsilon_i.
     Given H and i, return epsilon_i(H) by appropriate crystal structure.
 
@@ -133,15 +133,15 @@ def epsilon(i: int) -> Callable[[Union[KHive, List[KHive]]], int]:
         1
     """  # noqa: B950
 
-    def epsilon_i(H: Union[KHive, List[KHive]]) -> int:
+    def epsilon_i(H: KHive | list[KHive]) -> int:
         if isinstance(H, KHive):
             if H.is_fundamental_khive():
                 return FundamentalKHives(n=H.n, alpha=H.alpha).epsilon(i=i)(H)
             else:
                 return KHives(n=H.n, alpha=H.alpha).epsilon(i=i)(H)
         else:  # if H = List[KHives]
-            tensor_products_khives: List[Union[KHives, FundamentalKHives]]
-            if all([Hi.is_fundamental_khive() for Hi in H]):
+            tensor_products_khives: list[KHives | FundamentalKHives]
+            if all(Hi.is_fundamental_khive() for Hi in H):
                 tensor_products_khives = [
                     FundamentalKHives(n=Hi.n, alpha=Hi.alpha) for Hi in H
                 ]
@@ -157,7 +157,7 @@ def epsilon(i: int) -> Callable[[Union[KHive, List[KHive]]], int]:
 def e(
     i: int,
 ) -> Callable[
-    [Union[KHive, List[KHive]]], Union[Optional[KHive], Optional[List[Optional[KHive]]]]
+    [KHive | list[KHive]], KHive | None | list[KHive | None] | None
 ]:
     """The entry point of e_i. Given H and i, return e_i(H) by appropriate crystal structure.
 
@@ -194,16 +194,16 @@ def e(
     """  # noqa: B950
 
     def e_i(
-        H: Union[KHive, List[KHive]]
-    ) -> Union[Optional[KHive], Optional[List[Optional[KHive]]]]:
+        H: KHive | list[KHive]
+    ) -> KHive | None | list[KHive | None] | None:
         if isinstance(H, KHive):
             if H.is_fundamental_khive():
                 return FundamentalKHives(n=H.n, alpha=H.alpha).e(i=i)(H)
             else:
                 return KHives(n=H.n, alpha=H.alpha).e(i=i)(H)
         else:  # if H = List[KHives]
-            tensor_products_khives: List[Union[KHives, FundamentalKHives]]
-            if all([Hi.is_fundamental_khive() for Hi in H]):
+            tensor_products_khives: list[KHives | FundamentalKHives]
+            if all(Hi.is_fundamental_khive() for Hi in H):
                 tensor_products_khives = [
                     FundamentalKHives(n=Hi.n, alpha=Hi.alpha) for Hi in H
                 ]
